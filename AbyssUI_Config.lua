@@ -160,30 +160,31 @@ end)
 -- AbyssUI Action Bar --
 local AbyssUINewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar3x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUINewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
-AbyssUINewActionBar3x12_CheckButton.Text:SetText("3x12 Actionbar (Beta - risk of glitches)")
+AbyssUINewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) - Retail|r")
 AbyssUINewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
 AbyssUINewActionBar3x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar3x12)
 
 local AbyssUINewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar4x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUINewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
-AbyssUINewActionBar4x12_CheckButton.Text:SetText("4x12 ActionBar (Beta - risk of glitches)")
+AbyssUINewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) - Retail|r")
 AbyssUINewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
 AbyssUINewActionBar4x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar4x12)
 -- OnClick Function
 AbyssUINewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.AbyssUINewActionBar3x12 = self:GetChecked()
-  AbyssUI_ActionBarInfo:Show()
+  --AbyssUIAddonSettings.AbyssUINewActionBar3x12 = self:GetChecked()
+  --AbyssUI_ActionBarInfo:Show()
 end)
 --
 AbyssUINewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
   if AbyssUIAddonSettings.AbyssUINewActionBar3x12 ~= true then
-    AbyssUINewActionBar4x12_CheckButton:SetChecked(nil)
+    --AbyssUINewActionBar4x12_CheckButton:SetChecked(nil)
   else
-    AbyssUIAddonSettings.AbyssUINewActionBar4x12 = self:GetChecked()
-    AbyssUI_ActionBarInfo:Show()
+    --AbyssUIAddonSettings.AbyssUINewActionBar4x12 = self:GetChecked()
+    --AbyssUI_ActionBarInfo:Show()
   end
 end)
 -- After Login/Reload
+--[[
 AbyssUINewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUINewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( AbyssUIAddonSettings.AbyssUINewActionBar3x12 == true ) then
@@ -248,6 +249,7 @@ AbyssUINewActionBar4x12_CheckButton:SetScript("OnEvent", function(self, event, .
       MultiBarLeft.SetPoint = function() end
     end
 end)
+--]]
 -- End
 ------------------------------- Hide Elements ---------------------------------
 -- MicroMenu/Bags --
@@ -904,12 +906,12 @@ end)
 -- Instance Leave --
 local AbyssUI_InstanceLeave_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_InstanceLeave_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUI_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
-AbyssUI_InstanceLeave_CheckButton.Text:SetText("Instance Leave Frame")
+AbyssUI_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame (Retail)|r")
 AbyssUI_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
 AbyssUI_InstanceLeave_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionInstanceLeave)
 -- OnClick Function
 AbyssUI_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
+  --AbyssUIAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
 end)
 -- Shift + C to confirm  --
 local AbyssUI_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_ConfirmPopUps_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")

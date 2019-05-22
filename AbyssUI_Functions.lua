@@ -26,7 +26,7 @@ for i = 1, 12 do
 	end
 end
 ----------------------------------------------------
--- Class Icons (Need the texture pack)
+-- Class Icons
 hooksecurefunc("UnitFramePortrait_Update", function(self)
 	if self.portrait then
 		if UnitIsPlayer(self.unit) then
@@ -701,45 +701,20 @@ AbyssUI_InspectTarget:SetScript("OnClick", function()
 end)
 ----------------------------------------------------
 -- DailyInfo Function
-C_WowTokenPublic.UpdateMarketPrice()
+--C_WowTokenPublic.UpdateMarketPrice()
 function AbyssUIDailyInfo()
 	print("\n|cffa5f6f3<< AbyssUI Daily Info >>|r")
-	if C_WowTokenPublic.GetCurrentMarketPrice() ~= nil then
-		print("|cffa5f6f3Token Price: |r" .. GetMoneyString(C_WowTokenPublic.GetCurrentMarketPrice()))
-	else
-		print("|cffa5f6f3Token Price:|r Not available right now!")
-	end
+	--if C_WowTokenPublic.GetCurrentMarketPrice() ~= nil then
+		--print("|cffa5f6f3Token Price: |r" .. GetMoneyString(C_WowTokenPublic.GetCurrentMarketPrice()))
+	--else
+	--	print("|cffa5f6f3Token Price:|r Not available right now!")
+	--end
 	print("|cffa5f6f3Date:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
-	print("|cffa5f6f3Honor Level: |r|cffffcc00" .. UnitHonorLevel("player") .. "|r")
+	--print("|cffa5f6f3Honor Level: |r|cffffcc00" .. UnitHonorLevel("player") .. "|r")
 	--print("|cffa5f6f3Location: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
 	print("|cffa5f6f3WoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
 	local AddonVersion = GetAddOnMetadata("AbyssUI", "Version")
 	print("|cffa5f6f3AbyssUI Version: |r|cffffcc00" .. AddonVersion .. "|r")
 end
-----------------------------------------------------
--- TargetTargetName Frame
---[[
-local f = CreateFrame("Frame", nil, UIParent)
-f:SetWidth(50)
-f:SetHeight(50)
-f:SetFrameStrata("Dialog")
-f.text = f.text or f:CreateFontString(nil,"ARTWORK","QuestMapRewardsFont")
-f.text:SetAllPoints(true)
-f.text:SetJustifyH("CENTER")
-f.text:SetJustifyV("CENTER")
-f.text:SetText("Choose a color by clicking on 'Choose a color', 'Okay' and then reload the UI.")
-f:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
-f:SetScript("OnEvent", function(self, event)
-	--local i = random(1, 999)
-	--if ( UnitIsPlayer(mouseover) ) then
-	   --f:SetText(UnitName(playertargettarget))
-	   local name = UnitName("targettarget")
-	   print(name)
-	--else 
-		--f:SetText("No Target")
-	--	print("No Target", i)
-	--end
-end)
---]]
 ----------------------------------------------------
 -- End
