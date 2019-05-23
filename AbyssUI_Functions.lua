@@ -194,11 +194,13 @@ MiniMapTracking:ClearAllPoints()
 MiniMapTracking:SetPoint("TOPRIGHT", -26, 7)
 ----------------------------------------------------
 -- Disable spam healing over player frame
+--[[
 PlayerHitIndicator:SetText(nil)
 PlayerHitIndicator.SetText = function() end
 
 PetHitIndicator:SetText(nil)
 PetHitIndicator.SetText = function() end
+--]]
 ----------------------------------------------------
 -- Tooltip Class Color Name
 -- Many thanks to Phanx for part of this 
@@ -220,6 +222,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(GameTooltip)
 end)
 ----------------------------------------------------
 -- Tooltip Faction Color Change
+--[[
 GameTooltip:HookScript("OnUpdate", function(GameTooltip)
 	local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
 	local _, unit = GameTooltip:GetUnit()
@@ -237,6 +240,7 @@ GameTooltip:HookScript("OnUpdate", function(GameTooltip)
 		return nil
 	end
 end)
+--]]
 ----------------------------------------------------
 -- Tooltip Dark background
 local TooltipBackground = GameTooltip:CreateTexture(nil, "BACKGROUND", nil, 1)
@@ -403,6 +407,7 @@ function AbyssUI_StatsFrames1Show()
 end
 ----------------------------------------------------
 -- UI Scale Elements
+--[[
 local ScaleElements = CreateFrame("Frame", "$parentScaleElements", nil)
 ScaleElements:RegisterEvent("ADDON_LOADED")
 ScaleElements:RegisterEvent("PLAYER_LOGOUT")
@@ -412,9 +417,11 @@ ScaleElements:SetScript("OnEvent", function(self, event, arg1)
 		else return nil
 	end
 end)
+--]]
 --------------------------------------------------------------------------
 -- Tooltip Instant Fade
 -- Many thanks to sacrife for part of this
+--[[
 GameTooltip.FadeOut = function(self)
 	GameTooltip:Hide()
 end
@@ -430,6 +437,7 @@ updateFrame:SetScript("OnUpdate", function(self)
 		hasUnit = true
 	end
 end)
+--]]
 ----------------------------------------------------
 -- Auto Repair/Sell Grey
 local g = CreateFrame("Frame", "$parentFrame", nil)
@@ -568,6 +576,7 @@ function AbyssUIStart()
 end
 ----------------------------------------------------
 -- ActionBarScale and Minimap
+--[[
 local frame = CreateFrame("Frame", "$parentFrame", UIParent)
 MinimapCluster:EnableMouse( false )
 MinimapCluster:SetParent( frame )
@@ -585,6 +594,7 @@ end)
 hooksecurefunc(MultiBarLeft, "SetScale", function(self, scale)
 	if scale < 1 then self:SetScale(1) end
 end)
+--]]
 ----------------------------------------------------
 -- Color Picker 
 -- Many thanks to Fizz for part of this :thumbsup:
