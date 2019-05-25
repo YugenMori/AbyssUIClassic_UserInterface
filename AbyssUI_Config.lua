@@ -160,13 +160,13 @@ end)
 -- AbyssUI Action Bar --
 local AbyssUINewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar3x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUINewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
-AbyssUINewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) - Retail|r")
+AbyssUINewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
 AbyssUINewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
 AbyssUINewActionBar3x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar3x12)
 
 local AbyssUINewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar4x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUINewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
-AbyssUINewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) - Retail|r")
+AbyssUINewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
 AbyssUINewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
 AbyssUINewActionBar4x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar4x12)
 -- OnClick Function
@@ -255,7 +255,7 @@ end)
 -- MicroMenu/Bags --
 local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
-MicroMenu_CheckButton.Text:SetText("Hide MicroMenu")
+MicroMenu_CheckButton.Text:SetText("|cff848484Hide MicroMenu *Retail|r")
 MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu (Bags Bar)"
 MicroMenu_CheckButton:SetChecked(AbyssUIAddonSettings.HideMicroMenu)
 --  Hide
@@ -298,14 +298,15 @@ local function AbyssUI_ShowMicroMenu_Function()
 end
 -- OnClick Function
 MicroMenu_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideMicroMenu = self:GetChecked()
+--AbyssUIAddonSettings.HideMicroMenu = self:GetChecked()
   if AbyssUIAddonSettings.HideMicroMenu == true then
-    AbyssUI_HideMicroMenu_Function()
+    --AbyssUI_HideMicroMenu_Function()
   else
-    AbyssUI_ShowMicroMenu_Function()
+    --AbyssUI_ShowMicroMenu_Function()
   end
 end)
 -- After Login/Reload
+--[[
 MicroMenu_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 MicroMenu_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
@@ -316,6 +317,7 @@ MicroMenu_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
+--]]
 -- Gryphons Option --
 local Gryphons_CheckButton = CreateFrame("CheckButton", "$parentGryphons_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 Gryphons_CheckButton:SetPoint("TOPLEFT", 10, -110)
@@ -375,10 +377,11 @@ end)
 -- Objective Tracker --
 local ObjTracker_CheckButton = CreateFrame("CheckButton", "$parentObjTracker_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 ObjTracker_CheckButton:SetPoint("TOPLEFT", 10, -170)
-ObjTracker_CheckButton.Text:SetText("Hide Objective Tracker")
+ObjTracker_CheckButton.Text:SetText("|cff848484Hide Objective Tracker *Retail|r")
 ObjTracker_CheckButton.tooltip = "Hide the Objective Tracker (Quest Frame)"
-ObjTracker_CheckButton:SetChecked(AbyssUIAddonSettings.HideObjectiveTracker)
+--ObjTracker_CheckButton:SetChecked(AbyssUIAddonSettings.HideObjectiveTracker)
 -- OnClick Function
+--[[
 ObjTracker_CheckButton:SetScript("OnClick", function(self)
   AbyssUIAddonSettings.HideObjectiveTracker = self:GetChecked()
   if AbyssUIAddonSettings.HideObjectiveTracker == true then
@@ -398,6 +401,7 @@ ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
+--]]
 -- FPS/MS Frame --
 local FPSMSFrame_CheckButton = CreateFrame("CheckButton", "$parentFPSMSFrame_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 FPSMSFrame_CheckButton:SetPoint("TOPLEFT", 10, -200)
@@ -906,9 +910,9 @@ end)
 -- Instance Leave --
 local AbyssUI_InstanceLeave_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_InstanceLeave_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUI_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
-AbyssUI_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame (Retail)|r")
+AbyssUI_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame *Retail|r")
 AbyssUI_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
-AbyssUI_InstanceLeave_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionInstanceLeave)
+--AbyssUI_InstanceLeave_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionInstanceLeave)
 -- OnClick Function
 AbyssUI_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
   --AbyssUIAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
