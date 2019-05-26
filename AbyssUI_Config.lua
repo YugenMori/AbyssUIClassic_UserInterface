@@ -171,20 +171,19 @@ AbyssUINewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd b
 AbyssUINewActionBar4x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar4x12)
 -- OnClick Function
 AbyssUINewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
-  --AbyssUIAddonSettings.AbyssUINewActionBar3x12 = self:GetChecked()
-  --AbyssUI_ActionBarInfo:Show()
+  AbyssUIAddonSettings.AbyssUINewActionBar3x12 = self:GetChecked()
+  AbyssUI_ActionBarInfo:Show()
 end)
 --
 AbyssUINewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
   if AbyssUIAddonSettings.AbyssUINewActionBar3x12 ~= true then
-    --AbyssUINewActionBar4x12_CheckButton:SetChecked(nil)
+    AbyssUINewActionBar4x12_CheckButton:SetChecked(nil)
   else
-    --AbyssUIAddonSettings.AbyssUINewActionBar4x12 = self:GetChecked()
-    --AbyssUI_ActionBarInfo:Show()
+    AbyssUIAddonSettings.AbyssUINewActionBar4x12 = self:GetChecked()
+    AbyssUI_ActionBarInfo:Show()
   end
 end)
 -- After Login/Reload
---[[
 AbyssUINewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUINewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( AbyssUIAddonSettings.AbyssUINewActionBar3x12 == true ) then
