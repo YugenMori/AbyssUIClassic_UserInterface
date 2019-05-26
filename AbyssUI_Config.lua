@@ -377,11 +377,10 @@ end)
 -- Objective Tracker --
 local ObjTracker_CheckButton = CreateFrame("CheckButton", "$parentObjTracker_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 ObjTracker_CheckButton:SetPoint("TOPLEFT", 10, -170)
-ObjTracker_CheckButton.Text:SetText("|cff848484Hide Objective Tracker *Retail|r")
+ObjTracker_CheckButton.Text:SetText("Hide Objective Tracker")
 ObjTracker_CheckButton.tooltip = "Hide the Objective Tracker (Quest Frame)"
---ObjTracker_CheckButton:SetChecked(AbyssUIAddonSettings.HideObjectiveTracker)
+ObjTracker_CheckButton:SetChecked(AbyssUIAddonSettings.HideObjectiveTracker)
 -- OnClick Function
---[[
 ObjTracker_CheckButton:SetScript("OnClick", function(self)
   AbyssUIAddonSettings.HideObjectiveTracker = self:GetChecked()
   if AbyssUIAddonSettings.HideObjectiveTracker == true then
@@ -401,7 +400,6 @@ ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
---]]
 -- FPS/MS Frame --
 local FPSMSFrame_CheckButton = CreateFrame("CheckButton", "$parentFPSMSFrame_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 FPSMSFrame_CheckButton:SetPoint("TOPLEFT", 10, -200)
