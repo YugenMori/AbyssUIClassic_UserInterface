@@ -4,7 +4,7 @@
 --
 -- Hope you like my addOn ^^
 --
--- Functions for AbyssUI
+-- Functions for AbyssUIClassic
 --------------------------------------------------------------------------------
 -- Action Bar Icon Border Remove
 -- Many thanks to Spyrö for part of this
@@ -31,72 +31,72 @@ hooksecurefunc("UnitFramePortrait_Update", function(self)
 	if self.portrait then
 		if UnitIsPlayer(self.unit) then
 			local t = CLASS_ICON_TCOORDS[select(2, UnitClass(self.unit))]
-			if t and AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-				AbyssUIAddonSettings.UIClassCircles12 ~= true and
-				AbyssUIAddonSettings.UIClassCircles13 ~= true and
-				AbyssUIAddonSettings.UIClassCircles14 ~= true and
-				AbyssUIAddonSettings.UIClassCircles15 ~= true and
-				AbyssUIAddonSettings.UIClassCircles16 ~= true then
+			if t and AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+				AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+				AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+				AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+				AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+				AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
 				self.portrait:SetTexCoord(0, 1, 0, 1)
 			else
 				self.portrait:SetTexCoord(0, 1, 0, 1)
 			end
-			if t and AbyssUIAddonSettings.UIClassCircles01 == true then
+			if t and AbyssUIClassicAddonSettings.UIClassCircles01 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_BRIGHT_CLASS_COLOR")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles02 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles02 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles03 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles03 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_GREY")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles04 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles04 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_V2")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles05 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles05 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_V2_SMALL")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles06 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles06 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_LIGHT_GREY")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles07 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles07 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MEDIUM_GREY")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles08 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles08 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MUTED_CLASS_COLOR")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles09 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles09 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_PSYCHEDELIC")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles10 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles10 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_PSYCHEDELIC_V2")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles11 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles11 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_GRAYSCALE")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles12 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles12 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_ARTISTIC")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles13 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles13 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MINIMAL_BLUE")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles14 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles14 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MINIMAL_RED")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles15 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles15 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_VIBRANT")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIAddonSettings.UIClassCircles16 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles16 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_RETRO")
 				self.portrait:SetTexCoord(unpack(t))
 			else
@@ -400,11 +400,11 @@ CF:SetScript("OnEvent", function(self, event)
 	StatsFrame:SetScript("OnUpdate", update)
 end)
 -- Hide
-function AbyssUI_StatsFrames1Hide()
+function AbyssUIClassic_StatsFrames1Hide()
 	StatsFrame:Hide()
 end
 -- Show
-function AbyssUI_StatsFrames1Show()
+function AbyssUIClassic_StatsFrames1Show()
 	StatsFrame:Show()
 end
 ----------------------------------------------------
@@ -414,7 +414,7 @@ local ScaleElements = CreateFrame("Frame", "$parentScaleElements", nil)
 ScaleElements:RegisterEvent("ADDON_LOADED")
 ScaleElements:RegisterEvent("PLAYER_LOGOUT")
 ScaleElements:SetScript("OnEvent", function(self, event, arg1)
-	if ( event == "ADDON_LOADED" and arg1 == "AbyssUI" ) then
+	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" ) then
 		CastingBarFrame:SetScale(1.05)
 		else return nil
 	end
@@ -455,7 +455,7 @@ g:SetScript("OnEvent", function()
             end
         end
     end
-		if ( AbyssUIAddonSettings.ExtraFunctionSellGray == true ) then
+		if ( AbyssUIClassicAddonSettings.ExtraFunctionSellGray == true ) then
 	    if( CanMerchantRepair() ) then
 	        local cost = GetRepairAllCost()
 	        if cost > 0 then
@@ -532,7 +532,7 @@ end)
 -- Percent Health 
 local FrameList = {"Player", "Target", "Focus"}
 local _G = _G
-local function AbyssUI_UpdateHealthValues(...)
+local function AbyssUIClassic_UpdateHealthValues(...)
 for i = 1, select("#", unpack(FrameList)) do
 	local FrameName = (select(i, unpack(FrameList)))
 	local Health = AbbreviateLargeNumbers(UnitHealth(FrameName))
@@ -549,11 +549,11 @@ for i = 1, select("#", unpack(FrameList)) do
 		end
 	end
 end
-hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUI_UpdateHealthValues)
+hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUIClassic_UpdateHealthValues)
 -- Percent Mana
 local FrameList = {"Player", "Target", "Focus"}
 local _G = _G
-local function AbyssUI_UpdateManaValues(...)
+local function AbyssUIClassic_UpdateManaValues(...)
 for i = 1, select("#", unpack(FrameList)) do
 	local FrameName = (select(i, unpack(FrameList)))
 	local Mana = AbbreviateLargeNumbers(UnitPower(FrameName))
@@ -570,11 +570,11 @@ for i = 1, select("#", unpack(FrameList)) do
 		end
 	end
 end
-hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUI_UpdateManaValues)
+hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUIClassic_UpdateManaValues)
 ----------------------------------------------------
 -- Start Function
-function AbyssUIStart()
-	AbyssUIFirstFrame:Show()
+function AbyssUIClassicStart()
+	AbyssUIClassicFirstFrame:Show()
 end
 ----------------------------------------------------
 -- ActionBarScale and Minimap
@@ -612,7 +612,7 @@ local function ColorPicker_Changed(self)
     COLOR_MY_UI[character].Color = color
 end
 -- Global Color Function
-function AbyssUI_ShowColorPicker()
+function AbyssUIClassic_ShowColorPicker()
 	if ColorPickerFrame:IsShown() then return end
 	ColorPickerFrame.previousValues = COLOR_MY_UI[character].Color
 	ColorPickerFrame.cancelFunc = ColorPicker_Cancelled
@@ -640,14 +640,14 @@ f:SetScript("OnEvent", function(self, event)
 end)
 ----------------------------------------------------
 -- ConfirmPopUps
-local AbyssUI_ConfirmPopUps = CreateFrame("Button", '$parentAbyssUI_ConfirmPopUps', nil)
-AbyssUI_ConfirmPopUps:RegisterForClicks("AnyDown")
-AbyssUI_ConfirmPopUps:SetScript("OnEvent", function()
-	SetBindingClick("SHIFT-C", AbyssUI_ConfirmPopUps:GetName())
+local AbyssUIClassic_ConfirmPopUps = CreateFrame("Button", '$parentAbyssUIClassic_ConfirmPopUps', nil)
+AbyssUIClassic_ConfirmPopUps:RegisterForClicks("AnyDown")
+AbyssUIClassic_ConfirmPopUps:SetScript("OnEvent", function()
+	SetBindingClick("SHIFT-C", AbyssUIClassic_ConfirmPopUps:GetName())
 end)
-AbyssUI_ConfirmPopUps:RegisterEvent("PLAYER_LOGIN")
-AbyssUI_ConfirmPopUps:SetScript("OnClick", function()
-	if ( AbyssUIAddonSettings.ExtraFunctionConfirmPopUps == true ) then
+AbyssUIClassic_ConfirmPopUps:RegisterEvent("PLAYER_LOGIN")
+AbyssUIClassic_ConfirmPopUps:SetScript("OnClick", function()
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps == true ) then
 		StaticPopup1Button1:Click()
 		StaticPopup2Button1:Click()
 		StaticPopup3Button1:Click()
@@ -670,9 +670,9 @@ objectiveFrame1:RegisterEvent("PLAYER_REGEN_ENABLED")
 objectiveFrame1:SetScript("OnEvent", function(self, event, ...)
 	local isPVPMap = C_PvP.IsPVPMap()
 	local inInstance, instanceType = IsInInstance()
-	if ( event == "PLAYER_REGEN_DISABLED" and AbyssUIAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
+	if ( event == "PLAYER_REGEN_DISABLED" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
 		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 1, 0)
-	elseif ( event == "PLAYER_REGEN_ENABLED" and AbyssUIAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
+	elseif ( event == "PLAYER_REGEN_ENABLED" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
 		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 0, 1)
 	else 
 		return nil
@@ -687,21 +687,21 @@ objectiveFrame2:SetScript("OnEvent", function(self, event, ...)
 	--local isBattleground = C_PvP.IsBattleground() 
 	--local isRatedMap = C_PvP.IsRatedMap() 
 	--or isArena == true or isBattleground == true or isRatedMap == true
-	if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == true) then
+	if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == true) then
 		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 1, 0)		
 	else 
 		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 0, 1)
 	end
 end)
 -- Inspect Target
-local AbyssUI_InspectTarget = CreateFrame("Button", '$parentAbyssUI_InspectTarget', nil)
-AbyssUI_InspectTarget:RegisterForClicks("AnyDown")
-AbyssUI_InspectTarget:SetScript("OnEvent", function()
-	SetBindingClick("SHIFT-X", AbyssUI_InspectTarget:GetName())
+local AbyssUIClassic_InspectTarget = CreateFrame("Button", '$parentAbyssUIClassic_InspectTarget', nil)
+AbyssUIClassic_InspectTarget:RegisterForClicks("AnyDown")
+AbyssUIClassic_InspectTarget:SetScript("OnEvent", function()
+	SetBindingClick("SHIFT-X", AbyssUIClassic_InspectTarget:GetName())
 end)
-AbyssUI_InspectTarget:RegisterEvent("PLAYER_LOGIN")
-AbyssUI_InspectTarget:SetScript("OnClick", function()
-    if AbyssUIAddonSettings.ExtraFunctionInspectTarget == true then
+AbyssUIClassic_InspectTarget:RegisterEvent("PLAYER_LOGIN")
+AbyssUIClassic_InspectTarget:SetScript("OnClick", function()
+    if AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget == true then
     	if ( UnitPlayerControlled("target") and not UnitIsUnit("player", "target") ) then
 			InspectUnit("target")
 		elseif ( UnitPlayerControlled("mouseover") and not UnitIsUnit("player", "mouseover") ) then
@@ -714,8 +714,8 @@ end)
 ----------------------------------------------------
 -- DailyInfo Function
 --C_WowTokenPublic.UpdateMarketPrice()
-function AbyssUIDailyInfo()
-	print("\n|cffa5f6f3<< AbyssUI Daily Info >>|r")
+function AbyssUIClassicDailyInfo()
+	print("\n|cffa5f6f3<< AbyssUIClassic Daily Info >>|r")
 	--if C_WowTokenPublic.GetCurrentMarketPrice() ~= nil then
 		--print("|cffa5f6f3Token Price: |r" .. GetMoneyString(C_WowTokenPublic.GetCurrentMarketPrice()))
 	--else
@@ -725,8 +725,8 @@ function AbyssUIDailyInfo()
 	--print("|cffa5f6f3Honor Level: |r|cffffcc00" .. UnitHonorLevel("player") .. "|r")
 	--print("|cffa5f6f3Location: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
 	print("|cffa5f6f3WoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
-	local AddonVersion = GetAddOnMetadata("AbyssUI", "Version")
-	print("|cffa5f6f3AbyssUI Version: |r|cffffcc00" .. AddonVersion .. "|r")
+	local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
+	print("|cffa5f6f3AbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
 end
 ----------------------------------------------------
 -- End

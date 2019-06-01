@@ -4,42 +4,42 @@
 --
 -- Hope you like my addOn ^^
 --
--- Configuration page for AbyssUI
+-- Configuration page for AbyssUIClassic
 --------------------------------------------------------------------------------
 local addonName, addonTable = ...
 
-local AbyssUI_Config = {}
+local AbyssUIClassic_Config = {}
 
 local function InitSettings()
-AbyssUI_Config.panel = CreateFrame( "Frame", "$parentAbyssUI_Config", InterfaceOptionsFramePanelContainer)
+AbyssUIClassic_Config.panel = CreateFrame( "Frame", "$parentAbyssUIClassic_Config", InterfaceOptionsFramePanelContainer)
 -- Register in the Interface Addon Options GUI
 -- Set the name for the Category for the Options Panel
-AbyssUI_Config.panel.name = "Abyss|cff0d75d4UI|r"
+AbyssUIClassic_Config.panel.name = "Abyss|cff0d75d4UI|r"
 -- Add the panel to the Interface Options
-InterfaceOptions_AddCategory(AbyssUI_Config.panel, addonName)
+InterfaceOptions_AddCategory(AbyssUIClassic_Config.panel, addonName)
 --Child Panels
-AbyssUI_Config.childpanel1 = CreateFrame( "Frame", "$parentConfigChild_HideElements", AbyssUI_Config.panel)
-AbyssUI_Config.childpanel1.name = "ActionBar"
-AbyssUI_Config.childpanel1.parent = AbyssUI_Config.panel.name
-InterfaceOptions_AddCategory(AbyssUI_Config.childpanel1)
+AbyssUIClassic_Config.childpanel1 = CreateFrame( "Frame", "$parentConfigChild_HideElements", AbyssUIClassic_Config.panel)
+AbyssUIClassic_Config.childpanel1.name = "ActionBar"
+AbyssUIClassic_Config.childpanel1.parent = AbyssUIClassic_Config.panel.name
+InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel1)
 --
-AbyssUI_Config.childpanel2 = CreateFrame( "Frame", "$parentConfigChild_PortraitColorization", AbyssUI_Config.panel)
-AbyssUI_Config.childpanel2.name = "Hide Elements"
-AbyssUI_Config.childpanel2.parent = AbyssUI_Config.panel.name
-InterfaceOptions_AddCategory(AbyssUI_Config.childpanel2)
+AbyssUIClassic_Config.childpanel2 = CreateFrame( "Frame", "$parentConfigChild_PortraitColorization", AbyssUIClassic_Config.panel)
+AbyssUIClassic_Config.childpanel2.name = "Hide Elements"
+AbyssUIClassic_Config.childpanel2.parent = AbyssUIClassic_Config.panel.name
+InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel2)
 --
-AbyssUI_Config.childpanel3 = CreateFrame( "Frame", "$parentConfigChild_Miscellaneous", AbyssUI_Config.panel)
-AbyssUI_Config.childpanel3.name = "Miscellaneous"
-AbyssUI_Config.childpanel3.parent = AbyssUI_Config.panel.name
-InterfaceOptions_AddCategory(AbyssUI_Config.childpanel3)
+AbyssUIClassic_Config.childpanel3 = CreateFrame( "Frame", "$parentConfigChild_Miscellaneous", AbyssUIClassic_Config.panel)
+AbyssUIClassic_Config.childpanel3.name = "Miscellaneous"
+AbyssUIClassic_Config.childpanel3.parent = AbyssUIClassic_Config.panel.name
+InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel3)
 --
-AbyssUI_Config.childpanel4 = CreateFrame( "Frame", "$parentConfigChild_Miscellaneous", AbyssUI_Config.panel)
-AbyssUI_Config.childpanel4.name = "Themes"
-AbyssUI_Config.childpanel4.parent = AbyssUI_Config.panel.name
-InterfaceOptions_AddCategory(AbyssUI_Config.childpanel4)
+AbyssUIClassic_Config.childpanel4 = CreateFrame( "Frame", "$parentConfigChild_Miscellaneous", AbyssUIClassic_Config.panel)
+AbyssUIClassic_Config.childpanel4.name = "Themes"
+AbyssUIClassic_Config.childpanel4.parent = AbyssUIClassic_Config.panel.name
+InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel4)
 -- Title
-local Frame = CreateFrame("Frame","$parentFrameButtonTitle", AbyssUI_Config.panel)
-Frame:SetPoint("CENTER", AbyssUI_Config.panel, "TOP", 0, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonTitle", AbyssUIClassic_Config.panel)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", 0, -20)
 Frame:SetHeight(24)
 Frame:SetWidth(70)
 Frame:SetScale(1.5)
@@ -47,8 +47,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Abyss|cff0d75d4UI|r")
 -- SubTittle
-local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUI_Config.panel)
-Frame:SetPoint("CENTER", AbyssUI_Config.panel, "TOP", 0, -80)
+local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUIClassic_Config.panel)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", 0, -80)
 Frame:SetHeight(24)
 Frame:SetWidth(200)
 Frame:SetScale(1.1)
@@ -56,8 +56,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Thanks for using Abyss|cff0d75d4UI|r.\nIf you liked, share with your friends, or make a donation. Helps a lot!\nThis is a Minimalist UI that make changes directly to the WoW frames,\n using almost nothing more than the Blizzard use of CPU/RAM.\n\nCheck the options by clicking in the (+) button")
 -- Panel 01 (ActionBar)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel01", AbyssUI_Config.childpanel1)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel1, "TOP", 0, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel01", AbyssUIClassic_Config.childpanel1)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -20)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -65,8 +65,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Abyss|cff0d75d4UI|r Actionbar")
 -- Panel 02 (HideElements)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUI_Config.childpanel2)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel2, "TOP", 0, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -74,8 +74,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Hide Elements")
 -- Panel 03 (Miscellaneous)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel03", AbyssUI_Config.childpanel3)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel3, "TOP", 0, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel03", AbyssUIClassic_Config.childpanel3)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel3, "TOP", 0, -20)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -83,8 +83,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Miscellaneous")
 -- Panel 04 (Themes)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel04", AbyssUI_Config.childpanel4)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel4, "TOP", -150, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel04", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", -150, -20)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -92,8 +92,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Player Portrait")
 -- Panel 05 (Themes)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel05", AbyssUI_Config.childpanel4)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel4, "TOP", 120, -20)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel05", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", 120, -20)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -101,8 +101,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Frame Colorization")
 -- Panel 05.01 (Themes)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel051", AbyssUI_Config.childpanel4)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel4, "TOP", 90, -70)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel051", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", 90, -70)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1)
@@ -110,8 +110,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("- Preset Colors")
 -- Panel 05.02 (Themes)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel052", AbyssUI_Config.childpanel4)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel4, "CENTER", 98, -50)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel052", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "CENTER", 98, -50)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1)
@@ -119,8 +119,8 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("- Choose a Color")
 -- Panel 06 (Themes)
-local Frame = CreateFrame("Frame","$parentFrameButtonPanel06", AbyssUI_Config.childpanel4)
-Frame:SetPoint("CENTER", AbyssUI_Config.childpanel4, "CENTER", -180, -35)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel06", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "CENTER", -180, -35)
 Frame:SetWidth(120)
 Frame:SetHeight(24)
 Frame:SetScale(1.5)
@@ -128,65 +128,65 @@ Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Extras")
 --------------------------------- Buttons ---------------------------------
--- AbyssUI DailyInfo --
-local FrameButton = CreateFrame("Button","$parentExtraDailyInfoButton", AbyssUI_Config.panel, "UIPanelButtonTemplate")
+-- AbyssUIClassic DailyInfo --
+local FrameButton = CreateFrame("Button","$parentExtraDailyInfoButton", AbyssUIClassic_Config.panel, "UIPanelButtonTemplate")
 FrameButton:SetHeight(24)
 FrameButton:SetWidth(140)
-FrameButton:SetPoint("CENTER", AbyssUI_Config.panel, "TOP", -200, -200)
-FrameButton:SetText("AbyssUI DailyInfo")
+FrameButton:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", -200, -200)
+FrameButton:SetText("AbyssUIClassic DailyInfo")
 FrameButton:SetScript("OnClick", function()
   C_WowTokenPublic.UpdateMarketPrice()
-  AbyssUIDailyInfo()
+  AbyssUIClassicDailyInfo()
 end)
 -- Clear Action Bar --
-local FrameButton = CreateFrame("Button","$parentExtraClearActionButton", AbyssUI_Config.panel, "UIPanelButtonTemplate")
+local FrameButton = CreateFrame("Button","$parentExtraClearActionButton", AbyssUIClassic_Config.panel, "UIPanelButtonTemplate")
 FrameButton:SetHeight(24)
 FrameButton:SetWidth(140)
-FrameButton:SetPoint("CENTER",  AbyssUI_Config.panel, "TOP", 0, -200)
+FrameButton:SetPoint("CENTER",  AbyssUIClassic_Config.panel, "TOP", 0, -200)
 FrameButton:SetText("Clear Action Bar")
 FrameButton:SetScript("OnClick", function()
-  AbyssUI_ActionBarCleaner:Show()
+  AbyssUIClassic_ActionBarCleaner:Show()
 end)
 -- Reload --
-local FrameButton = CreateFrame("Button","$parentExtraReloadInterfaceButton", AbyssUI_Config.panel, "UIPanelButtonTemplate")
+local FrameButton = CreateFrame("Button","$parentExtraReloadInterfaceButton", AbyssUIClassic_Config.panel, "UIPanelButtonTemplate")
 FrameButton:SetHeight(24)
 FrameButton:SetWidth(140)
-FrameButton:SetPoint("CENTER", AbyssUI_Config.panel, "TOP", 200, -200)
+FrameButton:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", 200, -200)
 FrameButton:SetText("Reload UI")
 FrameButton:SetScript("OnClick", function()
   ReloadUI()
 end)
------------------------------ AbyssUI Actionbar -------------------------------
--- AbyssUI Action Bar --
-local AbyssUINewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar3x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
-AbyssUINewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
-AbyssUINewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
-AbyssUINewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
-AbyssUINewActionBar3x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar3x12)
+----------------------------- AbyssUIClassic Actionbar -------------------------------
+-- AbyssUIClassic Action Bar --
+local AbyssUIClassicNewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar3x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
+AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
+AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
+AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
 
-local AbyssUINewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUINewActionBar4x12_CheckButton", AbyssUI_Config.childpanel1, "ChatConfigCheckButtonTemplate")
-AbyssUINewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
-AbyssUINewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
-AbyssUINewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
-AbyssUINewActionBar4x12_CheckButton:SetChecked(AbyssUIAddonSettings.AbyssUINewActionBar4x12)
+local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
+AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
+AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
+AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
 -- OnClick Function
-AbyssUINewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.AbyssUINewActionBar3x12 = self:GetChecked()
-  AbyssUI_ActionBarInfo:Show()
+AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
+  AbyssUIClassic_ActionBarInfo:Show()
 end)
 --
-AbyssUINewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.AbyssUINewActionBar3x12 ~= true then
-    AbyssUINewActionBar4x12_CheckButton:SetChecked(nil)
+AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 ~= true then
+    AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
   else
-    AbyssUIAddonSettings.AbyssUINewActionBar4x12 = self:GetChecked()
-    AbyssUI_ActionBarInfo:Show()
+    AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 = self:GetChecked()
+    AbyssUIClassic_ActionBarInfo:Show()
   end
 end)
 -- After Login/Reload
-AbyssUINewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
-AbyssUINewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
-  if ( AbyssUIAddonSettings.AbyssUINewActionBar3x12 == true ) then
+AbyssUIClassicNewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
+  if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 == true ) then
     -- Main Function 3x12
     local _G = _G
       for i = 2, 12 do
@@ -220,16 +220,16 @@ AbyssUINewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, .
     MainMenuBarVehicleLeaveButton.ClearAllPoints = function() end
     MainMenuBarVehicleLeaveButton:SetPoint("TOPLEFT", MainMenuBar, "TOPLEFT", -70, 70)
     MainMenuBarVehicleLeaveButton.SetPoint = function() end
-    if AbyssUIAddonSettings.AbyssUINewActionBar4x12 ~= true  then
+    if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 ~= true  then
       MultiBarLeft.ClearAllPoints = function() end
       MultiBarLeft:SetPoint("TOPRIGHT", MinimapCluster, "RIGHT", 0, -100)
       MultiBarLeft.SetPoint = function() end
     end
   end
 end)
-AbyssUINewActionBar4x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
-AbyssUINewActionBar4x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
-  if ( AbyssUIAddonSettings.AbyssUINewActionBar4x12 == true  ) then
+AbyssUIClassicNewActionBar4x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
+  if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 == true  ) then
     -- Main function 4x12
     local _G = _G
       for i = 2, 12 do
@@ -252,13 +252,13 @@ end)
 -- End
 ------------------------------- Hide Elements ---------------------------------
 -- MicroMenu/Bags --
-local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
 MicroMenu_CheckButton.Text:SetText("|cff848484Hide MicroMenu *Retail|r")
 MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu (Bags Bar)"
-MicroMenu_CheckButton:SetChecked(AbyssUIAddonSettings.HideMicroMenu)
+MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
 --  Hide
-local function AbyssUI_HideMicroMenu_Function()
+local function AbyssUIClassic_HideMicroMenu_Function()
   for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
     MicroButtonAndBagsBar,
     MainMenuBarPerformanceBar,
@@ -277,7 +277,7 @@ local function AbyssUI_HideMicroMenu_Function()
   end
 end
 -- Show
-local function AbyssUI_ShowMicroMenu_Function()
+local function AbyssUIClassic_ShowMicroMenu_Function()
     for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
       MicroButtonAndBagsBar,
       MainMenuBarPerformanceBar,
@@ -297,11 +297,11 @@ local function AbyssUI_ShowMicroMenu_Function()
 end
 -- OnClick Function
 MicroMenu_CheckButton:SetScript("OnClick", function(self)
---AbyssUIAddonSettings.HideMicroMenu = self:GetChecked()
-  if AbyssUIAddonSettings.HideMicroMenu == true then
-    --AbyssUI_HideMicroMenu_Function()
+--AbyssUIClassicAddonSettings.HideMicroMenu = self:GetChecked()
+  if AbyssUIClassicAddonSettings.HideMicroMenu == true then
+    --AbyssUIClassic_HideMicroMenu_Function()
   else
-    --AbyssUI_ShowMicroMenu_Function()
+    --AbyssUIClassic_ShowMicroMenu_Function()
   end
 end)
 -- After Login/Reload
@@ -309,24 +309,24 @@ end)
 MicroMenu_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 MicroMenu_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideMicroMenu == true then
-      AbyssUI_HideMicroMenu_Function()
+    if AbyssUIClassicAddonSettings.HideMicroMenu == true then
+      AbyssUIClassic_HideMicroMenu_Function()
     else
-      AbyssUI_ShowMicroMenu_Function()
+      AbyssUIClassic_ShowMicroMenu_Function()
     end
   end
 end)
 --]]
 -- Gryphons Option --
-local Gryphons_CheckButton = CreateFrame("CheckButton", "$parentGryphons_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local Gryphons_CheckButton = CreateFrame("CheckButton", "$parentGryphons_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 Gryphons_CheckButton:SetPoint("TOPLEFT", 10, -110)
 Gryphons_CheckButton.Text:SetText("Hide Gryphons")
 Gryphons_CheckButton.tooltip = "Hide the ActionBar Gryphons"
-Gryphons_CheckButton:SetChecked(AbyssUIAddonSettings.HideGryphons)
+Gryphons_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideGryphons)
 -- OnClick Function
 Gryphons_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideGryphons = self:GetChecked()
-  if AbyssUIAddonSettings.HideGryphons == true then
+AbyssUIClassicAddonSettings.HideGryphons = self:GetChecked()
+  if AbyssUIClassicAddonSettings.HideGryphons == true then
     MainMenuBarArtFrame.RightEndCap:Hide()
     MainMenuBarArtFrame.LeftEndCap:Hide()
   else
@@ -338,7 +338,7 @@ end)
 Gryphons_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 Gryphons_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideGryphons == true then
+    if AbyssUIClassicAddonSettings.HideGryphons == true then
       MainMenuBarArtFrame.RightEndCap:Hide()
       MainMenuBarArtFrame.LeftEndCap:Hide()
     else
@@ -348,15 +348,15 @@ Gryphons_CheckButton:SetScript("OnEvent", function(self, event, ...)
   end
 end)
 -- Minimap
-local Minimap_CheckButton = CreateFrame("CheckButton", "$parentMinimap_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local Minimap_CheckButton = CreateFrame("CheckButton", "$parentMinimap_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 Minimap_CheckButton:SetPoint("TOPLEFT", 10, -140)
 Minimap_CheckButton.Text:SetText("Hide Minimap")
 Minimap_CheckButton.tooltip = "Hide the Game Minimap"
-Minimap_CheckButton:SetChecked(AbyssUIAddonSettings.HideMinimap)
+Minimap_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMinimap)
 -- OnClick Function
 Minimap_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.HideMinimap = self:GetChecked()
-  if AbyssUIAddonSettings.HideMinimap == true then
+  AbyssUIClassicAddonSettings.HideMinimap = self:GetChecked()
+  if AbyssUIClassicAddonSettings.HideMinimap == true then
     MinimapCluster:Hide()
   else
     MinimapCluster:Show()
@@ -366,7 +366,7 @@ end)
 Minimap_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 Minimap_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideMinimap == true then
+    if AbyssUIClassicAddonSettings.HideMinimap == true then
       MinimapCluster:Hide()
     else
       MinimapCluster:Show()
@@ -374,15 +374,15 @@ Minimap_CheckButton:SetScript("OnEvent", function(self, event, ...)
   end
 end)
 -- Objective Tracker --
-local ObjTracker_CheckButton = CreateFrame("CheckButton", "$parentObjTracker_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local ObjTracker_CheckButton = CreateFrame("CheckButton", "$parentObjTracker_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 ObjTracker_CheckButton:SetPoint("TOPLEFT", 10, -170)
 ObjTracker_CheckButton.Text:SetText("Hide Objective Tracker")
 ObjTracker_CheckButton.tooltip = "Hide the Objective Tracker (Quest Frame)"
-ObjTracker_CheckButton:SetChecked(AbyssUIAddonSettings.HideObjectiveTracker)
+ObjTracker_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideObjectiveTracker)
 -- OnClick Function
 ObjTracker_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.HideObjectiveTracker = self:GetChecked()
-  if AbyssUIAddonSettings.HideObjectiveTracker == true then
+  AbyssUIClassicAddonSettings.HideObjectiveTracker = self:GetChecked()
+  if AbyssUIClassicAddonSettings.HideObjectiveTracker == true then
     ObjectiveTrackerFrame:Hide()
   else
     ObjectiveTrackerFrame:Show()
@@ -392,7 +392,7 @@ end)
 ObjTracker_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideObjectiveTracker == true then
+    if AbyssUIClassicAddonSettings.HideObjectiveTracker == true then
       ObjectiveTrackerFrame:Hide()
     else
       ObjectiveTrackerFrame:Show()
@@ -400,51 +400,51 @@ ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
   end
 end)
 -- FPS/MS Frame --
-local FPSMSFrame_CheckButton = CreateFrame("CheckButton", "$parentFPSMSFrame_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local FPSMSFrame_CheckButton = CreateFrame("CheckButton", "$parentFPSMSFrame_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 FPSMSFrame_CheckButton:SetPoint("TOPLEFT", 10, -200)
 FPSMSFrame_CheckButton.Text:SetText("Hide FPS/MS Frame")
 FPSMSFrame_CheckButton.tooltip = "Hide the fps/ms frame (Top left frame)"
-FPSMSFrame_CheckButton:SetChecked(AbyssUIAddonSettings.HideFPSMSFrame)
+FPSMSFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideFPSMSFrame)
 -- OnClick Function
 FPSMSFrame_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideFPSMSFrame = self:GetChecked()
-  if ( AbyssUIAddonSettings.HideFPSMSFrame == true ) then
-    AbyssUI_StatsFrames1Hide()
+AbyssUIClassicAddonSettings.HideFPSMSFrame = self:GetChecked()
+  if ( AbyssUIClassicAddonSettings.HideFPSMSFrame == true ) then
+    AbyssUIClassic_StatsFrames1Hide()
   else
-    AbyssUI_StatsFrames1Show()
+    AbyssUIClassic_StatsFrames1Show()
   end
 end)
 -- After Login/Reload
 FPSMSFrame_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 FPSMSFrame_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideFPSMSFrame == true then
-      AbyssUI_StatsFrames1Hide()
+    if AbyssUIClassicAddonSettings.HideFPSMSFrame == true then
+      AbyssUIClassic_StatsFrames1Hide()
     else
-      AbyssUI_StatsFrames1Show()
+      AbyssUIClassic_StatsFrames1Show()
     end
   end
 end)
 -- YouDied LevelUp Frame --
-local YouDiedLevelUpFrame_CheckButton = CreateFrame("CheckButton", "$parentYouDiedLevelUpFrame_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local YouDiedLevelUpFrame_CheckButton = CreateFrame("CheckButton", "$parentYouDiedLevelUpFrame_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 YouDiedLevelUpFrame_CheckButton:SetPoint("TOPLEFT", 10, -230)
 YouDiedLevelUpFrame_CheckButton.Text:SetText("Hide YouDied/LevelUp Frame")
 YouDiedLevelUpFrame_CheckButton.tooltip = "Hide the 'You Died' and 'Level Up' frame when you die/level in the game"
-YouDiedLevelUpFrame_CheckButton:SetChecked(AbyssUIAddonSettings.HideYouDiedLevelUpFrame)
+YouDiedLevelUpFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideYouDiedLevelUpFrame)
 -- OnClick Function
 YouDiedLevelUpFrame_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideYouDiedLevelUpFrame = self:GetChecked()
+AbyssUIClassicAddonSettings.HideYouDiedLevelUpFrame = self:GetChecked()
 end)
 -- Hide Macro Labels --
-local HideMacroLabels_CheckButton = CreateFrame("CheckButton", "$parentHideMacroLabels_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local HideMacroLabels_CheckButton = CreateFrame("CheckButton", "$parentHideMacroLabels_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideMacroLabels_CheckButton:SetPoint("TOPLEFT", 10, -260)
 HideMacroLabels_CheckButton.Text:SetText("Hide Macro Labels")
 HideMacroLabels_CheckButton.tooltip = "Hide Macro Labels from Action Bar"
-HideMacroLabels_CheckButton:SetChecked(AbyssUIAddonSettings.HideMacroLabels)
+HideMacroLabels_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMacroLabels)
 -- OnClick Function
 HideMacroLabels_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideMacroLabels = self:GetChecked()
-  if ( AbyssUIAddonSettings.HideMacroLabels == true ) then
+AbyssUIClassicAddonSettings.HideMacroLabels = self:GetChecked()
+  if ( AbyssUIClassicAddonSettings.HideMacroLabels == true ) then
     for i = 1, 12 do
       _G["ActionButton"..i.."Name"]:SetAlpha(0)
       _G["MultiBarBottomRightButton"..i.."Name"]:SetAlpha(0)
@@ -466,7 +466,7 @@ end)
 HideMacroLabels_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 HideMacroLabels_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideMacroLabels == true then
+    if AbyssUIClassicAddonSettings.HideMacroLabels == true then
       for i = 1, 12 do
         _G["ActionButton"..i.."Name"]:SetAlpha(0)
         _G["MultiBarBottomRightButton"..i.."Name"]:SetAlpha(0)
@@ -478,15 +478,15 @@ HideMacroLabels_CheckButton:SetScript("OnEvent", function(self, event, ...)
   end
 end)
 -- Hide Hotkeys --
-local HideHotkeysLabels_CheckButton = CreateFrame("CheckButton", "$parentHideHotkeysLabels_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local HideHotkeysLabels_CheckButton = CreateFrame("CheckButton", "$parentHideHotkeysLabels_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideHotkeysLabels_CheckButton:SetPoint("TOPLEFT", 10, -290)
 HideHotkeysLabels_CheckButton.Text:SetText("Hide Hotkeys Labels")
 HideHotkeysLabels_CheckButton.tooltip = "Hide Hotkeys Labels from Action Bar"
-HideHotkeysLabels_CheckButton:SetChecked(AbyssUIAddonSettings.HideHotkeysLabels)
+HideHotkeysLabels_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideHotkeysLabels)
 -- OnClick Function
 HideHotkeysLabels_CheckButton:SetScript("OnClick", function(self)
-AbyssUIAddonSettings.HideHotkeysLabels = self:GetChecked()
-   if ( AbyssUIAddonSettings.HideHotkeysLabels == true ) then
+AbyssUIClassicAddonSettings.HideHotkeysLabels = self:GetChecked()
+   if ( AbyssUIClassicAddonSettings.HideHotkeysLabels == true ) then
      for i = 1, 12 do
        _G["ActionButton"..i.."HotKey"]:SetAlpha(0)
        _G["MultiBarBottomRightButton"..i.."HotKey"]:SetAlpha(0)
@@ -508,7 +508,7 @@ end)
 HideHotkeysLabels_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 HideHotkeysLabels_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideHotkeysLabels == true then
+    if AbyssUIClassicAddonSettings.HideHotkeysLabels == true then
       for i = 1, 12 do
         _G["ActionButton"..i.."HotKey"]:SetAlpha(0)
         _G["MultiBarBottomRightButton"..i.."HotKey"]:SetAlpha(0)
@@ -520,15 +520,15 @@ HideHotkeysLabels_CheckButton:SetScript("OnEvent", function(self, event, ...)
   end
 end)
 -- Hide StanceBar
-local HideStanceBar_CheckButton = CreateFrame("CheckButton", "$parentHideStanceBar_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local HideStanceBar_CheckButton = CreateFrame("CheckButton", "$parentHideStanceBar_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideStanceBar_CheckButton:SetPoint("TOPLEFT", 10, -320)
 HideStanceBar_CheckButton.Text:SetText("Hide Stance Bar")
 HideStanceBar_CheckButton.tooltip = "Hide the Stance Bar (Druid forms, Rogue stealth, etc)"
-HideStanceBar_CheckButton:SetChecked(AbyssUIAddonSettings.HideStanceBar)
+HideStanceBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideStanceBar)
 -- OnClick Function
 HideStanceBar_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.HideStanceBar = self:GetChecked()
-   if ( AbyssUIAddonSettings.HideStanceBar == true ) then
+  AbyssUIClassicAddonSettings.HideStanceBar = self:GetChecked()
+   if ( AbyssUIClassicAddonSettings.HideStanceBar == true ) then
      StanceBarFrame:Hide()
    else
      StanceBarFrame:Show()
@@ -538,7 +538,7 @@ end)
 HideStanceBar_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 HideStanceBar_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideStanceBar == true then
+    if AbyssUIClassicAddonSettings.HideStanceBar == true then
       C_Timer.After(0.5, function()
         StanceBarFrame:Hide()
       end)
@@ -547,43 +547,43 @@ HideStanceBar_CheckButton:SetScript("OnEvent", function(self, event, ...)
 end)
 -- Chat Hide Frame (needs to be here so the hide chat buttons works on this too)
 -- Thanks to Syncrow for part of this 
-local AbyssUI_ChatHideFrame = CreateFrame("Button", "$parentChatHideFrame", UIParent)
-AbyssUI_ChatHideFrame:SetSize(30, 30)
-AbyssUI_ChatHideFrame.t = AbyssUI_ChatHideFrame:CreateTexture(nil, "BORDER")
-AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
-AbyssUI_ChatHideFrame.t:SetAllPoints(AbyssUI_ChatHideFrame)
-AbyssUI_ChatHideFrame:SetPoint("BOTTOM","ChatFrame1ButtonFrame","BOTTOM",0,-35)
-AbyssUI_ChatHideFrame:Show()
+local AbyssUIClassic_ChatHideFrame = CreateFrame("Button", "$parentChatHideFrame", UIParent)
+AbyssUIClassic_ChatHideFrame:SetSize(30, 30)
+AbyssUIClassic_ChatHideFrame.t = AbyssUIClassic_ChatHideFrame:CreateTexture(nil, "BORDER")
+AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
+AbyssUIClassic_ChatHideFrame.t:SetAllPoints(AbyssUIClassic_ChatHideFrame)
+AbyssUIClassic_ChatHideFrame:SetPoint("BOTTOM","ChatFrame1ButtonFrame","BOTTOM",0,-35)
+AbyssUIClassic_ChatHideFrame:Show()
 
 local ChatHide = false
 
-AbyssUI_ChatHideFrame:SetScript("OnMouseDown", function(self, Button)
+AbyssUIClassic_ChatHideFrame:SetScript("OnMouseDown", function(self, Button)
   if ChatHide == false then
     if Button == "LeftButton" then
-      AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Down.blp")
+      AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Down.blp")
     end
   elseif ChatHide == true then
     if Button == "LeftButton" then
-      AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Down.blp")
+      AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Down.blp")
     end
   end
 end)
 
-AbyssUI_ChatHideFrame:SetScript("OnMouseUp", function(self, Button)
+AbyssUIClassic_ChatHideFrame:SetScript("OnMouseUp", function(self, Button)
   if ChatHide == false then
     if Button == "LeftButton" then
-      AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
+      AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
     end
   elseif ChatHide == true then
     if Button == "LeftButton" then
-      AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Up.blp")
+      AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Up.blp")
     end
   end
 end)
 
-AbyssUI_ChatHideFrame:SetScript("OnClick", function(self, Button)
+AbyssUIClassic_ChatHideFrame:SetScript("OnClick", function(self, Button)
   if ChatHide == false then
-    AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Up.blp")
+    AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Maximize-Up.blp")
     QuickJoinToastButton:Hide()
     GeneralDockManager:Hide()
     ChatFrameMenuButton:Hide()
@@ -599,7 +599,7 @@ AbyssUI_ChatHideFrame:SetScript("OnClick", function(self, Button)
     end
     ChatHide = true
   elseif ChatHide == true then
-    AbyssUI_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
+    AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
     QuickJoinToastButton:Show()
     GeneralDockManager:Show()
     ChatFrameMenuButton:Show()
@@ -617,21 +617,21 @@ AbyssUI_ChatHideFrame:SetScript("OnClick", function(self, Button)
   end
 end)
 -- Hide Chat Buttons
-local HideChatButtons_CheckButton = CreateFrame("CheckButton", "$parentHideStanceBar_CheckButton", AbyssUI_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+local HideChatButtons_CheckButton = CreateFrame("CheckButton", "$parentHideStanceBar_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideChatButtons_CheckButton:SetPoint("TOPLEFT", 10, -350)
 HideChatButtons_CheckButton.Text:SetText("Hide Chat Buttons")
 HideChatButtons_CheckButton.tooltip = "Hide the Chat buttons (voice, social, etc)"
-HideChatButtons_CheckButton:SetChecked(AbyssUIAddonSettings.HideChatButtons)
+HideChatButtons_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideChatButtons)
 -- OnClick Function
 HideChatButtons_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.HideChatButtons = self:GetChecked()
-  if ( AbyssUIAddonSettings.HideChatButtons == true ) then
+  AbyssUIClassicAddonSettings.HideChatButtons = self:GetChecked()
+  if ( AbyssUIClassicAddonSettings.HideChatButtons == true ) then
     QuickJoinToastButton:Hide()
     GeneralDockManager:SetAlpha(0)
     ChatFrameMenuButton:Hide()
     ChatFrameChannelButton:Hide()
     ChatFrame1ButtonFrame:SetAlpha(0)
-    AbyssUI_ChatHideFrame:Hide()
+    AbyssUIClassic_ChatHideFrame:Hide()
     ChatFrameToggleVoiceDeafenButton:SetAlpha(0)
     ChatFrameToggleVoiceMuteButton:SetAlpha(0)
   else 
@@ -640,7 +640,7 @@ HideChatButtons_CheckButton:SetScript("OnClick", function(self)
     ChatFrameMenuButton:Show()
     ChatFrameChannelButton:Show()
     ChatFrame1ButtonFrame:SetAlpha(1)
-    AbyssUI_ChatHideFrame:Show()
+    AbyssUIClassic_ChatHideFrame:Show()
     ChatFrameToggleVoiceDeafenButton:SetAlpha(1)
     ChatFrameToggleVoiceMuteButton:SetAlpha(1)
   end
@@ -649,14 +649,14 @@ end)
 HideChatButtons_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 HideChatButtons_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.HideChatButtons == true then
+    if AbyssUIClassicAddonSettings.HideChatButtons == true then
       C_Timer.After(1, function()
         QuickJoinToastButton:Hide()
         GeneralDockManager:SetAlpha(0)
         ChatFrameMenuButton:Hide()
         ChatFrameChannelButton:Hide()
         ChatFrame1ButtonFrame:SetAlpha(0)
-        AbyssUI_ChatHideFrame:Hide()
+        AbyssUIClassic_ChatHideFrame:Hide()
         ChatFrameToggleVoiceDeafenButton:SetAlpha(0)
         ChatFrameToggleVoiceMuteButton:SetAlpha(0)
       end)
@@ -666,52 +666,52 @@ end)
 -- End
 ----------------------------------- Extras  -----------------------------------
 -- Keep UnitFrame Dark --
-local KeepUnitDark_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitDark_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+local KeepUnitDark_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitDark_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 KeepUnitDark_CheckButton:SetPoint("CENTER", -290, -80)
 KeepUnitDark_CheckButton.Text:SetText("Keep UnitFrame Dark")
 KeepUnitDark_CheckButton.tooltip = "Even if you change theme, this will keep UnitFrame Dark (Player Frame, Boss, etc)."
-KeepUnitDark_CheckButton:SetChecked(AbyssUIAddonSettings.KeepUnitDark)
+KeepUnitDark_CheckButton:SetChecked(AbyssUIClassicAddonSettings.KeepUnitDark)
 -- OnClick Function
 KeepUnitDark_CheckButton:SetScript("OnClick", function(self)
- if AbyssUIAddonSettings.KeepUnitBlizzard == true then
+ if AbyssUIClassicAddonSettings.KeepUnitBlizzard == true then
    KeepUnitDark_CheckButton:SetChecked(nil)
  else
-   AbyssUIAddonSettings.KeepUnitDark = self:GetChecked()
-   AbyssUI_ReloadFrame:Show()
+   AbyssUIClassicAddonSettings.KeepUnitDark = self:GetChecked()
+   AbyssUIClassic_ReloadFrame:Show()
  end
 end)
  -- After Login/Reload
 KeepUnitDark_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 KeepUnitDark_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.KeepUnitDark == true then
-      AbyssUIAddonSettings.KeepUnitDark = self:GetChecked()
+    if AbyssUIClassicAddonSettings.KeepUnitDark == true then
+      AbyssUIClassicAddonSettings.KeepUnitDark = self:GetChecked()
     else
       KeepUnitDark_CheckButton:SetChecked(nil)
     end
   end
 end)
 -- Keep UnitFrame Blizzard Like --
-local KeepUnitBlizzard_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitBlizzard_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+local KeepUnitBlizzard_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitBlizzard_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 KeepUnitBlizzard_CheckButton:SetPoint("CENTER", -290, -110)
 KeepUnitBlizzard_CheckButton.Text:SetText("Keep UnitFrame Blizzard Like")
 KeepUnitBlizzard_CheckButton.tooltip = "Even if you change theme, this will keep UnitFrame Blizzard like (Player Frame, Boss, etc). "
-KeepUnitBlizzard_CheckButton:SetChecked(AbyssUIAddonSettings.KeepUnitBlizzard)
+KeepUnitBlizzard_CheckButton:SetChecked(AbyssUIClassicAddonSettings.KeepUnitBlizzard)
 -- OnClick Function
 KeepUnitBlizzard_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.KeepUnitDark == true then
+  if AbyssUIClassicAddonSettings.KeepUnitDark == true then
     KeepUnitBlizzard_CheckButton:SetChecked(nil)
   else
-    AbyssUIAddonSettings.KeepUnitBlizzard = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+    AbyssUIClassicAddonSettings.KeepUnitBlizzard = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   end
 end)
 -- After Login/Reload
 KeepUnitBlizzard_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 KeepUnitBlizzard_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.KeepUnitBlizzard == true then
-      AbyssUIAddonSettings.KeepUnitBlizzard = self:GetChecked()
+    if AbyssUIClassicAddonSettings.KeepUnitBlizzard == true then
+      AbyssUIClassicAddonSettings.KeepUnitBlizzard = self:GetChecked()
     else
       KeepUnitBlizzard_CheckButton:SetChecked(nil)
     end
@@ -720,23 +720,23 @@ end)
 ------------------------------- Miscellaneous -------------------------------
 -- Camera Pitch --
 -- Camera Pitch Function Option 50%
-local CameraSmooth50_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth50_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+local CameraSmooth50_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth50_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 CameraSmooth50_CheckButton:SetPoint("TOPLEFT", 10, -80)
 CameraSmooth50_CheckButton.Text:SetText("Smooth Camera\n   (50% Slower)")
 CameraSmooth50_CheckButton.tooltip = "Makes the Camera turns in a more smooth way"
-CameraSmooth50_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionCameraSmooth50)
+CameraSmooth50_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50)
 -- OnClick Function
 CameraSmooth50_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
-    AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 = self:GetChecked()
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 == true then
+  if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
+    AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 = self:GetChecked()
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 == true then
       ConsoleExec( "cameraYawMoveSpeed 50" )
       ConsoleExec( "cameraPitchMoveSpeed 50" )
     else
       ConsoleExec( "cameraYawMoveSpeed 100" )
       ConsoleExec( "cameraPitchMoveSpeed 100" )
-      if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
-        AbyssUI_ReloadFrame:Show()
+      if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
+        AbyssUIClassic_ReloadFrame:Show()
       end
     end
   else
@@ -747,30 +747,30 @@ end)
 CameraSmooth50_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 CameraSmooth50_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 == true then
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 == true then
       ConsoleExec( "cameraYawMoveSpeed 50" )
       ConsoleExec( "cameraPitchMoveSpeed 50" )
     end
   end
 end)
 -- Camera Pitch Function Option 70%
-local CameraSmooth70_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth70_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+local CameraSmooth70_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth70_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 CameraSmooth70_CheckButton:SetPoint("TOPLEFT", 10, -110)
 CameraSmooth70_CheckButton.Text:SetText("Smooth Camera\n   (70% Slower)")
 CameraSmooth70_CheckButton.tooltip = "Makes the Camera turns in a more smooth way"
-CameraSmooth70_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionCameraSmooth70)
+CameraSmooth70_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70)
 -- OnClick Function
 CameraSmooth70_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
-    AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 = self:GetChecked()
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 == true then
+  if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
+    AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 = self:GetChecked()
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 == true then
       ConsoleExec( "cameraYawMoveSpeed 30" )
       ConsoleExec( "cameraPitchMoveSpeed 30" )
     else
       ConsoleExec( "cameraYawMoveSpeed 100" )
       ConsoleExec( "cameraPitchMoveSpeed 100" )
-      if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
-        AbyssUI_ReloadFrame:Show()
+      if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 ~= true then
+        AbyssUIClassic_ReloadFrame:Show()
       end
     end
   else
@@ -781,30 +781,30 @@ end)
 CameraSmooth70_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 CameraSmooth70_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 == true then
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 == true then
       ConsoleExec( "cameraYawMoveSpeed 30" )
       ConsoleExec( "cameraPitchMoveSpeed 30" )
     end
   end
 end)
 -- Camera Pitch Function Option 90%
-local CameraSmooth90_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth90_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+local CameraSmooth90_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth90_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 CameraSmooth90_CheckButton:SetPoint("TOPLEFT", 10, -140)
 CameraSmooth90_CheckButton.Text:SetText("Smooth Camera\n   (90% Slower)")
 CameraSmooth90_CheckButton.tooltip = "Makes the Camera turns in a more smooth way"
-CameraSmooth90_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionCameraSmooth90)
+CameraSmooth90_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90)
 -- OnClick Function
 CameraSmooth90_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 ~= true then
-    AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 = self:GetChecked()
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 == true then
+  if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 ~= true then
+    AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 = self:GetChecked()
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 == true then
       ConsoleExec( "cameraYawMoveSpeed 10" )
       ConsoleExec( "cameraPitchMoveSpeed 10" )
     else
       ConsoleExec( "cameraYawMoveSpeed 100" )
       ConsoleExec( "cameraPitchMoveSpeed 100" )
-      if AbyssUIAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIAddonSettings.ExtraFunctionCameraSmooth70 ~= true then
-        AbyssUI_ReloadFrame:Show()
+      if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 ~= true and AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth70 ~= true then
+        AbyssUIClassic_ReloadFrame:Show()
       end
     end
   else
@@ -815,40 +815,40 @@ end)
 CameraSmooth90_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 CameraSmooth90_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.ExtraFunctionCameraSmooth90 == true then
+    if AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth90 == true then
       ConsoleExec( "cameraYawMoveSpeed 10" )
       ConsoleExec( "cameraPitchMoveSpeed 10" )
     end
   end
 end)
 -- Inspect Target
-local InspectTarget_CheckButton = CreateFrame("CheckButton", "$parentInspectTarget_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+local InspectTarget_CheckButton = CreateFrame("CheckButton", "$parentInspectTarget_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 InspectTarget_CheckButton:SetPoint("TOPLEFT", 10, -170)
 InspectTarget_CheckButton.Text:SetText("Inspect Target (Shift + X)")
 InspectTarget_CheckButton.tooltip = "When you have a target or your mouse is over someone character, to inspect this player press the keys Shift + X"
-InspectTarget_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionInspectTarget)
+InspectTarget_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget)
 -- OnClick Function
 InspectTarget_CheckButton:SetScript("OnClick", function(self)
-    AbyssUIAddonSettings.ExtraFunctionInspectTarget = self:GetChecked()
+    AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget = self:GetChecked()
 end)
 -- 2nd Column
 -- Action Cam --
-local AbyssUIActionCam_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIActionCam_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUIActionCam_CheckButton:SetPoint("TOPLEFT", 180, -80)
-AbyssUIActionCam_CheckButton.Text:SetText("Combat Cursor Mode")
-AbyssUIActionCam_CheckButton.tooltip = "Makes the camera turns with your mouse when in combat (right-click to show cursor)"
-AbyssUIActionCam_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionActionCam)
+local AbyssUIClassicActionCam_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicActionCam_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicActionCam_CheckButton:SetPoint("TOPLEFT", 180, -80)
+AbyssUIClassicActionCam_CheckButton.Text:SetText("Combat Cursor Mode")
+AbyssUIClassicActionCam_CheckButton.tooltip = "Makes the camera turns with your mouse when in combat (right-click to show cursor)"
+AbyssUIClassicActionCam_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionActionCam)
 -- OnClick Function
-AbyssUIActionCam_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionActionCam = self:GetChecked()
+AbyssUIClassicActionCam_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionActionCam = self:GetChecked()
 end)
 -- Update
-AbyssUIActionCam_CheckButton:RegisterEvent("PLAYER_REGEN_ENABLED")
-AbyssUIActionCam_CheckButton:RegisterEvent("PLAYER_REGEN_DISABLED")
-AbyssUIActionCam_CheckButton:SetScript("OnEvent", function(self, event, ...)
+AbyssUIClassicActionCam_CheckButton:RegisterEvent("PLAYER_REGEN_ENABLED")
+AbyssUIClassicActionCam_CheckButton:RegisterEvent("PLAYER_REGEN_DISABLED")
+AbyssUIClassicActionCam_CheckButton:SetScript("OnEvent", function(self, event, ...)
   local IsMouseLooking = IsMouselooking()
   if ( event == "PLAYER_REGEN_DISABLED" and IsMouseLooking == false ) then
-    if AbyssUIAddonSettings.ExtraFunctionActionCam == true then
+    if AbyssUIClassicAddonSettings.ExtraFunctionActionCam == true then
       MouselookStart()
     else
       MouselookStop()
@@ -861,24 +861,24 @@ AbyssUIActionCam_CheckButton:SetScript("OnEvent", function(self, event, ...)
 --]]
 end)
 -- Auto Repair/Sell Gray --
-local AbyssUIAutoSellGray_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIAutoSellGray_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUIAutoSellGray_CheckButton:SetPoint("TOPLEFT", 180, -110)
-AbyssUIAutoSellGray_CheckButton.Text:SetText("Auto Repair\nSell Gray Items")
-AbyssUIAutoSellGray_CheckButton.tooltip = "When you open a Merchant shop, auto sell gray and repair items"
-AbyssUIAutoSellGray_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionSellGray)
+local AbyssUIClassicAutoSellGray_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicAutoSellGray_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicAutoSellGray_CheckButton:SetPoint("TOPLEFT", 180, -110)
+AbyssUIClassicAutoSellGray_CheckButton.Text:SetText("Auto Repair\nSell Gray Items")
+AbyssUIClassicAutoSellGray_CheckButton.tooltip = "When you open a Merchant shop, auto sell gray and repair items"
+AbyssUIClassicAutoSellGray_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionSellGray)
 -- OnClick Function
-AbyssUIAutoSellGray_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionSellGray = self:GetChecked()
+AbyssUIClassicAutoSellGray_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionSellGray = self:GetChecked()
 end)
 -- Auto Gamma Day/Night
-local AbyssUIAutoGamma_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIAutoGamma_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUIAutoGamma_CheckButton:SetPoint("TOPLEFT", 180, -140)
-AbyssUIAutoGamma_CheckButton.Text:SetText("Auto Gamma\n(Day and Night Mode)")
-AbyssUIAutoGamma_CheckButton.tooltip = "Automatically change the gamma when is day to 1.2 (brighter) and to 1.0 (default) at night based on the local time"
-AbyssUIAutoGamma_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionAutoGamma)
+local AbyssUIClassicAutoGamma_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicAutoGamma_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicAutoGamma_CheckButton:SetPoint("TOPLEFT", 180, -140)
+AbyssUIClassicAutoGamma_CheckButton.Text:SetText("Auto Gamma\n(Day and Night Mode)")
+AbyssUIClassicAutoGamma_CheckButton.tooltip = "Automatically change the gamma when is day to 1.2 (brighter) and to 1.0 (default) at night based on the local time"
+AbyssUIClassicAutoGamma_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionAutoGamma)
 -- OnClick Function
-AbyssUIAutoGamma_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionAutoGamma = self:GetChecked()
+AbyssUIClassicAutoGamma_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionAutoGamma = self:GetChecked()
   --local dataTime = GetGameTime()
   local dataTime = tonumber(date("%H"))
   if ( dataTime >= 6 and dataTime < 18 ) then
@@ -888,10 +888,10 @@ AbyssUIAutoGamma_CheckButton:SetScript("OnClick", function(self)
   end
 end)
 -- After Login/Reload
-AbyssUIAutoGamma_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
-AbyssUIAutoGamma_CheckButton:SetScript("OnEvent", function(self, event, ...)
+AbyssUIClassicAutoGamma_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassicAutoGamma_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIAddonSettings.ExtraFunctionAutoGamma == true then
+    if AbyssUIClassicAddonSettings.ExtraFunctionAutoGamma == true then
       C_Timer.After(0.5, function ()
         local dataTime = tonumber(date("%H"))
         if ( dataTime >= 6 and dataTime < 18 ) then
@@ -905,1011 +905,1011 @@ AbyssUIAutoGamma_CheckButton:SetScript("OnEvent", function(self, event, ...)
 end)
 -- 3rd Column
 -- Instance Leave --
-local AbyssUI_InstanceLeave_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_InstanceLeave_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUI_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
-AbyssUI_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame *Retail|r")
-AbyssUI_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
---AbyssUI_InstanceLeave_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionInstanceLeave)
+local AbyssUIClassic_InstanceLeave_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_InstanceLeave_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
+AbyssUIClassic_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame *Retail|r")
+AbyssUIClassic_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
+--AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave)
 -- OnClick Function
-AbyssUI_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
-  --AbyssUIAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
+AbyssUIClassic_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
+  --AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
 end)
 -- Shift + C to confirm  --
-local AbyssUI_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_ConfirmPopUps_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUI_ConfirmPopUps_CheckButton:SetPoint("TOPLEFT", 400, -110)
-AbyssUI_ConfirmPopUps_CheckButton.Text:SetText("Confirm Pop-Ups (Shift + C)")
-AbyssUI_ConfirmPopUps_CheckButton.tooltip = "When this is active you can confirm almost any pop-ups (release, quests, stacks, etc) pressing the keys Shift + C"
-AbyssUI_ConfirmPopUps_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionConfirmPopUps)
+local AbyssUIClassic_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ConfirmPopUps_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_ConfirmPopUps_CheckButton:SetPoint("TOPLEFT", 400, -110)
+AbyssUIClassic_ConfirmPopUps_CheckButton.Text:SetText("Confirm Pop-Ups (Shift + C)")
+AbyssUIClassic_ConfirmPopUps_CheckButton.tooltip = "When this is active you can confirm almost any pop-ups (release, quests, stacks, etc) pressing the keys Shift + C"
+AbyssUIClassic_ConfirmPopUps_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps)
 -- OnClick Function
-AbyssUI_ConfirmPopUps_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionConfirmPopUps = self:GetChecked()
+AbyssUIClassic_ConfirmPopUps_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps = self:GetChecked()
 end)
 -- Hide in Combat --
-local AbyssUI_HideInCombat_CheckButton = CreateFrame("CheckButton", "$parentAbyssUI_HideInCombat_CheckButton", AbyssUI_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUI_HideInCombat_CheckButton:SetPoint("TOPLEFT", 400, -140)
-AbyssUI_HideInCombat_CheckButton.Text:SetText("Dynamic ObjectiveTrack Hide")
-AbyssUI_HideInCombat_CheckButton.tooltip = "Hide some parts of the interface when you are in combat or in a PVP instance"
-AbyssUI_HideInCombat_CheckButton:SetChecked(AbyssUIAddonSettings.ExtraFunctionHideInCombat)
+local AbyssUIClassic_HideInCombat_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_HideInCombat_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_HideInCombat_CheckButton:SetPoint("TOPLEFT", 400, -140)
+AbyssUIClassic_HideInCombat_CheckButton.Text:SetText("Dynamic ObjectiveTrack Hide")
+AbyssUIClassic_HideInCombat_CheckButton.tooltip = "Hide some parts of the interface when you are in combat or in a PVP instance"
+AbyssUIClassic_HideInCombat_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat)
 -- OnClick Function
-AbyssUI_HideInCombat_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIAddonSettings.ExtraFunctionHideInCombat = self:GetChecked()
+AbyssUIClassic_HideInCombat_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat = self:GetChecked()
 end)
 --End
------------------------------ AbyssUI Stylization ------------------------------
+----------------------------- AbyssUIClassic Stylization ------------------------------
 -- Player Portrait Style --
--- AbyssUIClassCircles01_CheckButton
-local AbyssUIClassCircles01_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles01_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles01_CheckButton:SetPoint("TOPLEFT", 10, -80)
-AbyssUIClassCircles01_CheckButton.Text:SetText("Bright")
-AbyssUIClassCircles01_CheckButton.tooltip = "A Bright UnitPlayerFrame"
-AbyssUIClassCircles01_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles01)
+-- AbyssUIClassicClassCircles01_CheckButton
+local AbyssUIClassicClassCircles01_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles01_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles01_CheckButton:SetPoint("TOPLEFT", 10, -80)
+AbyssUIClassicClassCircles01_CheckButton.Text:SetText("Bright")
+AbyssUIClassicClassCircles01_CheckButton.tooltip = "A Bright UnitPlayerFrame"
+AbyssUIClassicClassCircles01_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles01)
 -- OnClick Function
-AbyssUIClassCircles01_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles01 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles01_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles01 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles01_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles01_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles02_CheckButton
-local AbyssUIClassCircles02_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles02_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles02_CheckButton:SetPoint("TOPLEFT", 10, -110)
-AbyssUIClassCircles02_CheckButton.Text:SetText("Dark")
-AbyssUIClassCircles02_CheckButton.tooltip = "A Dark UnitPlayerFrame"
-AbyssUIClassCircles02_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles02)
+-- AbyssUIClassicClassCircles02_CheckButton
+local AbyssUIClassicClassCircles02_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles02_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles02_CheckButton:SetPoint("TOPLEFT", 10, -110)
+AbyssUIClassicClassCircles02_CheckButton.Text:SetText("Dark")
+AbyssUIClassicClassCircles02_CheckButton.tooltip = "A Dark UnitPlayerFrame"
+AbyssUIClassicClassCircles02_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles02)
 -- OnClick Function
-AbyssUIClassCircles02_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles02 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles02_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles02 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles02_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles02_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles03_CheckButton
-local AbyssUIClassCircles03_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles03_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles03_CheckButton:SetPoint("TOPLEFT", 10, -140)
-AbyssUIClassCircles03_CheckButton.Text:SetText("DarkGray")
-AbyssUIClassCircles03_CheckButton.tooltip = "A Dark Gray UnitPlayerFrame"
-AbyssUIClassCircles03_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles03)
+-- AbyssUIClassicClassCircles03_CheckButton
+local AbyssUIClassicClassCircles03_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles03_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles03_CheckButton:SetPoint("TOPLEFT", 10, -140)
+AbyssUIClassicClassCircles03_CheckButton.Text:SetText("DarkGray")
+AbyssUIClassicClassCircles03_CheckButton.tooltip = "A Dark Gray UnitPlayerFrame"
+AbyssUIClassicClassCircles03_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles03)
 -- OnClick Function
-AbyssUIClassCircles03_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles03 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles03_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles03 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles03_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles03_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles04_CheckButton
-local AbyssUIClassCircles04_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles04_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles04_CheckButton:SetPoint("TOPLEFT", 10, -170)
-AbyssUIClassCircles04_CheckButton.Text:SetText("Dark_V2")
-AbyssUIClassCircles04_CheckButton.tooltip = "Version 2 of the Dark UnitPlayerFrame"
-AbyssUIClassCircles04_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles04)
+-- AbyssUIClassicClassCircles04_CheckButton
+local AbyssUIClassicClassCircles04_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles04_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles04_CheckButton:SetPoint("TOPLEFT", 10, -170)
+AbyssUIClassicClassCircles04_CheckButton.Text:SetText("Dark_V2")
+AbyssUIClassicClassCircles04_CheckButton.tooltip = "Version 2 of the Dark UnitPlayerFrame"
+AbyssUIClassicClassCircles04_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles04)
 -- OnClick Function
-AbyssUIClassCircles04_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles04 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles04_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles04 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles04_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles04_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles05_CheckButton
-local AbyssUIClassCircles05_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles05_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles05_CheckButton:SetPoint("TOPLEFT", 180 , -80)
-AbyssUIClassCircles05_CheckButton.Text:SetText("Dark_V2 Small")
-AbyssUIClassCircles05_CheckButton.tooltip = "Smaller version of the Dark(V2) UnitPlayerFrame"
-AbyssUIClassCircles05_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles05)
+-- AbyssUIClassicClassCircles05_CheckButton
+local AbyssUIClassicClassCircles05_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles05_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles05_CheckButton:SetPoint("TOPLEFT", 180 , -80)
+AbyssUIClassicClassCircles05_CheckButton.Text:SetText("Dark_V2 Small")
+AbyssUIClassicClassCircles05_CheckButton.tooltip = "Smaller version of the Dark(V2) UnitPlayerFrame"
+AbyssUIClassicClassCircles05_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles05)
 -- OnClick Function
-AbyssUIClassCircles05_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles05 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles05_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles05 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles05_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles05_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles06_CheckButton
-local AbyssUIClassCircles06_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles06_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles06_CheckButton:SetPoint("TOPLEFT", 180, -110)
-AbyssUIClassCircles06_CheckButton.Text:SetText("LightGray")
-AbyssUIClassCircles06_CheckButton.tooltip = "A Light Gray UnitPlayerFrame"
-AbyssUIClassCircles06_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles06)
+-- AbyssUIClassicClassCircles06_CheckButton
+local AbyssUIClassicClassCircles06_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles06_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles06_CheckButton:SetPoint("TOPLEFT", 180, -110)
+AbyssUIClassicClassCircles06_CheckButton.Text:SetText("LightGray")
+AbyssUIClassicClassCircles06_CheckButton.tooltip = "A Light Gray UnitPlayerFrame"
+AbyssUIClassicClassCircles06_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles06)
 -- OnClick Function
-AbyssUIClassCircles06_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles06 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles06_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles06 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles06_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles06_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles07_CheckButton
-local AbyssUIClassCircles07_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles07_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles07_CheckButton:SetPoint("TOPLEFT", 180, -140)
-AbyssUIClassCircles07_CheckButton.Text:SetText("MediumGray")
-AbyssUIClassCircles07_CheckButton.tooltip = "A Medium Gray UnitPlayerFrame"
-AbyssUIClassCircles07_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles07)
+-- AbyssUIClassicClassCircles07_CheckButton
+local AbyssUIClassicClassCircles07_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles07_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles07_CheckButton:SetPoint("TOPLEFT", 180, -140)
+AbyssUIClassicClassCircles07_CheckButton.Text:SetText("MediumGray")
+AbyssUIClassicClassCircles07_CheckButton.tooltip = "A Medium Gray UnitPlayerFrame"
+AbyssUIClassicClassCircles07_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles07)
 -- OnClick Function
-AbyssUIClassCircles07_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles07 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles07_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles07 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles07_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles07_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles08_CheckButton
-local AbyssUIClassCircles08_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles08_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles08_CheckButton:SetPoint("TOPLEFT", 180, -170)
-AbyssUIClassCircles08_CheckButton.Text:SetText("Muted")
-AbyssUIClassCircles08_CheckButton.tooltip = "A Muted version of the UnitPlayerFrame"
-AbyssUIClassCircles08_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles08)
+-- AbyssUIClassicClassCircles08_CheckButton
+local AbyssUIClassicClassCircles08_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles08_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles08_CheckButton:SetPoint("TOPLEFT", 180, -170)
+AbyssUIClassicClassCircles08_CheckButton.Text:SetText("Muted")
+AbyssUIClassicClassCircles08_CheckButton.tooltip = "A Muted version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles08_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles08)
 -- OnClick Function
-AbyssUIClassCircles08_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles08 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles08_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles08 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles08_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles08_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles09_CheckButton
-local AbyssUIClassCircles09_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles09_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles09_CheckButton:SetPoint("TOPLEFT", 10, -200)
-AbyssUIClassCircles09_CheckButton.Text:SetText("Psychedelic")
-AbyssUIClassCircles09_CheckButton.tooltip = "A Psychedelic version of the UnitPlayerFrame"
-AbyssUIClassCircles09_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles09)
+-- AbyssUIClassicClassCircles09_CheckButton
+local AbyssUIClassicClassCircles09_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles09_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles09_CheckButton:SetPoint("TOPLEFT", 10, -200)
+AbyssUIClassicClassCircles09_CheckButton.Text:SetText("Psychedelic")
+AbyssUIClassicClassCircles09_CheckButton.tooltip = "A Psychedelic version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles09_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles09)
 -- OnClick Function
-AbyssUIClassCircles09_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles09 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles09_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles09 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles09_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles09_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles10_CheckButton
-local AbyssUIClassCircles10_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles10_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles10_CheckButton:SetPoint("TOPLEFT", 180, -200)
-AbyssUIClassCircles10_CheckButton.Text:SetText("Psychedelic_V2")
-AbyssUIClassCircles10_CheckButton.tooltip = "A even more Psychedelic version of the UnitPlayerFrame"
-AbyssUIClassCircles10_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles10)
+-- AbyssUIClassicClassCircles10_CheckButton
+local AbyssUIClassicClassCircles10_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles10_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles10_CheckButton:SetPoint("TOPLEFT", 180, -200)
+AbyssUIClassicClassCircles10_CheckButton.Text:SetText("Psychedelic_V2")
+AbyssUIClassicClassCircles10_CheckButton.tooltip = "A even more Psychedelic version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles10_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles10)
 -- OnClick Function
-AbyssUIClassCircles10_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles10 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles10_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles10 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles10_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles10_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles11_CheckButton
-local AbyssUIClassCircles11_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles11_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles11_CheckButton:SetPoint("TOPLEFT", 10, -230)
-AbyssUIClassCircles11_CheckButton.Text:SetText("GrayScale")
-AbyssUIClassCircles11_CheckButton.tooltip = "A Gray version of the UnitPlayerFrame"
-AbyssUIClassCircles11_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles11)
+-- AbyssUIClassicClassCircles11_CheckButton
+local AbyssUIClassicClassCircles11_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles11_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles11_CheckButton:SetPoint("TOPLEFT", 10, -230)
+AbyssUIClassicClassCircles11_CheckButton.Text:SetText("GrayScale")
+AbyssUIClassicClassCircles11_CheckButton.tooltip = "A Gray version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles11_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles11)
 -- OnClick Function
-AbyssUIClassCircles11_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles11 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles11_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles11 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles11_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles11_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles12_CheckButton
-local AbyssUIClassCircles12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles12_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles12_CheckButton:SetPoint("TOPLEFT", 180, -230)
-AbyssUIClassCircles12_CheckButton.Text:SetText("Artistic")
-AbyssUIClassCircles12_CheckButton.tooltip = "A atelier version of the UnitPlayerFrame"
-AbyssUIClassCircles12_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles12)
+-- AbyssUIClassicClassCircles12_CheckButton
+local AbyssUIClassicClassCircles12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles12_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles12_CheckButton:SetPoint("TOPLEFT", 180, -230)
+AbyssUIClassicClassCircles12_CheckButton.Text:SetText("Artistic")
+AbyssUIClassicClassCircles12_CheckButton.tooltip = "A atelier version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles12)
 -- OnClick Function
-AbyssUIClassCircles12_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles12 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles12_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles12 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles12_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles12_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles13_CheckButton
-local AbyssUIClassCircles13_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles13_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles13_CheckButton:SetPoint("TOPLEFT", 10, -260)
-AbyssUIClassCircles13_CheckButton.Text:SetText("Minimal_Blue")
-AbyssUIClassCircles13_CheckButton.tooltip = "A minimalist blue version of the UnitPlayerFrame"
-AbyssUIClassCircles13_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles13)
+-- AbyssUIClassicClassCircles13_CheckButton
+local AbyssUIClassicClassCircles13_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles13_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles13_CheckButton:SetPoint("TOPLEFT", 10, -260)
+AbyssUIClassicClassCircles13_CheckButton.Text:SetText("Minimal_Blue")
+AbyssUIClassicClassCircles13_CheckButton.tooltip = "A minimalist blue version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles13_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles13)
 -- OnClick Function
-AbyssUIClassCircles13_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles13 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles13_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles13 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles13_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles13_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles14_CheckButton
-local AbyssUIClassCircles14_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles14_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles14_CheckButton:SetPoint("TOPLEFT", 180, -260)
-AbyssUIClassCircles14_CheckButton.Text:SetText("Minimal_Red")
-AbyssUIClassCircles14_CheckButton.tooltip = "A minimalist red version of the UnitPlayerFrame"
-AbyssUIClassCircles14_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles14)
+-- AbyssUIClassicClassCircles14_CheckButton
+local AbyssUIClassicClassCircles14_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles14_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles14_CheckButton:SetPoint("TOPLEFT", 180, -260)
+AbyssUIClassicClassCircles14_CheckButton.Text:SetText("Minimal_Red")
+AbyssUIClassicClassCircles14_CheckButton.tooltip = "A minimalist red version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles14_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles14)
 -- OnClick Function
-AbyssUIClassCircles14_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles14 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles14_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles14 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles14_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles14_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles15_CheckButton
-local AbyssUIClassCircles15_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles14_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles15_CheckButton:SetPoint("TOPLEFT", 10, -290)
-AbyssUIClassCircles15_CheckButton.Text:SetText("Vibrant")
-AbyssUIClassCircles15_CheckButton.tooltip = "A vibrant version of the UnitPlayerFrame"
-AbyssUIClassCircles15_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles15)
+-- AbyssUIClassicClassCircles15_CheckButton
+local AbyssUIClassicClassCircles15_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles14_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles15_CheckButton:SetPoint("TOPLEFT", 10, -290)
+AbyssUIClassicClassCircles15_CheckButton.Text:SetText("Vibrant")
+AbyssUIClassicClassCircles15_CheckButton.tooltip = "A vibrant version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles15_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles15)
 -- OnClick Function
-AbyssUIClassCircles15_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles16 ~= true then
-    AbyssUIAddonSettings.UIClassCircles15 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles15_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles16 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles15 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles15_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles15_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIClassCircles16_CheckButton
-local AbyssUIClassCircles16_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassCircles14_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassCircles16_CheckButton:SetPoint("TOPLEFT", 180, -290)
-AbyssUIClassCircles16_CheckButton.Text:SetText("Retro")
-AbyssUIClassCircles16_CheckButton.tooltip = "A retro version of the UnitPlayerFrame"
-AbyssUIClassCircles16_CheckButton:SetChecked(AbyssUIAddonSettings.UIClassCircles16)
+-- AbyssUIClassicClassCircles16_CheckButton
+local AbyssUIClassicClassCircles16_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles14_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicClassCircles16_CheckButton:SetPoint("TOPLEFT", 180, -290)
+AbyssUIClassicClassCircles16_CheckButton.Text:SetText("Retro")
+AbyssUIClassicClassCircles16_CheckButton.tooltip = "A retro version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles16_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles16)
 -- OnClick Function
-AbyssUIClassCircles16_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIClassCircles01 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles02 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles03 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles04 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles05 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles06 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles07 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles08 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles09 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles10 ~= true and 
-     AbyssUIAddonSettings.UIClassCircles11 ~= true and
-     AbyssUIAddonSettings.UIClassCircles12 ~= true and
-     AbyssUIAddonSettings.UIClassCircles13 ~= true and
-     AbyssUIAddonSettings.UIClassCircles14 ~= true and
-     AbyssUIAddonSettings.UIClassCircles15 ~= true then
-    AbyssUIAddonSettings.UIClassCircles16 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicClassCircles16_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIClassCircles01 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles02 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles03 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles04 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles05 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles06 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles07 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles08 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles09 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles10 ~= true and 
+     AbyssUIClassicAddonSettings.UIClassCircles11 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles12 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles13 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles14 ~= true and
+     AbyssUIClassicAddonSettings.UIClassCircles15 ~= true then
+    AbyssUIClassicAddonSettings.UIClassCircles16 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIClassCircles16_CheckButton:SetChecked(nil)
+    AbyssUIClassicClassCircles16_CheckButton:SetChecked(nil)
   end
 end)
 -- Frame Colorization --
--- AbyssUIVertexColorFrames01_CheckButton
-local AbyssUIVertexColorFrames01_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames01_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames01_CheckButton:SetPoint("TOPRIGHT", -250, -80)
-AbyssUIVertexColorFrames01_CheckButton.Text:SetText("|cffc0c0c0Blizzard (Default)|r")
-AbyssUIVertexColorFrames01_CheckButton.tooltip = "Blizzard Silver Colorization for Frames"
-AbyssUIVertexColorFrames01_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames01)
+-- AbyssUIClassicVertexColorFrames01_CheckButton
+local AbyssUIClassicVertexColorFrames01_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames01_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames01_CheckButton:SetPoint("TOPRIGHT", -250, -80)
+AbyssUIClassicVertexColorFrames01_CheckButton.Text:SetText("|cffc0c0c0Blizzard (Default)|r")
+AbyssUIClassicVertexColorFrames01_CheckButton.tooltip = "Blizzard Silver Colorization for Frames"
+AbyssUIClassicVertexColorFrames01_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames01)
 -- OnClick Function
-AbyssUIVertexColorFrames01_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames01 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames01_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames01 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames01_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames01_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames02_CheckButton
-local AbyssUIVertexColorFrames02_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames02_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames02_CheckButton:SetPoint("TOPRIGHT", -80, -80)
-AbyssUIVertexColorFrames02_CheckButton.Text:SetText("|cff636363Blackout|r")
-AbyssUIVertexColorFrames02_CheckButton.tooltip = "A completely Dark Frame Colorization"
-AbyssUIVertexColorFrames02_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames02)
+-- AbyssUIClassicVertexColorFrames02_CheckButton
+local AbyssUIClassicVertexColorFrames02_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames02_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames02_CheckButton:SetPoint("TOPRIGHT", -80, -80)
+AbyssUIClassicVertexColorFrames02_CheckButton.Text:SetText("|cff636363Blackout|r")
+AbyssUIClassicVertexColorFrames02_CheckButton.tooltip = "A completely Dark Frame Colorization"
+AbyssUIClassicVertexColorFrames02_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames02)
 -- OnClick Function
-AbyssUIVertexColorFrames02_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames02 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames02_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames02 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames02_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames02_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames03_CheckButton
-local AbyssUIVertexColorFrames03_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames03_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames03_CheckButton:SetPoint("TOPRIGHT", -250, -110)
-AbyssUIVertexColorFrames03_CheckButton.Text:SetText("|cffb62a25Blood|r")
-AbyssUIVertexColorFrames03_CheckButton.tooltip = "A Dark Red Frame Colorization"
-AbyssUIVertexColorFrames03_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames03)
+-- AbyssUIClassicVertexColorFrames03_CheckButton
+local AbyssUIClassicVertexColorFrames03_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames03_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames03_CheckButton:SetPoint("TOPRIGHT", -250, -110)
+AbyssUIClassicVertexColorFrames03_CheckButton.Text:SetText("|cffb62a25Blood|r")
+AbyssUIClassicVertexColorFrames03_CheckButton.tooltip = "A Dark Red Frame Colorization"
+AbyssUIClassicVertexColorFrames03_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames03)
 -- OnClick Function
-AbyssUIVertexColorFrames03_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames03 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames03_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames03 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames03_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames03_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames04_CheckButton
-local AbyssUIVertexColorFrames04_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames04_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames04_CheckButton:SetPoint("TOPRIGHT", -80, -110)
-AbyssUIVertexColorFrames04_CheckButton.Text:SetText("|cffecc13cGold|r")
-AbyssUIVertexColorFrames04_CheckButton.tooltip = "A Golden Frame Colorization"
-AbyssUIVertexColorFrames04_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames04)
+-- AbyssUIClassicVertexColorFrames04_CheckButton
+local AbyssUIClassicVertexColorFrames04_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames04_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames04_CheckButton:SetPoint("TOPRIGHT", -80, -110)
+AbyssUIClassicVertexColorFrames04_CheckButton.Text:SetText("|cffecc13cGold|r")
+AbyssUIClassicVertexColorFrames04_CheckButton.tooltip = "A Golden Frame Colorization"
+AbyssUIClassicVertexColorFrames04_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames04)
 -- OnClick Function
-AbyssUIVertexColorFrames04_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames04 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames04_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames04 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames04_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames04_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames05_CheckButton
-local AbyssUIVertexColorFrames05_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames05_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames05_CheckButton:SetPoint("TOPRIGHT", -250, -140)
-AbyssUIVertexColorFrames05_CheckButton.Text:SetText("|cffc41F3BDeath Knight|r")
-AbyssUIVertexColorFrames05_CheckButton.tooltip = "DK Class Frame Colorization"
-AbyssUIVertexColorFrames05_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames05)
+-- AbyssUIClassicVertexColorFrames05_CheckButton
+local AbyssUIClassicVertexColorFrames05_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames05_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames05_CheckButton:SetPoint("TOPRIGHT", -250, -140)
+AbyssUIClassicVertexColorFrames05_CheckButton.Text:SetText("|cffc41F3BDeath Knight|r")
+AbyssUIClassicVertexColorFrames05_CheckButton.tooltip = "DK Class Frame Colorization"
+AbyssUIClassicVertexColorFrames05_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames05)
 -- OnClick Function
-AbyssUIVertexColorFrames05_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames05 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames05_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames05 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames05_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames05_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames06_CheckButton
-local AbyssUIVertexColorFrames06_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames06_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames06_CheckButton:SetPoint("TOPRIGHT", -80, -140)
-AbyssUIVertexColorFrames06_CheckButton.Text:SetText("|cffA330C9Demon\nHunter|r")
-AbyssUIVertexColorFrames06_CheckButton.tooltip = "DH Class Frame Colorization"
-AbyssUIVertexColorFrames06_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames06)
+-- AbyssUIClassicVertexColorFrames06_CheckButton
+local AbyssUIClassicVertexColorFrames06_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames06_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames06_CheckButton:SetPoint("TOPRIGHT", -80, -140)
+AbyssUIClassicVertexColorFrames06_CheckButton.Text:SetText("|cffA330C9Demon\nHunter|r")
+AbyssUIClassicVertexColorFrames06_CheckButton.tooltip = "DH Class Frame Colorization"
+AbyssUIClassicVertexColorFrames06_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames06)
 -- OnClick Function
-AbyssUIVertexColorFrames06_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames06 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames06_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames06 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames06_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames06_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames07_CheckButton
-local AbyssUIVertexColorFrames07_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames07_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames07_CheckButton:SetPoint("TOPRIGHT", -250, -170)
-AbyssUIVertexColorFrames07_CheckButton.Text:SetText("|cffFF7D0ADruid|r")
-AbyssUIVertexColorFrames07_CheckButton.tooltip = "Druid Class Frame Colorization"
-AbyssUIVertexColorFrames07_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames07)
+-- AbyssUIClassicVertexColorFrames07_CheckButton
+local AbyssUIClassicVertexColorFrames07_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames07_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames07_CheckButton:SetPoint("TOPRIGHT", -250, -170)
+AbyssUIClassicVertexColorFrames07_CheckButton.Text:SetText("|cffFF7D0ADruid|r")
+AbyssUIClassicVertexColorFrames07_CheckButton.tooltip = "Druid Class Frame Colorization"
+AbyssUIClassicVertexColorFrames07_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames07)
 -- OnClick Function
-AbyssUIVertexColorFrames07_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames07 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames07_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames07 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames07_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames07_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames08_CheckButton
-local AbyssUIVertexColorFrames08_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames08_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames08_CheckButton:SetPoint("TOPRIGHT", -80, -170)
-AbyssUIVertexColorFrames08_CheckButton.Text:SetText("|cffABD473Hunter|r")
-AbyssUIVertexColorFrames08_CheckButton.tooltip = "Hunter Class Frame Colorization"
-AbyssUIVertexColorFrames08_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames08)
+-- AbyssUIClassicVertexColorFrames08_CheckButton
+local AbyssUIClassicVertexColorFrames08_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames08_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames08_CheckButton:SetPoint("TOPRIGHT", -80, -170)
+AbyssUIClassicVertexColorFrames08_CheckButton.Text:SetText("|cffABD473Hunter|r")
+AbyssUIClassicVertexColorFrames08_CheckButton.tooltip = "Hunter Class Frame Colorization"
+AbyssUIClassicVertexColorFrames08_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames08)
 -- OnClick Function
-AbyssUIVertexColorFrames08_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames08 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames08_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames08 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames08_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames08_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames09_CheckButton
-local AbyssUIVertexColorFrames09_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames09_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames09_CheckButton:SetPoint("TOPRIGHT", -250, -200)
-AbyssUIVertexColorFrames09_CheckButton.Text:SetText("|cff69CCF0Mage|r")
-AbyssUIVertexColorFrames09_CheckButton.tooltip = "Mage Class Frame Colorization"
-AbyssUIVertexColorFrames09_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames09)
+-- AbyssUIClassicVertexColorFrames09_CheckButton
+local AbyssUIClassicVertexColorFrames09_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames09_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames09_CheckButton:SetPoint("TOPRIGHT", -250, -200)
+AbyssUIClassicVertexColorFrames09_CheckButton.Text:SetText("|cff69CCF0Mage|r")
+AbyssUIClassicVertexColorFrames09_CheckButton.tooltip = "Mage Class Frame Colorization"
+AbyssUIClassicVertexColorFrames09_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames09)
 -- OnClick Function
-AbyssUIVertexColorFrames09_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames09 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames09_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames09 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames09_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames09_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames10_CheckButton
-local AbyssUIVertexColorFrames10_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames10_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames10_CheckButton:SetPoint("TOPRIGHT", -80, -200)
-AbyssUIVertexColorFrames10_CheckButton.Text:SetText("|cff00FF96Monk|r")
-AbyssUIVertexColorFrames10_CheckButton.tooltip = "Monk Class Frame Colorization"
-AbyssUIVertexColorFrames10_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames10)
+-- AbyssUIClassicVertexColorFrames10_CheckButton
+local AbyssUIClassicVertexColorFrames10_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames10_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames10_CheckButton:SetPoint("TOPRIGHT", -80, -200)
+AbyssUIClassicVertexColorFrames10_CheckButton.Text:SetText("|cff00FF96Monk|r")
+AbyssUIClassicVertexColorFrames10_CheckButton.tooltip = "Monk Class Frame Colorization"
+AbyssUIClassicVertexColorFrames10_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames10)
 -- OnClick Function
-AbyssUIVertexColorFrames10_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames10 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames10_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames10 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames10_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames10_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames11_CheckButton
-local AbyssUIVertexColorFrames11_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames11_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames11_CheckButton:SetPoint("TOPRIGHT", -250, -230)
-AbyssUIVertexColorFrames11_CheckButton.Text:SetText("|cffF58CBAPaladin|r")
-AbyssUIVertexColorFrames11_CheckButton.tooltip = "Paladin Class Frame Colorization"
-AbyssUIVertexColorFrames11_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames11)
+-- AbyssUIClassicVertexColorFrames11_CheckButton
+local AbyssUIClassicVertexColorFrames11_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames11_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames11_CheckButton:SetPoint("TOPRIGHT", -250, -230)
+AbyssUIClassicVertexColorFrames11_CheckButton.Text:SetText("|cffF58CBAPaladin|r")
+AbyssUIClassicVertexColorFrames11_CheckButton.tooltip = "Paladin Class Frame Colorization"
+AbyssUIClassicVertexColorFrames11_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames11)
 -- OnClick Function
-AbyssUIVertexColorFrames11_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames11 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames11_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames11 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames11_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames11_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames12_CheckButton
-local AbyssUIVertexColorFrames12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames12_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames12_CheckButton:SetPoint("TOPRIGHT", -80, -230)
-AbyssUIVertexColorFrames12_CheckButton.Text:SetText("Priest")
-AbyssUIVertexColorFrames12_CheckButton.tooltip = "Priest Class Frame Colorization (Shadow Priest)"
-AbyssUIVertexColorFrames12_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames12)
+-- AbyssUIClassicVertexColorFrames12_CheckButton
+local AbyssUIClassicVertexColorFrames12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames12_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames12_CheckButton:SetPoint("TOPRIGHT", -80, -230)
+AbyssUIClassicVertexColorFrames12_CheckButton.Text:SetText("Priest")
+AbyssUIClassicVertexColorFrames12_CheckButton.tooltip = "Priest Class Frame Colorization (Shadow Priest)"
+AbyssUIClassicVertexColorFrames12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames12)
 -- OnClick Function
-AbyssUIVertexColorFrames12_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames12 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames12_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames12 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames12_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames12_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames13_CheckButton
-local AbyssUIVertexColorFrames13_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames13_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames13_CheckButton:SetPoint("TOPRIGHT", -250, -260)
-AbyssUIVertexColorFrames13_CheckButton.Text:SetText("|cffFFF569Rogue|r")
-AbyssUIVertexColorFrames13_CheckButton.tooltip = "Rogue Class Frame Colorization"
-AbyssUIVertexColorFrames13_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames13)
+-- AbyssUIClassicVertexColorFrames13_CheckButton
+local AbyssUIClassicVertexColorFrames13_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames13_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames13_CheckButton:SetPoint("TOPRIGHT", -250, -260)
+AbyssUIClassicVertexColorFrames13_CheckButton.Text:SetText("|cffFFF569Rogue|r")
+AbyssUIClassicVertexColorFrames13_CheckButton.tooltip = "Rogue Class Frame Colorization"
+AbyssUIClassicVertexColorFrames13_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames13)
 -- OnClick Function
-AbyssUIVertexColorFrames13_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames13 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames13_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames13 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames13_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames13_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames14_CheckButton
-local AbyssUIVertexColorFrames14_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames14_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames14_CheckButton:SetPoint("TOPRIGHT", -80, -260)
-AbyssUIVertexColorFrames14_CheckButton.Text:SetText("|cff0070DEShaman|r")
-AbyssUIVertexColorFrames14_CheckButton.tooltip = "Shaman Class Frame Colorization"
-AbyssUIVertexColorFrames14_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames14)
+-- AbyssUIClassicVertexColorFrames14_CheckButton
+local AbyssUIClassicVertexColorFrames14_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames14_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames14_CheckButton:SetPoint("TOPRIGHT", -80, -260)
+AbyssUIClassicVertexColorFrames14_CheckButton.Text:SetText("|cff0070DEShaman|r")
+AbyssUIClassicVertexColorFrames14_CheckButton.tooltip = "Shaman Class Frame Colorization"
+AbyssUIClassicVertexColorFrames14_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames14)
 -- OnClick Function
-AbyssUIVertexColorFrames14_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames14 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames14_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames14 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames14_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames14_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames15_CheckButton
-local AbyssUIVertexColorFrames15_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames15_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames15_CheckButton:SetPoint("TOPRIGHT", -250, -290)
-AbyssUIVertexColorFrames15_CheckButton.Text:SetText("|cff9482C9Warlock|r")
-AbyssUIVertexColorFrames15_CheckButton.tooltip = "Warlock Class Frame Colorization"
-AbyssUIVertexColorFrames15_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames15)
+-- AbyssUIClassicVertexColorFrames15_CheckButton
+local AbyssUIClassicVertexColorFrames15_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames15_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames15_CheckButton:SetPoint("TOPRIGHT", -250, -290)
+AbyssUIClassicVertexColorFrames15_CheckButton.Text:SetText("|cff9482C9Warlock|r")
+AbyssUIClassicVertexColorFrames15_CheckButton.tooltip = "Warlock Class Frame Colorization"
+AbyssUIClassicVertexColorFrames15_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames15)
 -- OnClick Function
-AbyssUIVertexColorFrames15_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames15 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames15_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames15 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames15_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames15_CheckButton:SetChecked(nil)
   end
 end)
--- AbyssUIVertexColorFrames16_CheckButton
-local AbyssUIVertexColorFrames16_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFrames16_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFrames16_CheckButton:SetPoint("TOPRIGHT", -80, -290)
-AbyssUIVertexColorFrames16_CheckButton.Text:SetText("|cffC79C6EWarrior|r")
-AbyssUIVertexColorFrames16_CheckButton.tooltip = "Warrior Class Frame Colorization"
-AbyssUIVertexColorFrames16_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFrames16)
+-- AbyssUIClassicVertexColorFrames16_CheckButton
+local AbyssUIClassicVertexColorFrames16_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFrames16_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFrames16_CheckButton:SetPoint("TOPRIGHT", -80, -290)
+AbyssUIClassicVertexColorFrames16_CheckButton.Text:SetText("|cffC79C6EWarrior|r")
+AbyssUIClassicVertexColorFrames16_CheckButton.tooltip = "Warrior Class Frame Colorization"
+AbyssUIClassicVertexColorFrames16_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFrames16)
 -- OnClick Function
-AbyssUIVertexColorFrames16_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFramesColorPicker ~= true then
-    AbyssUIAddonSettings.UIVertexColorFrames16 = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+AbyssUIClassicVertexColorFrames16_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFrames16 = self:GetChecked()
+    AbyssUIClassic_ReloadFrame:Show()
   else
-    AbyssUIVertexColorFrames16_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFrames16_CheckButton:SetChecked(nil)
   end
 end)
 -- Choose a Color (Color Picker)
-local AbyssUIVertexColorFramesColorPicker_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIVertexColorFramesColorPicker_CheckButton", AbyssUI_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIVertexColorFramesColorPicker_CheckButton:SetPoint("CENTER", AbyssUI_Config.childpanel4, "CENTER", 50, -80)
-AbyssUIVertexColorFramesColorPicker_CheckButton.Text:SetText("|cff0d75d4Select a Color|r")
-AbyssUIVertexColorFramesColorPicker_CheckButton.tooltip = "Choose a color for the frames (Color Picker)"
-AbyssUIVertexColorFramesColorPicker_CheckButton:SetChecked(AbyssUIAddonSettings.UIVertexColorFramesColorPicker)
+local AbyssUIClassicVertexColorFramesColorPicker_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFramesColorPicker_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "CENTER", 50, -80)
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton.Text:SetText("|cff0d75d4Select a Color|r")
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton.tooltip = "Choose a color for the frames (Color Picker)"
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker)
 -- OnClick Function
-AbyssUIVertexColorFramesColorPicker_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIAddonSettings.UIVertexColorFrames01 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames02 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames03 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames04 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames05 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames06 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames07 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames08 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames09 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames10 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames11 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames12 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames13 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames14 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames15 ~= true and
-  AbyssUIAddonSettings.UIVertexColorFrames16 ~= true then
-    AbyssUIAddonSettings.UIVertexColorFramesColorPicker = self:GetChecked()
-    AbyssUI_ColorPickerFrame:Show()
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetScript("OnClick", function(self)
+  if AbyssUIClassicAddonSettings.UIVertexColorFrames01 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames02 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames03 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames04 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames05 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames06 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames07 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames08 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames09 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames10 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames11 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames12 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames13 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames14 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
+  AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true then
+    AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker = self:GetChecked()
+    AbyssUIClassic_ColorPickerFrame:Show()
   else
-    AbyssUIVertexColorFramesColorPicker_CheckButton:SetChecked(nil)
+    AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetChecked(nil)
   end
 end)
 -- End
@@ -1917,12 +1917,12 @@ end
 --------------------------------- Save ---------------------------------
 --This starts things off and once we're far enough into the game
 --to check our SavedVariables and initialises if required
-local f = CreateFrame("Frame", "AbyssUI_Config", UIParent)
+local f = CreateFrame("Frame", "AbyssUIClassic_Config", UIParent)
 f:SetSize(50, 50)
 f:RegisterEvent("PLAYER_LOGIN")
 f:SetScript("OnEvent", function(self, event, ...)
-    if not AbyssUIAddonSettings then
-      AbyssUIAddonSettings = {}
+    if not AbyssUIClassicAddonSettings then
+      AbyssUIClassicAddonSettings = {}
     end
     -- Now we have SavedVarialbe loaded, create the interface options frame
     InitSettings()
