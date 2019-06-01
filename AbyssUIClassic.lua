@@ -13,7 +13,7 @@
 local BasicFrames = CreateFrame("Frame")
 BasicFrames:RegisterEvent("ADDON_LOADED")
 BasicFrames:SetScript("OnEvent", function(self, event, addon)
-	if (addon == "AbyssUIClassicClassic") then
+	if (addon == "AbyssUIClassic") then
 		for i, v in pairs({	PlayerFrameTexture,
 			TargetFrameTextureFrameTexture,
 			PetFrameTexture,
@@ -50,20 +50,20 @@ BasicFrames:SetScript("OnEvent", function(self, event, addon)
 			MiniMapBattlefieldBorder,
 			MiniMapMailBorder,
 			MiniMapBorderTop, }) do
-			if AbyssUIClassicClassicAddonSettings ~= nil then
-				if AbyssUIClassicClassicAddonSettings.UIVertexColorFrames01 == true then
+			if AbyssUIClassicAddonSettings ~= nil then
+				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
 					v:SetVertexColor(1, 1, 1)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames02 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames02 == true then
 					v:SetVertexColor(.2, .2, .2)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames03 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames03 == true then
 					v:SetVertexColor(182/255, 42/255, 37/255)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames04 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames04 == true then
 					v:SetVertexColor(236/255, 193/255, 60/255)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames05 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames05 == true then
 					v:SetVertexColor(196/255, 31/255, 59/255)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames06 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames06 == true then
 					v:SetVertexColor(163/255, 48/255, 201/255)
-				elseif AbyssUIClassicClassicAddonSettings.UIVertexColorFrames07 == true then
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames07 == true then
 					v:SetVertexColor(252/255, 163/255, 85/255)
 				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames08 == true then
 					v:SetVertexColor(190/255, 221/255, 115/255)
