@@ -163,25 +163,24 @@ AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
 AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
 AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
 --AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
-AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(nil)
 local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
 AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
 AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
 --AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
-AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
 -- OnClick Function
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
-  AbyssUIClassic_ActionBarInfo:Show()
+  --AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
+  --AbyssUIClassic_ActionBarInfo:Show()
+  AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(nil)
 end)
 --
 AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
   if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 ~= true then
     AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
   else
-    AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 = self:GetChecked()
-    AbyssUIClassic_ActionBarInfo:Show()
+    --AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 = self:GetChecked()
+    --AbyssUIClassic_ActionBarInfo:Show()
   end
 end)
 -- After Login/Reload
@@ -258,7 +257,6 @@ MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
 MicroMenu_CheckButton.Text:SetText("|cff848484Hide MicroMenu *Retail|r")
 MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu (Bags Bar)"
 --MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
-MicroMenu_CheckButton:SetChecked(nil)
 --  Hide
 local function AbyssUIClassic_HideMicroMenu_Function()
   for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
@@ -300,6 +298,7 @@ end
 -- OnClick Function
 MicroMenu_CheckButton:SetScript("OnClick", function(self)
 --AbyssUIClassicAddonSettings.HideMicroMenu = self:GetChecked()
+MicroMenu_CheckButton:SetChecked(nil)
   if AbyssUIClassicAddonSettings.HideMicroMenu == true then
     --AbyssUIClassic_HideMicroMenu_Function()
   else
@@ -665,6 +664,16 @@ HideChatButtons_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
+-- AFKCammeraFrame --
+local AFKCammeraFrame_CheckButton = CreateFrame("CheckButton", "$parentAFKCammeraFrame_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
+AFKCammeraFrame_CheckButton:SetPoint("TOPLEFT", 10, -380)
+AFKCammeraFrame_CheckButton.Text:SetText("Hide AFKMode Frame")
+AFKCammeraFrame_CheckButton.tooltip = "Hide the AFKMode when you are AFK"
+AFKCammeraFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AFKCammeraFrame)
+-- OnClick Function
+AFKCammeraFrame_CheckButton:SetScript("OnClick", function(self)
+AbyssUIClassicAddonSettings.AFKCammeraFrame = self:GetChecked()
+end)
 -- End
 ----------------------------------- Extras  -----------------------------------
 -- Keep UnitFrame Dark --
@@ -912,10 +921,10 @@ AbyssUIClassic_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
 AbyssUIClassic_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame *Retail|r")
 AbyssUIClassic_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
 --AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave)
-AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(nil)
 -- OnClick Function
 AbyssUIClassic_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
   --AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
+  AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(nil)
 end)
 -- Shift + C to confirm  --
 local AbyssUIClassic_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ConfirmPopUps_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
