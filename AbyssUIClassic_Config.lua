@@ -14,7 +14,7 @@ local function InitSettings()
 AbyssUIClassic_Config.panel = CreateFrame( "Frame", "$parentAbyssUIClassic_Config", InterfaceOptionsFramePanelContainer)
 -- Register in the Interface Addon Options GUI
 -- Set the name for the Category for the Options Panel
-AbyssUIClassic_Config.panel.name = "Abyss|cff0d75d4UI|rClassic"
+AbyssUIClassic_Config.panel.name = "AbyssUI|cff0d75d4Classic|r"
 -- Add the panel to the Interface Options
 InterfaceOptions_AddCategory(AbyssUIClassic_Config.panel, addonName)
 --Child Panels
@@ -45,7 +45,7 @@ Frame:SetWidth(70)
 Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Abyss|cff0d75d4UI|rClassic")
+Frame:SetText("AbyssUI|cff0d75d4Classic|r")
 -- SubTittle
 local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUIClassic_Config.panel)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", 0, -80)
@@ -54,7 +54,7 @@ Frame:SetWidth(200)
 Frame:SetScale(1.1)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Thanks for using Abyss|cff0d75d4UI|rClassic.\nIf you liked, share with your friends, or make a donation. Helps a lot!\nThis is a Minimalist UI that make changes directly to the WoW frames,\n using almost nothing more than the Blizzard use of CPU/RAM.\n\nCheck the options by clicking in the (+) button")
+Frame:SetText("Thanks for using AbyssUI|cff0d75d4Classic|r.\nIf you liked, share with your friends, or make a donation. Helps a lot!\nThis is a Minimalist UI that make changes directly to the WoW frames,\n using almost nothing more than the Blizzard use of CPU/RAM.\n\nCheck the options by clicking in the (+) button")
 -- Panel 01 (ActionBar)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel01", AbyssUIClassic_Config.childpanel1)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -20)
@@ -63,7 +63,7 @@ Frame:SetHeight(24)
 Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Abyss|cff0d75d4UI|rClassic Actionbar")
+Frame:SetText("AbyssUI|cff0d75d4Classic|r Actionbar")
 -- Panel 02 (HideElements)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
@@ -133,7 +133,7 @@ local FrameButton = CreateFrame("Button","$parentExtraDailyInfoButton", AbyssUIC
 FrameButton:SetHeight(24)
 FrameButton:SetWidth(140)
 FrameButton:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", -200, -200)
-FrameButton:SetText("AbyssUIClassic DailyInfo")
+FrameButton:SetText("Classic DailyInfo")
 FrameButton:SetScript("OnClick", function()
   C_WowTokenPublic.UpdateMarketPrice()
   AbyssUIClassicDailyInfo()
@@ -162,13 +162,14 @@ local AbyssUIClassicNewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$
 AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
 AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
 AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
-AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
-
+--AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
+AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(nil)
 local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
 AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
 AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
-AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
+--AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
+AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
 -- OnClick Function
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
@@ -256,7 +257,8 @@ local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_Check
 MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
 MicroMenu_CheckButton.Text:SetText("|cff848484Hide MicroMenu *Retail|r")
 MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu (Bags Bar)"
-MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
+--MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
+MicroMenu_CheckButton:SetChecked(nil)
 --  Hide
 local function AbyssUIClassic_HideMicroMenu_Function()
   for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
@@ -910,6 +912,7 @@ AbyssUIClassic_InstanceLeave_CheckButton:SetPoint("TOPLEFT", 400, -80)
 AbyssUIClassic_InstanceLeave_CheckButton.Text:SetText("|cff848484Instance Leave Frame *Retail|r")
 AbyssUIClassic_InstanceLeave_CheckButton.tooltip = "A dynamic frame that popup when you complete a LFG (dungeon, raid, etc)"
 --AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave)
+AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(nil)
 -- OnClick Function
 AbyssUIClassic_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
   --AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
