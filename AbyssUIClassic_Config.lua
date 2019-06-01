@@ -14,7 +14,7 @@ local function InitSettings()
 AbyssUIClassic_Config.panel = CreateFrame( "Frame", "$parentAbyssUIClassic_Config", InterfaceOptionsFramePanelContainer)
 -- Register in the Interface Addon Options GUI
 -- Set the name for the Category for the Options Panel
-AbyssUIClassic_Config.panel.name = "Abyss|cff0d75d4UI|r"
+AbyssUIClassic_Config.panel.name = "Abyss|cff0d75d4UI|rClassic"
 -- Add the panel to the Interface Options
 InterfaceOptions_AddCategory(AbyssUIClassic_Config.panel, addonName)
 --Child Panels
@@ -45,7 +45,7 @@ Frame:SetWidth(70)
 Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Abyss|cff0d75d4UI|r")
+Frame:SetText("Abyss|cff0d75d4UI|rClassic")
 -- SubTittle
 local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUIClassic_Config.panel)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", 0, -80)
@@ -54,7 +54,7 @@ Frame:SetWidth(200)
 Frame:SetScale(1.1)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Thanks for using Abyss|cff0d75d4UI|r.\nIf you liked, share with your friends, or make a donation. Helps a lot!\nThis is a Minimalist UI that make changes directly to the WoW frames,\n using almost nothing more than the Blizzard use of CPU/RAM.\n\nCheck the options by clicking in the (+) button")
+Frame:SetText("Thanks for using Abyss|cff0d75d4UI|rClassic.\nIf you liked, share with your friends, or make a donation. Helps a lot!\nThis is a Minimalist UI that make changes directly to the WoW frames,\n using almost nothing more than the Blizzard use of CPU/RAM.\n\nCheck the options by clicking in the (+) button")
 -- Panel 01 (ActionBar)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel01", AbyssUIClassic_Config.childpanel1)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -20)
@@ -63,7 +63,7 @@ Frame:SetHeight(24)
 Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Abyss|cff0d75d4UI|r Actionbar")
+Frame:SetText("Abyss|cff0d75d4UI|rClassic Actionbar")
 -- Panel 02 (HideElements)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
