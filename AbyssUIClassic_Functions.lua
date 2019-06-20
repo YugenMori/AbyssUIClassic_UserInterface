@@ -134,15 +134,10 @@ local function eventHandler(self, event, ...)
 		c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
 		TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
 	end
-	if UnitIsPlayer("focus") then
-		c = RAID_CLASS_COLORS[select(2, UnitClass("focus"))]
-		FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
-	end
 end
 
 frame:SetScript("OnEvent", eventHandler)
-
-for _, BarTextures in pairs({TargetFrameNameBackground, FocusFrameNameBackground}) do
+for _, BarTextures in pairs({TargetFrameNameBackground}) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
@@ -244,7 +239,7 @@ TooltipBackground:SetColorTexture(0.02, 0.02, 0.02)
 TooltipBackground:SetAlpha(.05, .05, .05)
 ----------------------------------------------------
 -- Tooltip Class Color Health
-GameTooltip:HookScript("OnUpdate", function(self, elapsed)
+GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	local _, unit = GameTooltip:GetUnit()
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
@@ -252,6 +247,8 @@ GameTooltip:HookScript("OnUpdate", function(self, elapsed)
 		if color then
 			GameTooltipStatusBar:SetStatusBarColor(color.r, color.g, color.b)
 		end
+	else
+		GameTooltipStatusBar:SetStatusBarColor(0, 128, 0)
 	end
 end)
 ----------------------------------------------------
@@ -474,19 +471,13 @@ end)
 -- Target Mob(Enemy) Health Bar Color
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
---frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 
 local function eventHandler(self, event, ...)
-	if ( event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" ) then
-		if UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") then
+	if ( event == "PLAYER_TARGET_CHANGED") then
+		if UnitIsEnemy("player", "target") and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) then
 			TargetFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-		elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
+		elseif not (UnitIsEnemy("player", "target")) and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) and UnitReaction("player", "target") == 4 then
 			TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
-		end
-		if UnitIsEnemy("player", "focus") and not UnitIsFriend("player", "focus") and not UnitIsPlayer("focus") then
-			--FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-		elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
-			--FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
 		end
 	else
 		return nil
@@ -495,25 +486,16 @@ end
 
 frame:SetScript("OnEvent", eventHandler)
 
-for _, BarTextures in pairs({ TargetFrameNameBackground, FocusFrameNameBackground }) do
+for _, BarTextures in pairs({ TargetFrameNameBackground }) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
 -- Keep the color when health changes
 hooksecurefunc("HealthBar_OnValueChanged", function()
-	if UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") then
+	if UnitIsEnemy("player", "target") and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) then
 		TargetFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-	elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
+	elseif not (UnitIsEnemy("player", "target")) and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) and UnitReaction("player", "target") == 4 then
 		TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
-	else
-		return nil
-	end
-	if UnitIsEnemy("player", "focus") and not UnitIsFriend("player", "focus") and not UnitIsPlayer("focus") then
-		--FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-	elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
-		--FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
-	else
-		return nil
 	end
 end)
 ----------------------------------------------------
