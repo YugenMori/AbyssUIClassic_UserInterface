@@ -328,11 +328,11 @@ Gryphons_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideGryphons)
 Gryphons_CheckButton:SetScript("OnClick", function(self)
 AbyssUIClassicAddonSettings.HideGryphons = self:GetChecked()
   if AbyssUIClassicAddonSettings.HideGryphons == true then
-    MainMenuBarArtFrame.RightEndCap:Hide()
-    MainMenuBarArtFrame.LeftEndCap:Hide()
+    MainMenuBarRightEndCap:Hide()
+    MainMenuBarLeftEndCap:Hide()
   else
-    MainMenuBarArtFrame.RightEndCap:Show()
-    MainMenuBarArtFrame.LeftEndCap:Show()
+    MainMenuBarRightEndCap:Show()
+    MainMenuBarLeftEndCap:Show()
   end
 end)
 -- After Login/Reload
@@ -340,11 +340,11 @@ Gryphons_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 Gryphons_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
     if AbyssUIClassicAddonSettings.HideGryphons == true then
-      MainMenuBarArtFrame.RightEndCap:Hide()
-      MainMenuBarArtFrame.LeftEndCap:Hide()
+      MainMenuBarRightEndCap:Hide()
+      MainMenuBarLeftEndCap:Hide()
     else
-      MainMenuBarArtFrame.RightEndCap:Show()
-      MainMenuBarArtFrame.LeftEndCap:Show()
+      MainMenuBarRightEndCap:Show()
+      MainMenuBarLeftEndCap:Show()
     end
   end
 end)
@@ -384,9 +384,9 @@ ObjTracker_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideObjectiveTrack
 ObjTracker_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.HideObjectiveTracker = self:GetChecked()
   if AbyssUIClassicAddonSettings.HideObjectiveTracker == true then
-    ObjectiveTrackerFrame:Hide()
+    QuestWatchFrame:Hide()
   else
-    ObjectiveTrackerFrame:Show()
+    QuestWatchFrame:Show()
   end
 end)
 -- After Login/Reload
@@ -394,9 +394,9 @@ ObjTracker_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
     if AbyssUIClassicAddonSettings.HideObjectiveTracker == true then
-      ObjectiveTrackerFrame:Hide()
+      QuestWatchFrame:Hide()
     else
-      ObjectiveTrackerFrame:Show()
+      QuestWatchFrame:Show()
     end
   end
 end)
@@ -835,8 +835,8 @@ end)
 -- Inspect Target
 local InspectTarget_CheckButton = CreateFrame("CheckButton", "$parentInspectTarget_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 InspectTarget_CheckButton:SetPoint("TOPLEFT", 10, -170)
-InspectTarget_CheckButton.Text:SetText("Inspect Target (Shift + X)")
-InspectTarget_CheckButton.tooltip = "When you have a target or your mouse is over someone character, to inspect this player press the keys Shift + X"
+InspectTarget_CheckButton.Text:SetText("Inspect Target (Shift + ')")
+InspectTarget_CheckButton.tooltip = "When you have a target or your mouse is over someone character, to inspect this player press the keys Shift + '"
 InspectTarget_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget)
 -- OnClick Function
 InspectTarget_CheckButton:SetScript("OnClick", function(self)
@@ -926,11 +926,11 @@ AbyssUIClassic_InstanceLeave_CheckButton:SetScript("OnClick", function(self)
   --AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave = self:GetChecked()
   AbyssUIClassic_InstanceLeave_CheckButton:SetChecked(nil)
 end)
--- Shift + C to confirm  --
+-- CTRL + ' to confirm  --
 local AbyssUIClassic_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ConfirmPopUps_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_ConfirmPopUps_CheckButton:SetPoint("TOPLEFT", 400, -110)
-AbyssUIClassic_ConfirmPopUps_CheckButton.Text:SetText("Confirm Pop-Ups (Shift + C)")
-AbyssUIClassic_ConfirmPopUps_CheckButton.tooltip = "When this is active you can confirm almost any pop-ups (release, quests, stacks, etc) pressing the keys Shift + C"
+AbyssUIClassic_ConfirmPopUps_CheckButton.Text:SetText("Confirm Pop-Ups (CTRL + ')")
+AbyssUIClassic_ConfirmPopUps_CheckButton.tooltip = "When this is active you can confirm almost any pop-ups (release, quests, stacks, etc) pressing the keys CTRL + '"
 AbyssUIClassic_ConfirmPopUps_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps)
 -- OnClick Function
 AbyssUIClassic_ConfirmPopUps_CheckButton:SetScript("OnClick", function(self)

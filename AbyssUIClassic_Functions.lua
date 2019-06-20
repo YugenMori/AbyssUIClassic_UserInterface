@@ -126,7 +126,7 @@ end)
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
-frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
+--frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
 
 local function eventHandler(self, event, ...)
@@ -147,6 +147,7 @@ for _, BarTextures in pairs({TargetFrameNameBackground, FocusFrameNameBackground
 end
 ----------------------------------------------------
 -- Text round values
+--[[
 hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", function()
 	PlayerFrameHealthBar.TextString:SetText(AbbreviateLargeNumbers(UnitHealth("player")))
 	--PlayerFrameManaBar.TextString:SetText(AbbreviateLargeNumbers(UnitMana("player")))
@@ -157,6 +158,7 @@ hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", function()
 	FocusFrameHealthBar.TextString:SetText(AbbreviateLargeNumbers(UnitHealth("focus")))
 	--FocusFrameManaBar.TextString:SetText(AbbreviateLargeNumbers(UnitMana("focus")))
 end)
+]]
 ----------------------------------------------------
 -- Cast Bar
 -- Timer
@@ -192,8 +194,8 @@ Minimap:SetScript('OnMouseWheel', function(self, delta)
 		Minimap_ZoomOut()
 	end
 end)
-MiniMapTracking:ClearAllPoints()
-MiniMapTracking:SetPoint("TOPRIGHT", -26, 7)
+--MiniMapTracking:ClearAllPoints()
+--MiniMapTracking:SetPoint("TOPRIGHT", -26, 7)
 ----------------------------------------------------
 -- Disable spam healing over player frame
 --[[
@@ -486,7 +488,7 @@ end)
 -- Target Mob(Enemy) Health Bar Color
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
-frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
+--frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 
 local function eventHandler(self, event, ...)
 	if ( event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" ) then
@@ -496,9 +498,9 @@ local function eventHandler(self, event, ...)
 			TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
 		end
 		if UnitIsEnemy("player", "focus") and not UnitIsFriend("player", "focus") and not UnitIsPlayer("focus") then
-			FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
+			--FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
 		elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
-			FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
+			--FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
 		end
 	else
 		return nil
@@ -521,15 +523,16 @@ hooksecurefunc("HealthBar_OnValueChanged", function()
 		return nil
 	end
 	if UnitIsEnemy("player", "focus") and not UnitIsFriend("player", "focus") and not UnitIsPlayer("focus") then
-		FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
+		--FocusFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
 	elseif not UnitIsEnemy("player", "target") and not UnitIsFriend("player", "target") and not UnitIsPlayer("target") and UnitReaction("player", "target") == 4 then
-		FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
+		--FocusFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
 	else
 		return nil
 	end
 end)
 ----------------------------------------------------
 -- Percent Health 
+--[[
 local FrameList = {"Player", "Target", "Focus"}
 local _G = _G
 local function AbyssUIClassic_UpdateHealthValues(...)
@@ -571,6 +574,7 @@ for i = 1, select("#", unpack(FrameList)) do
 	end
 end
 hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUIClassic_UpdateManaValues)
+--]]
 ----------------------------------------------------
 -- Start Function
 function AbyssUIClassicStart()
@@ -643,7 +647,7 @@ end)
 local AbyssUIClassic_ConfirmPopUps = CreateFrame("Button", '$parentAbyssUIClassic_ConfirmPopUps', nil)
 AbyssUIClassic_ConfirmPopUps:RegisterForClicks("AnyDown")
 AbyssUIClassic_ConfirmPopUps:SetScript("OnEvent", function()
-	SetBindingClick("SHIFT-C", AbyssUIClassic_ConfirmPopUps:GetName())
+	SetBindingClick("CTRL-'", AbyssUIClassic_ConfirmPopUps:GetName())
 end)
 AbyssUIClassic_ConfirmPopUps:RegisterEvent("PLAYER_LOGIN")
 AbyssUIClassic_ConfirmPopUps:SetScript("OnClick", function()
@@ -671,9 +675,9 @@ objectiveFrame1:SetScript("OnEvent", function(self, event, ...)
 	local isPVPMap = C_PvP.IsPVPMap()
 	local inInstance, instanceType = IsInInstance()
 	if ( event == "PLAYER_REGEN_DISABLED" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
-		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 1, 0)
+		UIFrameFadeIn(QuestWatchFrame, 1, 1, 0)
 	elseif ( event == "PLAYER_REGEN_ENABLED" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == false and (instanceType == "none" or instanceType == "party")) then
-		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 0, 1)
+		UIFrameFadeIn(QuestWatchFrame, 1, 0, 1)
 	else 
 		return nil
 	end
@@ -688,16 +692,16 @@ objectiveFrame2:SetScript("OnEvent", function(self, event, ...)
 	--local isRatedMap = C_PvP.IsRatedMap() 
 	--or isArena == true or isBattleground == true or isRatedMap == true
 	if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat == true and isPVPMap == true) then
-		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 1, 0)		
+		UIFrameFadeIn(QuestWatchFrame, 1, 1, 0)		
 	else 
-		UIFrameFadeIn(ObjectiveTrackerFrame, 1, 0, 1)
+		UIFrameFadeIn(QuestWatchFrame, 1, 0, 1)
 	end
 end)
 -- Inspect Target
 local AbyssUIClassic_InspectTarget = CreateFrame("Button", '$parentAbyssUIClassic_InspectTarget', nil)
 AbyssUIClassic_InspectTarget:RegisterForClicks("AnyDown")
 AbyssUIClassic_InspectTarget:SetScript("OnEvent", function()
-	SetBindingClick("SHIFT-X", AbyssUIClassic_InspectTarget:GetName())
+	SetBindingClick("SHIFT-'", AbyssUIClassic_InspectTarget:GetName())
 end)
 AbyssUIClassic_InspectTarget:RegisterEvent("PLAYER_LOGIN")
 AbyssUIClassic_InspectTarget:SetScript("OnClick", function()
