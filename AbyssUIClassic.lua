@@ -51,6 +51,7 @@ BasicFrames:SetScript("OnEvent", function(self, event, addon)
 			MiniMapMailBorder,
 			MiniMapBorderTop,
 			GameTimeTexture, }) do
+			MiniMapWorldMapButton:SetAlpha(0.3)
 			if AbyssUIClassicAddonSettings ~= nil then
 				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
 					v:SetVertexColor(1, 1, 1)
@@ -584,6 +585,60 @@ NewFrames:SetScript("OnEvent", function(self, event, addon)
 			LootFrameBtnCornerLeft,
 			LootFrameLeftBorder,
 			LootFramePortraitFrame,	}) do
+			if AbyssUIClassicAddonSettings ~= nil then
+				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
+					v:SetVertexColor(1, 1, 1)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames02 == true then
+					v:SetVertexColor(.2, .2, .2)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames03 == true then
+					v:SetVertexColor(182/255, 42/255, 37/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames04 == true then
+					v:SetVertexColor(236/255, 193/255, 60/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames05 == true then
+					v:SetVertexColor(196/255, 31/255, 59/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames06 == true then
+					v:SetVertexColor(163/255, 48/255, 201/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames07 == true then
+					v:SetVertexColor(252/255, 163/255, 85/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames08 == true then
+					v:SetVertexColor(190/255, 221/255, 115/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames09 == true then
+					v:SetVertexColor(64/255, 220/255, 255/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames10 == true then
+					v:SetVertexColor(86/255, 255/255, 184/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames11 == true then
+					v:SetVertexColor(255/255, 155/255, 195/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames12 == true then
+					v:SetVertexColor(23/255, 28/255, 99/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames13 == true then
+					v:SetVertexColor(255/255, 255/255, 0/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames14 == true then
+					v:SetVertexColor(0/255, 112/255, 222/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames15 == true then
+					v:SetVertexColor(135/255, 135/255, 237/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFrames16 == true then
+					v:SetVertexColor(199/255, 156/255, 110/255)
+				elseif AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker == true then
+					local character = UnitName("player").."-"..GetRealmName()
+					v:SetVertexColor(COLOR_MY_UI[character].Color.r, COLOR_MY_UI[character].Color.g, COLOR_MY_UI[character].Color.b)
+				else
+					v:SetVertexColor(.4, .4, .4)
+				end
+			else
+				return nil
+			end
+		end
+		-- MailFrame
+		for i, v in pairs({ MailFrameTopBorder,
+			MailFrameTopRightCorner,
+			MailFrameRightBorder,
+			MailFrameBotRightCorner,
+			MailFrameBtnCornerRight,
+			MailFrameBottomBorder,
+			MailFrameBotLeftCorner,
+			MailFrameBtnCornerLeft,
+			MailFrameLeftBorder,
+			MailFramePortraitFrame,	}) do
 			if AbyssUIClassicAddonSettings ~= nil then
 				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
 					v:SetVertexColor(1, 1, 1)

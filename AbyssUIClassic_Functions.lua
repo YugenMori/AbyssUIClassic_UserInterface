@@ -623,7 +623,7 @@ AbyssUIClassic_ConfirmPopUps:SetScript("OnClick", function()
 		QuestFrameAcceptButton:Click()
 		QuestFrameCompleteQuestButton:Click()
 		QuestFrameCompleteButton:Click()
-		LFGDungeonReadyDialogEnterDungeonButton:Click()
+		--LFGDungeonReadyDialogEnterDungeonButton:Click()
 		GossipFrameGreetingGoodbyeButton:Click()
 		--PVPReadyDialogEnterBattleButton:Click()
 	else
