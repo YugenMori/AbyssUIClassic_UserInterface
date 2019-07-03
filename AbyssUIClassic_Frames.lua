@@ -26,12 +26,12 @@ local AbyssUIClassicBorder = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "B
 AbyssUIClassicBorder:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 AbyssUIClassicBorder:SetPoint("TOPLEFT", -3, 3)
 AbyssUIClassicBorder:SetPoint("BOTTOMRIGHT", 3, -3)
-AbyssUIClassicBorder:SetVertexColor(0.5, 0.5, 0.5, 0.5)
+AbyssUIClassicBorder:SetVertexColor(0.7, 0.7, 0.7, 0.7)
 ----------------------------------------------------
 local BorderBody = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "ARTWORK")
 BorderBody:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderBody:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
-BorderBody:SetVertexColor(0.5, 0.5, 0.5, 0.5)
+BorderBody:SetVertexColor(0.7, 0.7, 0.7, 0.7)
 ----------------------------------------------------
 local Texture = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "BACKGROUND")
 Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
@@ -47,8 +47,8 @@ AbyssUIClassic_AFKCamera:RegisterEvent("PLAYER_ENTERING_WORLD")
 -- Model1
 local AbyssUIClassic_ModelFrameAFKMode = CreateFrame("Frame", "$parentAbyssUIClassic_ModelFrameAFKMode", AbyssUIClassic_AFKCameraFrame)
 AbyssUIClassic_ModelFrameAFKMode:SetPoint("TOPLEFT", 0, 0)
-AbyssUIClassic_ModelFrameAFKMode:SetWidth(512)
-AbyssUIClassic_ModelFrameAFKMode:SetHeight(512)
+AbyssUIClassic_ModelFrameAFKMode:SetWidth(GetScreenWidth()/4)
+AbyssUIClassic_ModelFrameAFKMode:SetHeight(GetScreenHeight()/2)
 AbyssUIClassic_ModelFrameAFKMode:SetAlpha(1)
 
 local ModelFrame_Model1 = CreateFrame("PlayerModel", "$parentModelFrame_Model1", AbyssUIClassic_ModelFrameAFKMode)
@@ -91,6 +91,32 @@ PlayerInfo_Class1:SetScale(3)
 PlayerInfo_Class1.text = PlayerInfo_Class1.text or PlayerInfo_Class1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 PlayerInfo_Class1.text:SetPoint("TOPRIGHT", 0, -40)
 PlayerInfo_Class1.text:SetText(playerClass)
+-- Faction
+local PlayerInfo_Faction1 = CreateFrame("Frame", "$parentPlayerInfo_Faction1", AbyssUI_AFKCameraFrame)
+local englishFaction, localizedFaction = UnitFactionGroup("player")
+PlayerInfo_Faction1:SetAllPoints(AbyssUI_AFKCameraFrame)
+PlayerInfo_Faction1:SetScale(3)
+PlayerInfo_Faction1.text = PlayerInfo_Faction1.text or PlayerInfo_Faction1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_Faction1.text:SetPoint("TOPRIGHT", 0, -50)
+PlayerInfo_Faction1.text:SetText(localizedFaction)
+-- Faction Color
+ if ( englishFaction == "Horde" ) then
+ 	PlayerInfo_Faction1.text:SetVertexColor(196/255, 31/255, 59/255)
+ elseif ( englishFaction == "Alliance" ) then
+ 	PlayerInfo_Faction1.text:SetVertexColor(0/255, 112/255, 222/255)
+ else
+ 	return nil
+ end
+ -- Gold Amount
+local PlayerInfo_GoldAmount1 = CreateFrame("Frame", "$parentPlayerInfo_GoldAmount1", AbyssUI_AFKCameraFrame)
+PlayerInfo_GoldAmount1:RegisterEvent("PLAYER_FLAGS_CHANGED")
+PlayerInfo_GoldAmount1:RegisterEvent("PLAYER_ENTERING_WORLD")
+local money = GetCoinTextureString(GetMoney())
+PlayerInfo_GoldAmount1:SetAllPoints(AbyssUI_AFKCameraFrame)
+PlayerInfo_GoldAmount1:SetScale(2)
+PlayerInfo_GoldAmount1.text = PlayerInfo_GoldAmount1.text or PlayerInfo_GoldAmount1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_GoldAmount1.text:SetPoint("BOTTOMLEFT", 0, 0)
+PlayerInfo_GoldAmount1.text:SetText("  "..money)
 -- ExtraInfoAFKMode
 -- CLock
 local ExtraInfo_Clock1 = CreateFrame("Frame", "$parentExtraInfo_Clock1", AbyssUIClassic_AFKCameraFrame)
@@ -114,12 +140,16 @@ local function AbyssUIClassic_UpdateAFKCameraData()
 	race, raceEn = UnitRace("player")
 	playerClass, englishClass = UnitClass("player")
 	dataTime = date("%H:%M |cffffcc00%d/%m/%y|r ")
+	englishFaction, localizedFaction = UnitFactionGroup("player")
+	money = GetCoinTextureString(GetMoney())
 	-- Set
 	PlayerInfo_Name1.text:SetText(playerName)
 	PlayerInfo_Level1.text:SetText(level)
 	PlayerInfo_Race1.text:SetText(race)
 	PlayerInfo_Class1.text:SetText(playerClass)
 	ExtraInfo_Clock1.text:SetText(dataTime)
+	PlayerInfo_Faction1.text:SetText(localizedFaction)
+	PlayerInfo_GoldAmount1.text:SetText("  "..money)
 end
 -- AbyssUIClassic_AFKCamera SetScript
 AbyssUIClassic_AFKCamera:SetScript("OnEvent", function(self, event, ...)
