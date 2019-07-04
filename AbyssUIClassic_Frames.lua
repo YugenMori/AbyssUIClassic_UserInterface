@@ -19,6 +19,8 @@ AbyssUIClassic_AFKCameraFrame.text:SetScale(3)
 AbyssUIClassic_AFKCameraFrame.text:SetAllPoints(true)
 AbyssUIClassic_AFKCameraFrame.text:SetJustifyH("CENTER")
 AbyssUIClassic_AFKCameraFrame.text:SetJustifyV("CENTER")
+AbyssUIClassic_AFKCameraFrame.text:SetWidth(GetScreenWidth()/4)
+AbyssUIClassic_AFKCameraFrame.text:SetHeight(GetScreenHeight()/2)
 AbyssUIClassic_AFKCameraFrame.text:SetText("|cff0d75d4AbyssUIClassic|r\nThe |cff5f545eDark|r Blizzard UI revamp\nMove to leave AFK Mode")
 AbyssUIClassic_AFKCameraFrame:Hide()
 ----------------------------------------------------
