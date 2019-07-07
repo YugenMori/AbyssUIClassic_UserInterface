@@ -21,7 +21,7 @@ AbyssUIClassic_AFKCameraFrame.text:SetJustifyH("CENTER")
 AbyssUIClassic_AFKCameraFrame.text:SetJustifyV("CENTER")
 AbyssUIClassic_AFKCameraFrame.text:SetWidth(GetScreenWidth()/4)
 AbyssUIClassic_AFKCameraFrame.text:SetHeight(GetScreenHeight()/2)
-AbyssUIClassic_AFKCameraFrame.text:SetText("|cff0d75d4AbyssUIClassic|r\nThe |cff5f545eDark|r Blizzard UI revamp\nMove to leave AFK Mode")
+AbyssUIClassic_AFKCameraFrame.text:SetText("|cff0d75d4AbyssUIClassic|r the |cff5f545eDark|r Blizzard UI revamp\nMove to leave AFKMode")
 AbyssUIClassic_AFKCameraFrame:Hide()
 ----------------------------------------------------
 local AbyssUIClassicBorder = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "BACKGROUND")
@@ -93,28 +93,118 @@ PlayerInfo_Class1:SetScale(3)
 PlayerInfo_Class1.text = PlayerInfo_Class1.text or PlayerInfo_Class1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 PlayerInfo_Class1.text:SetPoint("TOPRIGHT", 0, -40)
 PlayerInfo_Class1.text:SetText(playerClass)
+-- Class colorization (all player info)
+ if ( englishClass == "DEATHKNIGHT" ) then
+ 	for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(196/255, 30/255, 59/255)
+ 	end 
+ elseif ( englishClass == "DEMONHUNTER" ) then
+ 	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(163/255, 48/255, 201/255)
+ 	end 
+ elseif ( englishClass == "DRUID" ) then
+ 	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(255/255, 125/255, 10/255)
+ 	end 
+ elseif ( englishClass == "HUNTER" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(171/255, 212/255, 115/255)
+ 	end 
+ elseif ( englishClass == "MAGE" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(105/255, 204/255, 240/255)
+ 	end 
+ elseif ( englishClass == "MONK" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(0/255, 255/255, 150/255)
+ 	end 
+ elseif ( englishClass == "PALADIN" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(245/255, 140/255, 186/255)
+ 	end 
+ elseif ( englishClass == "PRIEST" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(255/255, 255/255, 255/255)
+ 	end 
+ elseif ( englishClass == "ROGUE" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(255/255, 245/255, 105/255)
+ 	end 
+ elseif ( englishClass == "SHAMAN" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(0/255, 112/255, 222/255)
+ 	end 
+ elseif ( englishClass == "WARLOCK" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(148/255, 130/255, 201/255)
+ 	end 
+ elseif ( englishClass == "WARRIOR" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1, }) do
+ 		v.text:SetVertexColor(199/255, 156/255, 110/255)
+ 	end 
+ else
+ 	return nil
+ end
 -- Faction
-local PlayerInfo_Faction1 = CreateFrame("Frame", "$parentPlayerInfo_Faction1", AbyssUI_AFKCameraFrame)
+local PlayerInfo_Faction1 = CreateFrame("Frame", "$parentPlayerInfo_Faction1", AbyssUIClassic_AFKCameraFrame)
 local englishFaction, localizedFaction = UnitFactionGroup("player")
-PlayerInfo_Faction1:SetAllPoints(AbyssUI_AFKCameraFrame)
+PlayerInfo_Faction1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_Faction1:SetScale(3)
 PlayerInfo_Faction1.text = PlayerInfo_Faction1.text or PlayerInfo_Faction1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 PlayerInfo_Faction1.text:SetPoint("TOPRIGHT", 0, -50)
 PlayerInfo_Faction1.text:SetText(localizedFaction)
 -- Faction Color
  if ( englishFaction == "Horde" ) then
- 	PlayerInfo_Faction1.text:SetVertexColor(196/255, 31/255, 59/255)
+ 	PlayerInfo_Faction1.text:SetVertexColor(255/255, 0/255, 0/255)
  elseif ( englishFaction == "Alliance" ) then
- 	PlayerInfo_Faction1.text:SetVertexColor(0/255, 112/255, 222/255)
+ 	PlayerInfo_Faction1.text:SetVertexColor(0/255, 0/255, 255/255)
+ elseif ( englishFaction == "Neutral" ) then
+	PlayerInfo_Faction1.text:SetVertexColor(255/255, 255/255, 255/255)
  else
  	return nil
  end
  -- Gold Amount
-local PlayerInfo_GoldAmount1 = CreateFrame("Frame", "$parentPlayerInfo_GoldAmount1", AbyssUI_AFKCameraFrame)
+local PlayerInfo_GoldAmount1 = CreateFrame("Frame", "$parentPlayerInfo_GoldAmount1", AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_GoldAmount1:RegisterEvent("PLAYER_FLAGS_CHANGED")
 PlayerInfo_GoldAmount1:RegisterEvent("PLAYER_ENTERING_WORLD")
 local money = GetCoinTextureString(GetMoney())
-PlayerInfo_GoldAmount1:SetAllPoints(AbyssUI_AFKCameraFrame)
+PlayerInfo_GoldAmount1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_GoldAmount1:SetScale(2)
 PlayerInfo_GoldAmount1.text = PlayerInfo_GoldAmount1.text or PlayerInfo_GoldAmount1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 PlayerInfo_GoldAmount1.text:SetPoint("BOTTOMLEFT", 0, 0)
