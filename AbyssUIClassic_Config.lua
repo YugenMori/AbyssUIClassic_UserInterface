@@ -64,6 +64,24 @@ Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("AbyssUI|cff0d75d4Classic|r Actionbar")
+-- Panel01 Title
+local Frame = CreateFrame("Frame","$parentFrameButtonTitle", AbyssUIClassic_Config.childpanel1)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -50)
+Frame:SetHeight(24)
+Frame:SetWidth(70)
+Frame:SetScale(1.5)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("|cff0d75d4Attention|r")
+-- Panel01 SubTittle
+local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUIClassic_Config.childpanel1)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -110)
+Frame:SetHeight(24)
+Frame:SetWidth(200)
+Frame:SetScale(1.1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("Blizzard action bars are weird and glitchy when you try to change them.\nI highly recommend you to use Bartender4 or Dominos\nif you want to have a 3x12 or more action bar.\nKeep in mind that this is a attempt to make a better action bar.\nUse by your own risk.")
 -- Panel 02 (HideElements)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
@@ -159,14 +177,14 @@ end)
 ----------------------------- AbyssUIClassic Actionbar -------------------------------
 -- AbyssUIClassic Action Bar --
 local AbyssUIClassicNewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar3x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
-AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -80)
-AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (Beta - risk of glitches) *Retail|r")
-AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds 1 new action bar above the small version of Blizzard Main Bar"
+AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -170)
+AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (alfa - risk of glitches) *Retail|r")
+AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds a new bar above the small version of Blizzard MainBar"
 --AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
 local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
-AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -110)
-AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (Beta - risk of glitches) *Retail|r")
-AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds 1 new action bar above 3rd bar for the small version of Blizzard Main Bar"
+AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -200)
+AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (alfa - risk of glitches) *Retail|r")
+AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds a new bar above 3rd bar"
 --AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
 -- OnClick Function
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
@@ -532,7 +550,7 @@ HideStanceBar_CheckButton:SetScript("OnClick", function(self)
    if ( AbyssUIClassicAddonSettings.HideStanceBar == true ) then
      StanceBarFrame:Hide()
    else
-     StanceBarFrame:Show()
+     return nil
    end
 end)
 -- After Login/Reload
@@ -541,7 +559,7 @@ HideStanceBar_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
     if AbyssUIClassicAddonSettings.HideStanceBar == true then
       C_Timer.After(0.5, function()
-        StanceBarFrame:Hide()
+        StanceBarFrame:SetScript("OnUpdate", function(self) self:Hide() end)
       end)
     end
   end
