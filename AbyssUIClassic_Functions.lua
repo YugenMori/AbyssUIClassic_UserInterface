@@ -193,54 +193,55 @@ PlayerHitIndicator.SetText = function() end
 PetHitIndicator:SetText(nil)
 PetHitIndicator.SetText = function() end
 ----------------------------------------------------
--- Tooltip Class Color Name
--- Many thanks to Phanx for part of this 
+-- Tooltip Class Color and extras 
 GameTooltip:HookScript("OnTooltipSetUnit", function(GameTooltip)
-	--print("OnTooltipSetUnit")
+	-- OnTooltipSetUnit
 	local _, unit = GameTooltip:GetUnit()
-	--print(unit)
-	if UnitIsPlayer(unit) then
-		--print("UnitIsPlayer")
+	if  UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
-		--print(class)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
-		if color then
-			local text = GameTooltipTextLeft1:GetText()
-			--print(text)
+		if ( color ~= nil ) then
+			local text  = GameTooltipTextLeft1:GetText()
+			local text2 = GameTooltipTextLeft2:GetText()
+			local text3 = GameTooltipTextLeft3:GetText()
+			local inGuild = GetGuildInfo("mouseover")
+			local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
+			-- Class Color
 			GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+			if ( inGuild ~= nil ) then
+				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+				GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+			elseif ( inGuild == nil ) then
+				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+			else
+				return nil
+			end
+			-- Faction Colors
+			if ( englishFaction ~= "Neutral" ) then
+				if ( inGuild ~= nil and englishFaction == "Horde" ) then
+					GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
+				elseif ( inGuild ~= nil and englishFaction == "Alliance" ) then
+					GameTooltipTextLeft4:SetTextColor(0, 0.5, 255)
+				elseif ( inGuild == nil  and englishFaction == "Horde" ) then
+					GameTooltipTextLeft3:SetTextColor(255, 0.1, 0)
+				elseif ( inGuild == nil and englishFaction == "Alliance" ) then
+					GameTooltipTextLeft3:SetTextColor(0, 0.5, 255)
+				else 
+					return nil
+				end
+			else
+				return nil
+			end
 		end
 	end
 end)
 ----------------------------------------------------
--- Tooltip Faction Color Change
-GameTooltip:HookScript("OnUpdate", function(GameTooltip)
-	local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
-	local _, unit = GameTooltip:GetUnit()
-	if ( UnitIsPlayer(unit) == true and englishFaction ~= "Neutral" ) then
-		local gameTooltipText3 = GameTooltipTextLeft3:GetText()
-		local gameTooltipText4 = GameTooltipTextLeft4:GetText()
-		if ( gameTooltipText3 == localizedFaction and englishFaction == "Horde" ) then
-			GameTooltipTextLeft3:SetTextColor(255, 0.1, 0)
-		elseif ( gameTooltipText3 == localizedFaction and englishFaction == "Alliance" ) then
-			GameTooltipTextLeft3:SetTextColor(0, 0.5, 255)
-		elseif ( gameTooltipText4 == localizedFaction and englishFaction == "Horde" ) then
-			GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
-		elseif (gameTooltipText4 == localizedFaction and englishFaction == "Alliance" ) then
-			GameTooltipTextLeft4:SetTextColor(0, 0.5, 255)
-		else 
-			return nil
-		end
-	else
-		return nil
-	end
-end)
-----------------------------------------------------
--- Tooltip Dark background
+-- Tooltip Background and borders
 local TooltipBackground = GameTooltip:CreateTexture(nil, "BACKGROUND", nil, 1)
 TooltipBackground:SetPoint("TOPLEFT", 3, -3)
 TooltipBackground:SetPoint("BOTTOMRIGHT", -3, 3)
 TooltipBackground:SetColorTexture(0.02, 0.02, 0.02)
-TooltipBackground:SetAlpha(.05, .05, .05)
+TooltipBackground:SetAlpha(0.5, 0.5, 0.5, 0.8)
 ----------------------------------------------------
 -- Tooltip Class Color Health
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
