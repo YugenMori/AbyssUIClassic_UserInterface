@@ -70,8 +70,8 @@ end
 -- Slash Commands
 -- Handler
 local function AbyssUIClassicMoveFrames_Slashhandler()
-    print("|cffa5f6f3AbyssUIClassic Command List|r")
-    print("|cffa5f6f3Type /abyssui |r|cffffcc00'command name'|r")
+    print("|cfff2dc7fAbyssUIClassic Command List|r")
+    print("|cfff2dc7fType /abyssui |r|cffffcc00'command name'|r")
     print("/abyssui |cffffcc00config|r ~configuration panel")
     print("/abyssui |cffffcc00unlock|r ~unlock UI frames")
     print("/abyssui |cffffcc00lock|r ~lock UI frames that was changed")
@@ -83,8 +83,8 @@ local function AbyssUIClassicMoveFrames_Slash(msg)
     if ( msg ~= "" ) then
         if ( msg == "config" ) then
             InterfaceOptionsFrame_Show()
-            InterfaceOptionsFrame_OpenToCategory(AbyssUIClassic_Config)
-            InterfaceOptionsFrame_OpenToCategory(AbyssUIClassic_Config)
+            InterfaceOptionsFrame_OpenToCategory("AbyssUI|cff0d75d4Classic|r")
+            InterfaceOptionsFrame_OpenToCategory("AbyssUI|cff0d75d4Classic|r")
         elseif (msg == "unlock") then
             AbyssUIClassicMoveFrames_Function(true)
         elseif (msg == "lock") then
