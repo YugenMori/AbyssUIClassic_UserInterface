@@ -1,8 +1,6 @@
 # AbyssUI
 ### AbyssUI_Classic is a minimalist World of Warcraft interface made for wow classic.
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2HA68SU9NYVGU)
-
 It change some parts of the interface to make the Blizzard UI more clean, minimalist and a bit of dark.
 
 How to Install?
