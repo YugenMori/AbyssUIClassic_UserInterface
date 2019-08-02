@@ -1,5 +1,5 @@
 # AbyssUI
-### AbyssUI_Classic is a minimalist World of Warcraft interface made for wow classic.
+### AbyssUI_Classic is a minimalist World of Warcraft interface.
 
 It change some parts of the interface to make the Blizzard UI more clean, minimalist and a bit of dark.
 
@@ -17,3 +17,4 @@ How to Install?
 #### This interface use texture packs, and you need those for the UI work with property. This AddOn already come with those textures in his folder (Interface) and you just need to extract and put it in WoW folder: C:\World of Warcraft\
 
 #### (DO NOT PUT ALL THIS FILE IN ADDONS FOLDER, WILL NOT WORK)
+
