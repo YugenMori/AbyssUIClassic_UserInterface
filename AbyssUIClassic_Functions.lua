@@ -153,7 +153,6 @@ local function eventHandler(self, event, ...)
 		 	bg:SetVertexColor(c.r,c.g,c.b)
 		end
 	end
-	--]]
     if UnitIsPlayer("player") then
         c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
         local _, class = UnitClass("player")
@@ -163,6 +162,7 @@ local function eventHandler(self, event, ...)
 		 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
 		end
     end
+    --]]
 	if UnitIsPlayer("target") then
 		local _, class2 = UnitClass("target")
 		c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
@@ -176,7 +176,7 @@ local function eventHandler(self, event, ...)
 end
 
 frame:SetScript("OnEvent", eventHandler)
-for _, BarTextures in pairs({PlayerFrameBackground, TargetFrameNameBackground}) do
+for _, BarTextures in pairs({TargetFrameNameBackground}) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
