@@ -680,7 +680,7 @@ end)
 -- Faction/PvP icon --
 local FactionPvpIcon_CheckButton = CreateFrame("CheckButton", "$parentFactionPvpIcon_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 FactionPvpIcon_CheckButton:SetPoint("TOPLEFT", 10, -410)
-FactionPvpIcon_CheckButton.Text:SetText("Hide faction/PvP icon")
+FactionPvpIcon_CheckButton.Text:SetText("Hide Faction/PvP Icon")
 FactionPvpIcon_CheckButton.tooltip = "Hide the player frame faction/PvP icon"
 FactionPvpIcon_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FactionPvpIcon)
 -- OnClick Function
@@ -1065,6 +1065,28 @@ AbyssUIClassic_BetterFonts_CheckButton:SetScript("OnEvent", function(self, event
        ChatFrame1.editBox.header:SetFont("Fonts\\MORPHEUS.TTF",13)
     else 
       return nil
+    end
+  end
+end)
+-- Better WorldMap Distance --
+local AbyssUIClassic_BetterWorldMap_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_BetterWorldMap_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_BetterWorldMap_CheckButton:SetPoint("TOPLEFT", 400, -200)
+AbyssUIClassic_BetterWorldMap_CheckButton.Text:SetText("Better World Map")
+AbyssUIClassic_BetterWorldMap_CheckButton.tooltip = "Make the world map minimalist/clean"
+AbyssUIClassic_BetterWorldMap_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap)
+-- OnClick Function
+AbyssUIClassic_BetterWorldMap_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap = self:GetChecked()
+  WorldMapFrame.BlackoutFrame:Hide()
+end)
+-- After Login/Reload
+AbyssUIClassic_BetterWorldMap_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassic_BetterWorldMap_CheckButton:SetScript("OnEvent", function(self, event, ...)
+  if ( event == "PLAYER_ENTERING_WORLD" ) then
+    if ( AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap == true ) then
+      WorldMapFrame.BlackoutFrame:Hide()
+    else 
+      WorldMapFrame.BlackoutFrame:Show()
     end
   end
 end)

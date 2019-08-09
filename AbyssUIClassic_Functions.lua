@@ -136,14 +136,14 @@ frame:RegisterEvent("UNIT_FACTION")
 
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
-	local _, class, c
+	local _, class, c,
 	_, class = UnitClass("player")
 	if PlayerFrame:IsShown() and not PlayerFrame.bg then
 		c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 		local bg = PlayerFrame:CreateTexture()
 		bg:SetPoint("TOPLEFT", PlayerFrameBackground)
 		bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
-		bg:SetTexture(TargetFrameNameBackground:GetTexture())
+		bg:SetTexture(PlayerFrameBackground:GetTexture())
 		bg:SetVertexColor(c.r,c.g,c.b)
 		if ( class == "SHAMAN" ) then
 			bg:SetVertexColor(0/255, 112/255, 222/255)
@@ -162,18 +162,19 @@ local function eventHandler(self, event, ...)
 		end
     end
 	if UnitIsPlayer("target") then
+		local _, class2 = UnitClass("target")
 		c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-		TargetFrameBackground:SetVertexColor(c.r, c.g, c.b)
-		if ( class == "SHAMAN" ) then
-			TargetFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
+		TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+		if ( class2 == "SHAMAN" ) then
+			TargetFrameNameBackground:SetVertexColor(0/255, 112/255, 222/255)
 		 else 
-		 	TargetFrameBackground:SetVertexColor(c.r,c.g,c.b)
+		 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
 		end
 	end
 end
 
 frame:SetScript("OnEvent", eventHandler)
-for _, BarTextures in pairs({TargetFrameNameBackground}) do
+for _, BarTextures in pairs({PlayerFrameBackground,TargetFrameNameBackground}) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
