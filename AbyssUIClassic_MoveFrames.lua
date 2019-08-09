@@ -9,10 +9,10 @@
 --------------------------------------------------------------------------------
 -- Frame Stuff
 local UnLocked
-local Moveframes = { ObjectiveTrackerFrame, MinimapCluster, PlayerFrame, TargetFrame, } -- So we don't create a new table each time
+local Moveframes = { QuestWatchFrame, MinimapCluster, PlayerFrame, TargetFrame, } -- So we don't create a new table each time
 for i , v in pairs (Moveframes) do
     local f = v
-    if not ( f == PlayerFrame or f == TargetFrame or f == FocusFrame ) then
+    if not ( f == PlayerFrame or f == TargetFrame ) then
         f:SetMovable(true) -- only set thes conditions once when you start up
         f:EnableMouse(true)
         f:SetClampedToScreen(true)
@@ -66,7 +66,7 @@ local function AbyssUIClassicMoveFrames_Reset()
     TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 250, -4)
     MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 10, 10)
     C_Timer.After(0.5, function()
-        ObjectiveTrackerFrame:SetPoint("TOPRIGHT", MinimapCluster, "BOTTOM", 45, -5)
+        QuestWatchFrame:SetPoint("TOPRIGHT", MinimapCluster, "BOTTOM", 45, -5)
     end)
 end
 -- Slash Commands

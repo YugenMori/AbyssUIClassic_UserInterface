@@ -114,6 +114,11 @@ local function colour(statusbar, unit)
 		_, class = UnitClass(unit)
 		c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
 		statusbar:SetStatusBarColor(c.r, c.g, c.b)
+		if ( class == "SHAMAN" ) then
+			statusbar:SetStatusBarColor(0/255, 112/255, 222/255)
+		 else 
+		 	statusbar:SetStatusBarColor(c.r, c.g, c.b)
+		end
 		--PlayerFrameHealthBar:SetStatusBarColor(0, 1, 0)
 	end
 end
@@ -131,6 +136,8 @@ frame:RegisterEvent("UNIT_FACTION")
 
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
+	local _, class, c
+	_, class = UnitClass("player")
 	if PlayerFrame:IsShown() and not PlayerFrame.bg then
 		c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 		local bg = PlayerFrame:CreateTexture()
@@ -138,16 +145,30 @@ local function eventHandler(self, event, ...)
 		bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
 		bg:SetTexture(TargetFrameNameBackground:GetTexture())
 		bg:SetVertexColor(c.r,c.g,c.b)
+		if ( class == "SHAMAN" ) then
+			bg:SetVertexColor(0/255, 112/255, 222/255)
+		 else 
+		 	bg:SetVertexColor(c.r,c.g,c.b)
+		end
 		PlayerFrame.bg = true
 	end
-	-- See if this works
     if UnitIsPlayer("player") then
         c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-        PlayerFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+        PlayerFrameBackground:SetVertexColor(c.r, c.g, c.b)
+        if ( class == "SHAMAN" ) then
+			PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
+		 else 
+		 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
+		end
     end
 	if UnitIsPlayer("target") then
 		c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-		TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+		TargetFrameBackground:SetVertexColor(c.r, c.g, c.b)
+		if ( class == "SHAMAN" ) then
+			TargetFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
+		 else 
+		 	TargetFrameBackground:SetVertexColor(c.r,c.g,c.b)
+		end
 	end
 end
 
@@ -221,10 +242,19 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 			local text3 = GameTooltipTextLeft3:GetText()
 			local inGuild = GetGuildInfo("mouseover")
 			local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
-			GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+			if ( class == "SHAMAN" ) then
+				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+			else
+				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+			end
 			if ( inGuild ~= nil ) then
-				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-				GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+				if ( class == "SHAMAN" ) then
+					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+				else
+					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+				end
 				if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
 					GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
 				elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
@@ -233,7 +263,11 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 					return nil
 				end
 			elseif ( inGuild == nil ) then
-				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+				if ( class == "SHAMAN" ) then
+					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+				else
+					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+				end
 				if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
 					GameTooltipTextLeft3:SetTextColor(255, 0.1, 0)
 				elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
@@ -309,7 +343,11 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
 		if color then
-			GameTooltipStatusBar:SetStatusBarColor(color.r, color.g, color.b)
+			if ( class == "SHAMAN") then
+				GameTooltipStatusBar:SetStatusBarColor(0/255, 112/255, 222/255)
+			else
+				GameTooltipStatusBar:SetStatusBarColor(color.r, color.g, color.b)
+			end
 		end
 	else
 		GameTooltipStatusBar:SetStatusBarColor(0, 128, 0)
@@ -433,8 +471,12 @@ CF:SetScript("OnEvent", function(self, event)
 		StatsFrame.text:SetShadowOffset(1, -1)
 		StatsFrame.text:SetShadowColor(0, 0, 0)
 	end
-	StatsFrame.text:SetTextColor(color.r, color.g, color.b)
-
+	local _, class = UnitClass("player")
+	if ( class == "SHAMAN") then
+		StatsFrame.text:SetTextColor(0/255, 112/255, 222/255)
+	else
+		StatsFrame.text:SetTextColor(color.r, color.g, color.b)
+	end
 	local lastUpdate = 0
 
 	local function update(self, elapsed)
@@ -753,7 +795,7 @@ function AbyssUIClassicDailyInfo()
 	--else
 	--	print("|cfff2dc7fToken Price:|r Not available right now!")
 	--end
-	if ( AbyssUIAddonSettings.ExtraFunctionAmericanClock == true ) then
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
 		print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
 	else
 		print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))

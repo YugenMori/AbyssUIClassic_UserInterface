@@ -219,7 +219,7 @@ ExtraInfo_Clock1.text:SetPoint("BOTTOMRIGHT", 0, 0)
 function ExtraInfo_Clock1:onUpdate(sinceLastUpdate)
 	self.sinceLastUpdate = (self.sinceLastUpdate or 0) + sinceLastUpdate
 	if ( self.sinceLastUpdate >= 5 ) then
-		if ( AbyssUIAddonSettings.ExtraFunctionAmericanClock == true ) then
+		if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
 			local dataTime = date("%H:%M |cffffcc00%m/%d/%y|r ")
 		else
 			local dataTime = date("%H:%M |cffffcc00%d/%m/%y|r ")
@@ -235,7 +235,7 @@ local function AbyssUIClassic_UpdateAFKCameraData()
 	level = UnitLevel("player")
 	race, raceEn = UnitRace("player")
 	playerClass, englishClass = UnitClass("player")
-	if ( AbyssUIAddonSettings.ExtraFunctionAmericanClock == true ) then
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
 		dataTime = date("%H:%M |cffffcc00%m/%d/%y|r ")
 	else
 		dataTime = date("%H:%M |cffffcc00%d/%m/%y|r ")

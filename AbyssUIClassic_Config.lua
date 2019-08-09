@@ -272,59 +272,45 @@ end)
 -- MicroMenu/Bags --
 local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
-MicroMenu_CheckButton.Text:SetText("|cff848484Hide MicroMenu *Retail|r")
-MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu (Bags Bar)"
---MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
+MicroMenu_CheckButton.Text:SetText("Hide MicroMenu")
+MicroMenu_CheckButton.tooltip = "Hide the ActionBar MicroMenu"
+MicroMenu_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideMicroMenu)
 --  Hide
 local function AbyssUIClassic_HideMicroMenu_Function()
-  for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
-    MicroButtonAndBagsBar,
-    MainMenuBarPerformanceBar,
-    MainMenuMicroButton,
-    EJMicroButton,
-    CollectionsMicroButton,
-    LFDMicroButton,
-    GuildMicroButton,
-    QuestLogMicroButton,
-    TalentMicroButton,
-    SpellbookMicroButton,
-    CharacterMicroButton, }) do
-    v:Hide()
-    AchievementMicroButton:SetAlpha(0)
-    StoreMicroButton:SetAlpha(0)
+  for i, v in pairs({ 
+      CharacterMicroButton,
+      SpellbookMicroButton,
+      QuestLogMicroButton,
+      SocialsMicroButton,
+      WorldMapMicroButton,
+      MainMenuMicroButton,
+      HelpMicroButton, }) do
+      v:Hide()
   end
 end
 -- Show
 local function AbyssUIClassic_ShowMicroMenu_Function()
-    for i, v in pairs({ MicroButtonAndBagsBar.MicroBagBar,
-      MicroButtonAndBagsBar,
-      MainMenuBarPerformanceBar,
-      MainMenuMicroButton,
-      EJMicroButton,
-      CollectionsMicroButton,
-      LFDMicroButton,
-      GuildMicroButton,
-      QuestLogMicroButton,
-      TalentMicroButton,
+    for i, v in pairs({ 
+      CharacterMicroButton,
       SpellbookMicroButton,
-      CharacterMicroButton, }) do
+      QuestLogMicroButton,
+      SocialsMicroButton,
+      WorldMapMicroButton,
+      MainMenuMicroButton,
+      HelpMicroButton, }) do
       v:Show()
-      AchievementMicroButton:SetAlpha(1)
-      StoreMicroButton:SetAlpha(1)
   end
 end
 -- OnClick Function
 MicroMenu_CheckButton:SetScript("OnClick", function(self)
---AbyssUIClassicAddonSettings.HideMicroMenu = self:GetChecked()
-MicroMenu_CheckButton:SetChecked(nil)
+AbyssUIClassicAddonSettings.HideMicroMenu = self:GetChecked()
   if AbyssUIClassicAddonSettings.HideMicroMenu == true then
-    --AbyssUIClassic_HideMicroMenu_Function()
+    AbyssUIClassic_HideMicroMenu_Function()
   else
-    --AbyssUIClassic_ShowMicroMenu_Function()
+    AbyssUIClassic_ShowMicroMenu_Function()
   end
 end)
 -- After Login/Reload
---[[
 MicroMenu_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 MicroMenu_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
@@ -335,7 +321,6 @@ MicroMenu_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
---]]
 -- Gryphons Option --
 local Gryphons_CheckButton = CreateFrame("CheckButton", "$parentGryphons_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 Gryphons_CheckButton:SetPoint("TOPLEFT", 10, -110)
@@ -1075,7 +1060,7 @@ end)
 AbyssUIClassic_BetterFonts_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUIClassic_BetterFonts_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if ( AbyssUIAddonSettings.ExtraFunctionBetterFonts == true ) then
+    if ( AbyssUIClassicAddonSettings.ExtraFunctionBetterFonts == true ) then
        ChatFrame1:SetFont("Fonts\\MORPHEUS.TTF", 13)
        ChatFrame1.editBox.header:SetFont("Fonts\\MORPHEUS.TTF",13)
     else 
