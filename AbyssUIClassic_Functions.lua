@@ -136,6 +136,7 @@ frame:RegisterEvent("UNIT_FACTION")
 
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
+	--[[
 	local _, class, c,
 	_, class = UnitClass("player")
 	if PlayerFrame:IsShown() and not PlayerFrame.bg then
@@ -145,16 +146,17 @@ local function eventHandler(self, event, ...)
 		bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
 		bg:SetTexture(PlayerFrameBackground:GetTexture())
 		bg:SetVertexColor(c.r,c.g,c.b)
+		PlayerFrame.bg = true
 		if ( class == "SHAMAN" ) then
 			bg:SetVertexColor(0/255, 112/255, 222/255)
 		 else 
 		 	bg:SetVertexColor(c.r,c.g,c.b)
 		end
-		PlayerFrame.bg = true
 	end
+	--]]
     if UnitIsPlayer("player") then
         c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-        PlayerFrameBackground:SetVertexColor(c.r, c.g, c.b)
+        local _, class = UnitClass("player")
         if ( class == "SHAMAN" ) then
 			PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
 		 else 
@@ -174,7 +176,7 @@ local function eventHandler(self, event, ...)
 end
 
 frame:SetScript("OnEvent", eventHandler)
-for _, BarTextures in pairs({PlayerFrameBackground,TargetFrameNameBackground}) do
+for _, BarTextures in pairs({PlayerFrameBackground, TargetFrameNameBackground}) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
@@ -254,7 +256,6 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				else
 					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				end
 				if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
 					GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
@@ -282,6 +283,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 		end
 	end
 end)
+--[[
 local ONUPDATE_INTERVAL = 0.1
 local TimeSinceLastUpdate = 0
 GameTooltip:HookScript("OnUpdate", function(self, elapsed)
@@ -302,7 +304,9 @@ GameTooltip:HookScript("OnUpdate", function(self, elapsed)
 				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
 				if ( inGuild ~= nil ) then
 					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+					if ( GameTooltipTextLeft3 ~= nil ) then
+						GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+					end
 					if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
 						GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
 					elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
@@ -329,6 +333,7 @@ end)
 GameTooltip:SetScript("OnShow", function(self)
 	TimeSinceLastUpdate = 0
 end)
+--]]
 ----------------------------------------------------
 -- Tooltip Background and borders
 local TooltipBackground = GameTooltip:CreateTexture(nil, "BACKGROUND", nil, 1)
