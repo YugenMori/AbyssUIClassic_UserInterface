@@ -655,14 +655,14 @@ HideChatButtons_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
     if AbyssUIClassicAddonSettings.HideChatButtons == true then
       C_Timer.After(1, function()
-        QuickJoinToastButton:Hide()
+        -- QuickJoinToastButton:Hide()
         GeneralDockManager:SetAlpha(0)
         ChatFrameMenuButton:Hide()
         ChatFrameChannelButton:Hide()
         ChatFrame1ButtonFrame:SetAlpha(0)
         AbyssUIClassic_ChatHideFrame:Hide()
-        ChatFrameToggleVoiceDeafenButton:SetAlpha(0)
-        ChatFrameToggleVoiceMuteButton:SetAlpha(0)
+        --ChatFrameToggleVoiceDeafenButton:SetAlpha(0)
+        --ChatFrameToggleVoiceMuteButton:SetAlpha(0)
       end)
     end
   end
