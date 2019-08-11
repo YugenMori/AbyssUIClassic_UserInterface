@@ -10,45 +10,58 @@
 -- Frame Stuff
 local UnLocked
 local Moveframes = { QuestWatchFrame, MinimapCluster, PlayerFrame, TargetFrame, } -- So we don't create a new table each time
-for i , v in pairs (Moveframes) do
-    local f = v
-    if not ( f == PlayerFrame or f == TargetFrame ) then
-        f:SetMovable(true) -- only set thes conditions once when you start up
-        f:EnableMouse(true)
-        f:SetClampedToScreen(true)
-        f:RegisterForDrag("LeftButton")
-        f:SetScript("OnDragStart", function(self)
-            if not UnLocked then return end -- set the condition that will let dragging run
-            self:StartMoving()
+local checkAddon = CreateFrame("Frame")
+checkAddon:RegisterEvent("ADDON_LOADED")
+checkAddon:SetScript("OnEvent", function(self, event, addon)
+    if (addon == "ModernQuestWatch") then
+        table.remove(Moveframes, 1)
+        C_Timer.After(5, function()
+            print("|cfffc160aAbyssUIClassic found that ModernQuestWatch is enable, making changes to avoid conflicts...|r")
         end)
-        f:SetScript("OnDragStop", function(self)
-            self:StopMovingOrSizing()
-        end)
+    else
+        return nil
     end
-    f.Movetex = f:CreateTexture("ARTWORK") -- only create the texture(s) once 
-    f.Movetex:SetAllPoints() 
---  f.Movetex:SetTexture(1.0, 0.5, 0) -- SetTexture no longer does colors
-    f.Movetex:SetTexture("Interface/BUTTONS/WHITE8X8")
-    local ObName = f:GetName()
-    f.Movetex.text = f.text or f:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-    f.Movetex.text:SetAllPoints(true)
-    f.Movetex.text:SetJustifyH("TOP")
-    f.Movetex.text:SetJustifyV("TOP")
-    f.Movetex.text:SetText(ObName)
-    f.Movetex.text:SetFont("Fonts\\FRIZQT__.TTF", 08, "THICKOUTLINE")
-    f.Movetex:SetColorTexture(1.0, 0.5, 0)
-    f.Movetex:SetAlpha(0.5)
-    f.Movetex:Hide() -- and hide it
-    f.Movetex.text:Hide()
-end
- 
+end)
+C_Timer.After(1, function()
+    for i , v in pairs (Moveframes) do
+        local f = v
+        if not ( f == PlayerFrame or f == TargetFrame ) then
+            f:SetMovable(true) -- only set thes conditions once when you start up
+            f:EnableMouse(true)
+            f:SetClampedToScreen(true)
+            f:RegisterForDrag("LeftButton")
+            f:SetScript("OnDragStart", function(self)
+                if not UnLocked then return end -- set the condition that will let dragging run
+                self:StartMoving()
+            end)
+            f:SetScript("OnDragStop", function(self)
+                self:StopMovingOrSizing()
+            end)
+        end
+        f.Movetex = f:CreateTexture("ARTWORK") -- only create the texture(s) once 
+        f.Movetex:SetAllPoints() 
+    --  f.Movetex:SetTexture(1.0, 0.5, 0) -- SetTexture no longer does colors
+        f.Movetex:SetTexture("Interface/BUTTONS/WHITE8X8")
+        local ObName = f:GetName()
+        f.Movetex.text = f.text or f:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+        f.Movetex.text:SetAllPoints(true)
+        f.Movetex.text:SetJustifyH("TOP")
+        f.Movetex.text:SetJustifyV("TOP")
+        f.Movetex.text:SetText(ObName)
+        f.Movetex.text:SetFont("Fonts\\FRIZQT__.TTF", 08, "THICKOUTLINE")
+        f.Movetex:SetColorTexture(1.0, 0.5, 0)
+        f.Movetex:SetAlpha(0.5)
+        f.Movetex:Hide() -- and hide it
+        f.Movetex.text:Hide()
+    end
+end)
 local function AbyssUIClassicMoveFrames_Function(show)
     for i , v in pairs (Moveframes) do
         local f = v
         f.Movetex:SetShown(show)
         f.Movetex.text:SetShown(show)
         UnLocked = show
-        if ( f == PlayerFrame or f == TargetFrame ) then
+        if ( f == PlayerFrame or f == TargetFrame or f == QuestWatchFrame ) then
             f:RegisterForDrag("LeftButton")
             f:SetScript("OnDragStart", f.StartMoving) 
             f:SetScript("OnDragStop", f.StopMovingOrSizing) 
