@@ -1069,15 +1069,18 @@ AbyssUIClassic_BetterFonts_CheckButton:SetScript("OnEvent", function(self, event
   end
 end)
 -- Better WorldMap Distance --
+-- Thanks to Ketho for the fader
 local AbyssUIClassic_BetterWorldMap_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_BetterWorldMap_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_BetterWorldMap_CheckButton:SetPoint("TOPLEFT", 400, -200)
 AbyssUIClassic_BetterWorldMap_CheckButton.Text:SetText("Better World Map")
-AbyssUIClassic_BetterWorldMap_CheckButton.tooltip = "Make the world map minimalist/clean"
+AbyssUIClassic_BetterWorldMap_CheckButton.tooltip = "Makes the worldmap minimalist/clean"
 AbyssUIClassic_BetterWorldMap_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap)
 -- OnClick Function
 AbyssUIClassic_BetterWorldMap_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap = self:GetChecked()
   WorldMapFrame.BlackoutFrame:Hide()
+  WorldMapFrame.BlackoutFrame:EnableMouse(false)
+  PlayerMovementFrameFader.AddDeferredFrame(WorldMapFrame, .35, 1.0, .45)
 end)
 -- After Login/Reload
 AbyssUIClassic_BetterWorldMap_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -1085,8 +1088,12 @@ AbyssUIClassic_BetterWorldMap_CheckButton:SetScript("OnEvent", function(self, ev
   if ( event == "PLAYER_ENTERING_WORLD" ) then
     if ( AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap == true ) then
       WorldMapFrame.BlackoutFrame:Hide()
+      WorldMapFrame.BlackoutFrame:EnableMouse(false)
+      PlayerMovementFrameFader.AddDeferredFrame(WorldMapFrame, .35, 1.0, .45)
     else 
       WorldMapFrame.BlackoutFrame:Show()
+      WorldMapFrame.BlackoutFrame:EnableMouse(true)
+      --PlayerMovementFrameFader.AddDeferredFrame(WorldMapFrame, 1, 1.0, 1)
     end
   end
 end)
@@ -1357,8 +1364,8 @@ end)
 -- AbyssUIClassicClassCircles10_CheckButton
 local AbyssUIClassicClassCircles10_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles10_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicClassCircles10_CheckButton:SetPoint("TOPLEFT", 180, -200)
-AbyssUIClassicClassCircles10_CheckButton.Text:SetText("Psychedelic_V2")
-AbyssUIClassicClassCircles10_CheckButton.tooltip = "A even more Psychedelic version of the UnitPlayerFrame"
+AbyssUIClassicClassCircles10_CheckButton.Text:SetText("Classic")
+AbyssUIClassicClassCircles10_CheckButton.tooltip = "A classic version of the UnitPlayerFrame"
 AbyssUIClassicClassCircles10_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles10)
 -- OnClick Function
 AbyssUIClassicClassCircles10_CheckButton:SetScript("OnClick", function(self)
