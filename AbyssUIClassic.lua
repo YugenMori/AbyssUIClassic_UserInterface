@@ -258,7 +258,11 @@ NewFrames:SetScript("OnEvent", function(self, event, addon)
 		for i, v in pairs({ MainMenuXPBarTexture0,
 			MainMenuXPBarTexture1,
 			MainMenuXPBarTexture2,
-			MainMenuXPBarTexture3,	}) do
+			MainMenuXPBarTexture3,
+			ReputationWatchBar.StatusBar.WatchBarTexture0,
+			ReputationWatchBar.StatusBar.WatchBarTexture1,
+			ReputationWatchBar.StatusBar.WatchBarTexture2,
+			ReputationWatchBar.StatusBar.WatchBarTexture3, }) do
 			if AbyssUIClassicAddonSettings ~= nil then
 				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
 					v:SetVertexColor(1, 1, 1)

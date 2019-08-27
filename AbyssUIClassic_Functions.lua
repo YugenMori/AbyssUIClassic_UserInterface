@@ -52,52 +52,52 @@ hooksecurefunc("UnitFramePortrait_Update", function(self)
 				self.portrait:SetTexCoord(0, 1, 0, 1)
 			end
 			if t and AbyssUIClassicAddonSettings.UIClassCircles01 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_BRIGHT_CLASS_COLOR")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles02 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles03 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_GREY")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles04 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_V2")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles05 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_V2_SMALL")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles06 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_LIGHT_GREY")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles07 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MEDIUM_GREY")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles08 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MUTED_CLASS_COLOR")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles09 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_PSYCHEDELIC")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles10 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_CLASSIC")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles11 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_GRAYSCALE")
-				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles12 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_ARTISTIC")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles13 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles02 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_BRIGHT")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles03 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_CLASSIC")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles04 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_CREST")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles05 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles06 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_GRAY")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles07 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK_V2")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles08 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_GRAYSCALE")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles09 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_LIGHT_GRAY")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles10 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MEDIUM_GRAY")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles11 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MINIMAL_BLUE")
 				self.portrait:SetTexCoord(unpack(t))
-			elseif t and AbyssUIClassicAddonSettings.UIClassCircles14 == true then
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles12 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MINIMAL_RED")
 				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles13 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_MUTED")
+				self.portrait:SetTexCoord(unpack(t))
+			elseif t and AbyssUIClassicAddonSettings.UIClassCircles14 == true then
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_PSYCHEDELIC")
+				self.portrait:SetTexCoord(unpack(t))
 			elseif t and AbyssUIClassicAddonSettings.UIClassCircles15 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_VIBRANT")
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_RETRO")
 				self.portrait:SetTexCoord(unpack(t))
 			elseif t and AbyssUIClassicAddonSettings.UIClassCircles16 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_RETRO")
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_VIBRANT")
 				self.portrait:SetTexCoord(unpack(t))
 			else
 				return nil
@@ -789,6 +789,16 @@ AbyssUIClassic_InspectTarget:SetScript("OnClick", function()
 		end
     else
       return nil
+    end
+end)
+-- Auto Screenshot
+local AbyssUIClassic_ScreenshotLevelUp = CreateFrame("Button", '$parentAbyssUIClassic_ScreenshotLevelUp', nil)
+AbyssUIClassic_ScreenshotLevelUp:RegisterEvent("PLAYER_LEVEL_UP")
+AbyssUIClassic_ScreenshotLevelUp:SetScript("OnEvent", function(self, event, ...)
+    if AbyssUIClassicAddonSettings.ExtraFunctionScreenshotLevelUp == true then
+    	 C_Timer.After(1, function ()
+    	 	Screenshot()
+    	 end)
     end
 end)
 ----------------------------------------------------
