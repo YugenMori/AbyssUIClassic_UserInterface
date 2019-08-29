@@ -539,44 +539,33 @@ updateFrame:SetScript("OnUpdate", function(self)
 end)
 ----------------------------------------------------
 -- Auto Repair/Sell Grey
-local g = CreateFrame("Frame", "$parentFrame", nil)
-g:RegisterEvent("MERCHANT_SHOW")
-
-g:SetScript("OnEvent", function()
-    local bag, slot
-    for bag = 0, 4 do
-        for slot = 0, GetContainerNumSlots(bag) do
-            local link = GetContainerItemLink(bag, slot)
-            if link and (select(3, GetItemInfo(link)) == 0) then
-                UseContainerItem(bag, slot)
-            end
-        end
-    end
+local AbyssUI_AutoSell = CreateFrame("Frame", "$parentFrameG", nil)
+AbyssUI_AutoSell:RegisterEvent("MERCHANT_SHOW")
+AbyssUI_AutoSell:SetScript("OnEvent", function()
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionSellGray == true ) then
-    if( CanMerchantRepair() ) then
-        local cost = GetRepairAllCost()
-        if cost > 0 then
-            local money = GetMoney()
-            if IsInGuild() then
-            local guildMoney = GetGuildBankWithdrawMoney()
-            if guildMoney > GetGuildBankMoney() then
-              guildMoney = GetGuildBankMoney()
-            end
-            if guildMoney > cost and CanGuildBankRepair() then
-              RepairAllItems(1)
-              print(format("|cfff07100Repair cost paid by Guild: %.1fg|r", cost * 0.0001))
-              return
-            end
-            end
-            if money > cost then
-            	RepairAllItems()
-            	print(format("|cffead000Repair cost: %.1fg|r", cost * 0.0001))
-            else
-            	print("Not enough gold for repair.")
-            end
-    	end
-	end
-		else return nil
+		local bag, slot
+		for bag = 0, 4 do
+	    	for slot = 0, GetContainerNumSlots(bag) do
+	        	local link = GetContainerItemLink(bag, slot)
+	       		if link and (select(3, GetItemInfo(link)) == 0) then
+	            	UseContainerItem(bag, slot)
+	        	end
+	    	end
+		end
+	    if( CanMerchantRepair() ) then
+	        local cost = GetRepairAllCost()
+	        if cost > 0 then
+	            local money = GetMoney()
+	            if money > cost then
+	            	RepairAllItems()
+	            	print(format("|cffead000Repair cost: %.1fg|r", cost * 0.0001))
+	            else
+	            	print("Not enough gold for repair.")
+	            end
+	    	end
+		end
+	else 
+		return nil
 	end
 end)
 ----------------------------------------------------
