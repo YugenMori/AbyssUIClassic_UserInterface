@@ -8,13 +8,13 @@
 -- Simple frame mover for AbyssUIClassic
 --------------------------------------------------------------------------------
 -- Frame Stuff
--- Thanks to Fizz for part of this
+-- Thanks to Fizz for part of this (the good part)
 local UnLocked
-local Moveframes = { QuestWatchFrame, MinimapCluster, PlayerFrame, TargetFrame, } -- So we don't create a new table each time
+local Moveframes = { QuestWatchFrame, MinimapCluster, PlayerFrame, TargetFrame, PartyMemberFrame1, } -- So we don't create a new table each time
 local checkAddon = CreateFrame("Frame")
 checkAddon:RegisterEvent("ADDON_LOADED")
 checkAddon:SetScript("OnEvent", function(self, event, addon)
-    if (addon == "ModernQuestWatch") then
+    if ( addon == "ModernQuestWatch" ) then
         table.remove(Moveframes, 1)
         C_Timer.After(5, function()
             print("|cfffc160aAbyssUIClassic found that ModernQuestWatch is enable, making changes to avoid conflicts...|r")
@@ -39,6 +39,7 @@ C_Timer.After(1, function()
                 self:StopMovingOrSizing()
             end)
         end
+        f:SetClampedToScreen(true)
         f.Movetex = f:CreateTexture("ARTWORK") -- only create the texture(s) once 
         f.Movetex:SetAllPoints() 
     --  f.Movetex:SetTexture(1.0, 0.5, 0) -- SetTexture no longer does colors
@@ -62,7 +63,7 @@ local function AbyssUIClassicMoveFrames_Function(show)
         f.Movetex:SetShown(show)
         f.Movetex.text:SetShown(show)
         UnLocked = show
-        if ( f == PlayerFrame or f == TargetFrame or f == QuestWatchFrame ) then
+        if ( f == PlayerFrame or f == TargetFrame ) then
             f:RegisterForDrag("LeftButton")
             f:SetScript("OnDragStart", f.StartMoving) 
             f:SetScript("OnDragStop", f.StopMovingOrSizing) 
@@ -78,7 +79,8 @@ local function AbyssUIClassicMoveFrames_Reset()
     end
     PlayerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", -19, -4)
     TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 250, -4)
-    MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 10, 10)
+    MinimapCluster:SetPoint("TOPRIGHT", nil, "TOPRIGHT", 10, 0)
+    PartyMemberFrame1:SetPoint("TOPLEFT", CompactRaidFrameManager, "TOPRIGHT", 0, 12)
     C_Timer.After(0.5, function()
         QuestWatchFrame:SetPoint("TOPRIGHT", MinimapCluster, "BOTTOM", 45, -5)
     end)

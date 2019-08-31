@@ -522,10 +522,11 @@ end)
 --------------------------------------------------------------------------
 -- Tooltip Instant Fade
 -- Many thanks to sacrife for part of this
+--[[
 GameTooltip.FadeOut = function(self)
-	GameTooltip:Hide()
+	GameTooltip:Hide()w
 end
-
+--]]
 local hasUnit
 local updateFrame = CreateFrame("Frame", "$parentUpdateFrame", nil)
 updateFrame:SetScript("OnUpdate", function(self)
@@ -604,19 +605,21 @@ end)
 local FrameList = {"Player"}
 local _G = _G
 local function AbyssUIClassic_UpdateHealthValues(...)
-for i = 1, select("#", unpack(FrameList)) do
-	local FrameName = (select(i, unpack(FrameList)))
-	local Health = AbbreviateLargeNumbers(UnitHealth(FrameName))
-	local checkMaxHealth = UnitHealthMax(FrameName)
-		if checkMaxHealth > 0 then
-			local HealthPercent = ((UnitHealth(FrameName) / UnitHealthMax(FrameName))*100)
-			if HealthPercent > 0 then
-				_G[FrameName.."FrameHealthBar"].TextString:SetText(Health.." / " .. " ("..format("%.0f", HealthPercent).."%)")
-			else
-				_G[FrameName.."FrameHealthBar"].TextString:SetText("")
+if (AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics ~= true ) then
+	for i = 1, select("#", unpack(FrameList)) do
+		local FrameName = (select(i, unpack(FrameList)))
+		local Health = AbbreviateLargeNumbers(UnitHealth(FrameName))
+		local checkMaxHealth = UnitHealthMax(FrameName)
+			if checkMaxHealth > 0 then
+				local HealthPercent = ((UnitHealth(FrameName) / UnitHealthMax(FrameName))*100)
+				if HealthPercent > 0 then
+					_G[FrameName.."FrameHealthBar"].TextString:SetText(Health.." / " .. " ("..format("%.0f", HealthPercent).."%)")
+				else
+					_G[FrameName.."FrameHealthBar"].TextString:SetText("")
+				end
+			else 
+				return nil
 			end
-		else 
-			return nil
 		end
 	end
 end
@@ -625,19 +628,21 @@ hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", AbyssUIClassic_Update
 local FrameList = {"Player"}
 local _G = _G
 local function AbyssUIClassic_UpdateManaValues(...)
-for i = 1, select("#", unpack(FrameList)) do
-	local FrameName = (select(i, unpack(FrameList)))
-	local Mana = AbbreviateLargeNumbers(UnitPower(FrameName))
-	local checkMaxMana = UnitPowerMax(FrameName)
-		if checkMaxMana > 0 then
-			local ManaPercent = ((UnitPower(FrameName) / UnitPowerMax(FrameName))*100)
-			if ManaPercent > 0 then
-				_G[FrameName.."FrameManaBar"].TextString:SetText(Mana.." / " .. " ("..format("%.0f", ManaPercent).."%)")
-			else
-				_G[FrameName.."FrameManaBar"].TextString:SetText("")
+if (AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics ~= true ) then
+	for i = 1, select("#", unpack(FrameList)) do
+		local FrameName = (select(i, unpack(FrameList)))
+		local Mana = AbbreviateLargeNumbers(UnitPower(FrameName))
+		local checkMaxMana = UnitPowerMax(FrameName)
+			if checkMaxMana > 0 then
+				local ManaPercent = ((UnitPower(FrameName) / UnitPowerMax(FrameName))*100)
+				if ManaPercent > 0 then
+					_G[FrameName.."FrameManaBar"].TextString:SetText(Mana.." / " .. " ("..format("%.0f", ManaPercent).."%)")
+				else
+					_G[FrameName.."FrameManaBar"].TextString:SetText("")
+				end
+			else 
+				return nil
 			end
-		else 
-			return nil
 		end
 	end
 end

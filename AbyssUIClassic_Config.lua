@@ -1069,6 +1069,16 @@ AbyssUIClassic_DisableHealingSpam_CheckButton:SetScript("OnEvent", function(self
     end
   end
 end)
+-- Disable healing spam over player --
+local AbyssUIClassic_ShowOnlyNumerics_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ShowOnlyNumerics_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetPoint("TOPLEFT", 200, -230)
+AbyssUIClassic_ShowOnlyNumerics_CheckButton.Text:SetText("Show Only Numerics")
+AbyssUIClassic_ShowOnlyNumerics_CheckButton.tooltip = "Show only numerics values on player health/power frames"
+AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics)
+-- OnClick Function
+AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics = self:GetChecked()
+end)
 -- 3rd Column
 -- Instance Leave --
 local AbyssUIClassic_InstanceLeave_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_InstanceLeave_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
