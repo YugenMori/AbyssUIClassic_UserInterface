@@ -287,6 +287,7 @@ local function AbyssUIClassic_HideMicroMenu_Function()
       WorldMapMicroButton,
       MainMenuMicroButton,
       HelpMicroButton, }) do
+      TalentMicroButton:SetAlpha(0)
       v:Hide()
   end
 end
@@ -300,6 +301,7 @@ local function AbyssUIClassic_ShowMicroMenu_Function()
       WorldMapMicroButton,
       MainMenuMicroButton,
       HelpMicroButton, }) do
+      TalentMicroButton:SetAlpha(1)
       v:Show()
   end
 end
@@ -811,6 +813,17 @@ KeepUnitBlizzard_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
+-- Minimal ActionBar --
+local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+MinimalActionBar_CheckButton:SetPoint("CENTER", -290, -140)
+MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
+MinimalActionBar_CheckButton.tooltip = "Minimalist ActionBar (hide a lot of things)"
+MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
+-- OnClick Function
+MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 ------------------------------- Miscellaneous -------------------------------
 -- Camera Pitch --
 -- Camera Pitch Function Option 50%
@@ -1143,8 +1156,7 @@ AbyssUIClassic_BetterWorldMap_CheckButton:SetChecked(AbyssUIClassicAddonSettings
 -- OnClick Function
 AbyssUIClassic_BetterWorldMap_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionBetterWorldMap = self:GetChecked()
-  WorldMapFrame.BlackoutFrame:Hide()
-  WorldMapFrame.BlackoutFrame:EnableMouse(false)
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- After Login/Reload
 AbyssUIClassic_BetterWorldMap_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -1169,7 +1181,7 @@ AbyssUIClassic_WorldMapFade_CheckButton:SetChecked(AbyssUIClassicAddonSettings.E
 -- OnClick Function
 AbyssUIClassic_WorldMapFade_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionWorldMapFade = self:GetChecked()
-  PlayerMovementFrameFader.AddDeferredFrame(WorldMapFrame, .50, 1.0, .50)
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- After Login/Reload
 AbyssUIClassic_WorldMapFade_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")

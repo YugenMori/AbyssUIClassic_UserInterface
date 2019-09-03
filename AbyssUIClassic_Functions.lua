@@ -236,49 +236,40 @@ PetHitIndicator.SetText = function() end
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	-- OnTooltipSetUnit
 	local _, unit = GameTooltip:GetUnit()
-	if  UnitIsPlayer(unit) then
+	if ( UnitIsPlayer(unit) ) then
+        local guildName, guildRankName, guildRankIndex = GetGuildInfo(unit)
+       	GameTooltip:AddLine(guildName, 1, 1, 1, 1)
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
 		if ( color ~= nil ) then
+			local inGuild = GetGuildInfo(unit)
+			local isPvP = UnitIsPVP(unit)
 			local text  = GameTooltipTextLeft1:GetText()
 			local text2 = GameTooltipTextLeft2:GetText()
 			local text3 = GameTooltipTextLeft3:GetText()
-			local inGuild = GetGuildInfo("mouseover")
-			local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
+			local text4 = GameTooltipTextLeft4:GetText()
 			if ( class == "SHAMAN" ) then
 				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
 			else
 				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
+				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
 			end
-			if ( inGuild ~= nil ) then
-				if ( class == "SHAMAN" ) then
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+			if ( inGuild ~= nil and isPvP == false ) then
+				if ( class == "SHAMAN"  ) then
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				else
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				end
-				if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
-					GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
-				elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
-					GameTooltipTextLeft4:SetTextColor(0, 0.5, 255)
-				else 
-					return nil
-				end
-			elseif ( inGuild == nil ) then
+			end
+			if ( inGuild ~= nil and isPvP == true ) then
 				if ( class == "SHAMAN" ) then
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
 				else
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
+					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
+					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
 				end
-				if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
-					GameTooltipTextLeft3:SetTextColor(255, 0.1, 0)
-				elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
-					GameTooltipTextLeft3:SetTextColor(0, 0.5, 255)
-				else 
-					return nil
-				end
-			else
-				return nil
 			end
 		end
 	end
@@ -524,9 +515,8 @@ end)
 -- Many thanks to sacrife for part of this
 --[[
 GameTooltip.FadeOut = function(self)
-	GameTooltip:Hide()w
+	GameTooltip:Hide()
 end
---]]
 local hasUnit
 local updateFrame = CreateFrame("Frame", "$parentUpdateFrame", nil)
 updateFrame:SetScript("OnUpdate", function(self)
@@ -538,11 +528,12 @@ updateFrame:SetScript("OnUpdate", function(self)
 		hasUnit = true
 	end
 end)
+--]]
 ----------------------------------------------------
 -- Auto Repair/Sell Grey
-local AbyssUI_AutoSell = CreateFrame("Frame", "$parentFrameG", nil)
-AbyssUI_AutoSell:RegisterEvent("MERCHANT_SHOW")
-AbyssUI_AutoSell:SetScript("OnEvent", function()
+local AbyssUIClassic_AutoSell = CreateFrame("Frame", "$parentparentAbyssUIClassic_AutoSell", nil)
+AbyssUIClassic_AutoSell:RegisterEvent("MERCHANT_SHOW")
+AbyssUIClassic_AutoSell:SetScript("OnEvent", function()
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionSellGray == true ) then
 		local bag, slot
 		for bag = 0, 4 do
@@ -793,6 +784,76 @@ AbyssUIClassic_ScreenshotLevelUp:SetScript("OnEvent", function(self, event, ...)
     	 C_Timer.After(1, function ()
     	 	Screenshot()
     	 end)
+    end
+end)
+-- Minimal Action Bar
+local AbyssUIClassic_MinimalActionBar = CreateFrame("Button", '$parentAbyssUIClassic_MinimalActionBar', nil)
+AbyssUIClassic_MinimalActionBar:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassic_MinimalActionBar:SetScript("OnEvent", function(self, event, ...)
+    if AbyssUIClassicAddonSettings.MinimalActionBar == true then
+    	C_Timer.After(1, function()
+    		for i, v in pairs ({
+	    		MainMenuBarLeftEndCap,
+	    		MainMenuBarRightEndCap,
+	    		MainMenuExpBar,
+	    		ReputationWatchBar,
+	    		MainMenuBarTexture0,
+	    		MainMenuBarTexture1,
+	    		MainMenuBarTexture2,
+	    		MainMenuBarTexture3,
+	    		ActionBarUpButton,
+	    		ActionBarDownButton,
+	    		MainMenuBarPageNumber,
+	    		CharacterMicroButton,
+			    SpellbookMicroButton,
+			    QuestLogMicroButton,
+			    SocialsMicroButton,
+			    WorldMapMicroButton,
+			    MainMenuMicroButton,
+			    HelpMicroButton,
+			    MainMenuBarBackpackButton,
+			    CharacterBag0Slot,
+			    CharacterBag1Slot,
+			    CharacterBag2Slot,
+			    CharacterBag3Slot,
+			    MainMenuBarPerformanceBar,
+    		}) do
+    			TalentMicroButton:SetAlpha(0)
+    			v:Hide()
+	    	end
+    	end)
+    else
+    	C_Timer.After(1, function()
+    		for i, v in pairs ({
+	    		MainMenuBarLeftEndCap,
+	    		MainMenuBarRightEndCap,
+	    		MainMenuExpBar,
+	    		ReputationWatchBar,
+	    		MainMenuBarTexture0,
+	    		MainMenuBarTexture1,
+	    		MainMenuBarTexture2,
+	    		MainMenuBarTexture3,
+	    		ActionBarUpButton,
+	    		ActionBarDownButton,
+	    		MainMenuBarPageNumber,
+	    		CharacterMicroButton,
+			    SpellbookMicroButton,
+			    QuestLogMicroButton,
+			    SocialsMicroButton,
+			    WorldMapMicroButton,
+			    MainMenuMicroButton,
+			    HelpMicroButton,
+			    MainMenuBarBackpackButton,
+			    CharacterBag0Slot,
+			    CharacterBag1Slot,
+			    CharacterBag2Slot,
+			    CharacterBag3Slot,
+			    MainMenuBarPerformanceBar,
+    		}) do
+    			TalentMicroButton:SetAlpha(1)
+    			v:Show()
+	    	end
+    	end)
     end
 end)
 ----------------------------------------------------
