@@ -790,71 +790,45 @@ end)
 local AbyssUIClassic_MinimalActionBar = CreateFrame("Button", '$parentAbyssUIClassic_MinimalActionBar', nil)
 AbyssUIClassic_MinimalActionBar:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUIClassic_MinimalActionBar:SetScript("OnEvent", function(self, event, ...)
-    if AbyssUIClassicAddonSettings.MinimalActionBar == true then
-    	C_Timer.After(1, function()
-    		for i, v in pairs ({
-	    		MainMenuBarLeftEndCap,
-	    		MainMenuBarRightEndCap,
-	    		MainMenuExpBar,
-	    		ReputationWatchBar,
-	    		MainMenuBarTexture0,
-	    		MainMenuBarTexture1,
-	    		MainMenuBarTexture2,
-	    		MainMenuBarTexture3,
-	    		ActionBarUpButton,
-	    		ActionBarDownButton,
-	    		MainMenuBarPageNumber,
-	    		CharacterMicroButton,
-			    SpellbookMicroButton,
-			    QuestLogMicroButton,
-			    SocialsMicroButton,
-			    WorldMapMicroButton,
-			    MainMenuMicroButton,
-			    HelpMicroButton,
-			    MainMenuBarBackpackButton,
-			    CharacterBag0Slot,
-			    CharacterBag1Slot,
-			    CharacterBag2Slot,
-			    CharacterBag3Slot,
-			    MainMenuBarPerformanceBar,
-    		}) do
-    			TalentMicroButton:SetAlpha(0)
-    			v:Hide()
-	    	end
-    	end)
-    else
-    	C_Timer.After(1, function()
-    		for i, v in pairs ({
-	    		MainMenuBarLeftEndCap,
-	    		MainMenuBarRightEndCap,
-	    		MainMenuExpBar,
-	    		ReputationWatchBar,
-	    		MainMenuBarTexture0,
-	    		MainMenuBarTexture1,
-	    		MainMenuBarTexture2,
-	    		MainMenuBarTexture3,
-	    		ActionBarUpButton,
-	    		ActionBarDownButton,
-	    		MainMenuBarPageNumber,
-	    		CharacterMicroButton,
-			    SpellbookMicroButton,
-			    QuestLogMicroButton,
-			    SocialsMicroButton,
-			    WorldMapMicroButton,
-			    MainMenuMicroButton,
-			    HelpMicroButton,
-			    MainMenuBarBackpackButton,
-			    CharacterBag0Slot,
-			    CharacterBag1Slot,
-			    CharacterBag2Slot,
-			    CharacterBag3Slot,
-			    MainMenuBarPerformanceBar,
-    		}) do
-    			TalentMicroButton:SetAlpha(1)
-    			v:Show()
-	    	end
-    	end)
-    end
+	if ( AbyssUIClassicAddonSettings.HideMicroMenu ~= true or AbyssUIClassicAddonSettings.HideGryphons ~= true  ) then
+	    if AbyssUIClassicAddonSettings.MinimalActionBar == true then
+	    	C_Timer.After(1, function()
+	    		for i, v in pairs ({
+		    		MainMenuBarLeftEndCap,
+		    		MainMenuBarRightEndCap,
+		    		MainMenuExpBar,
+		    		ReputationWatchBar,
+		    		MainMenuBarTexture0,
+		    		MainMenuBarTexture1,
+		    		MainMenuBarTexture2,
+		    		MainMenuBarTexture3,
+		    		ActionBarUpButton,
+		    		ActionBarDownButton,
+		    		MainMenuBarPageNumber,
+		    		CharacterMicroButton,
+				    SpellbookMicroButton,
+				    QuestLogMicroButton,
+				    SocialsMicroButton,
+				    WorldMapMicroButton,
+				    MainMenuMicroButton,
+				    HelpMicroButton,
+				    MainMenuBarBackpackButton,
+				    CharacterBag0Slot,
+				    CharacterBag1Slot,
+				    CharacterBag2Slot,
+				    CharacterBag3Slot,
+				    MainMenuBarPerformanceBar,
+	    		}) do
+	    			TalentMicroButton:SetAlpha(0)
+	    			v:Hide()
+		    	end
+	    	end)
+	    else
+	    	TalentMicroButton:SetAlpha(1)
+	    end
+	else 
+		return nil
+	end
 end)
 ----------------------------------------------------
 -- DailyInfo Function
