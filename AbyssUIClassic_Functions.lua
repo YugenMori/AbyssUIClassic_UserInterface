@@ -796,8 +796,6 @@ AbyssUIClassic_MinimalActionBar:SetScript("OnEvent", function(self, event, ...)
 	    		for i, v in pairs ({
 		    		MainMenuBarLeftEndCap,
 		    		MainMenuBarRightEndCap,
-		    		MainMenuExpBar,
-		    		ReputationWatchBar,
 		    		MainMenuBarTexture0,
 		    		MainMenuBarTexture1,
 		    		MainMenuBarTexture2,
@@ -819,11 +817,15 @@ AbyssUIClassic_MinimalActionBar:SetScript("OnEvent", function(self, event, ...)
 				    CharacterBag3Slot,
 				    MainMenuBarPerformanceBar,
 	    		}) do
+	    			MainMenuExpBar:SetAlpha(0)
+	    			ReputationWatchBar:SetAlpha(0)
 	    			TalentMicroButton:SetAlpha(0)
 	    			v:Hide()
 		    	end
 	    	end)
 	    else
+	    	MainMenuExpBar:SetAlpha(1)
+	    	ReputationWatchBar:SetAlpha(1)
 	    	TalentMicroButton:SetAlpha(1)
 	    end
 	else 
