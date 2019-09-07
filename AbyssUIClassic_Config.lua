@@ -416,7 +416,7 @@ FPSMSFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideFPSMSFrame)
 -- OnClick Function
 FPSMSFrame_CheckButton:SetScript("OnClick", function(self)
 AbyssUIClassicAddonSettings.HideFPSMSFrame = self:GetChecked()
-  if ( AbyssUIClassicAddonSettings.HideFPSMSFrame == true ) then
+  if ( AbyssUIClassicAddonSettings.HideFPSMSFrame == true or AbyssUIClassicAddonSettings.FadeUI == true ) then
     AbyssUIClassic_StatsFrames1Hide()
   else
     AbyssUIClassic_StatsFrames1Show()
@@ -426,7 +426,7 @@ end)
 FPSMSFrame_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 FPSMSFrame_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( event == "PLAYER_ENTERING_WORLD" ) then
-    if AbyssUIClassicAddonSettings.HideFPSMSFrame == true then
+    if ( AbyssUIClassicAddonSettings.HideFPSMSFrame == true or AbyssUIClassicAddonSettings.FadeUI == true ) then
       AbyssUIClassic_StatsFrames1Hide()
     else
       AbyssUIClassic_StatsFrames1Show()
@@ -561,10 +561,13 @@ AbyssUIClassic_ChatHideFrame.t = AbyssUIClassic_ChatHideFrame:CreateTexture(nil,
 AbyssUIClassic_ChatHideFrame.t:SetTexture("Interface\\CHATFRAME\\UI-ChatIcon-Minimize-Up.blp")
 AbyssUIClassic_ChatHideFrame.t:SetAllPoints(AbyssUIClassic_ChatHideFrame)
 AbyssUIClassic_ChatHideFrame:SetPoint("BOTTOM","ChatFrame1ButtonFrame","BOTTOM",0,-35)
-AbyssUIClassic_ChatHideFrame:Show()
+if ( AbyssUIClassicAddonSettings.FadeUI ~= true ) then
+  AbyssUIClassic_ChatHideFrame:Show()
+else
+  AbyssUIClassic_ChatHideFrame:Hide()
+end
 
 local ChatHide = false
-
 AbyssUIClassic_ChatHideFrame:SetScript("OnMouseDown", function(self, Button)
   if ChatHide == false then
     if Button == "LeftButton" then
@@ -824,6 +827,17 @@ MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
+-- Fade UI --
+local FadeUI_CheckButton = CreateFrame("CheckButton", "$parentFadeUI_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
+FadeUI_CheckButton:SetPoint("CENTER", -290, -170)
+FadeUI_CheckButton.Text:SetText("|cfff2dc7fMinimalist UI|r")
+FadeUI_CheckButton.tooltip = "Fade the UI when you are out of combat or you are not in a combat zone"
+FadeUI_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FadeUI)
+-- OnClick Function
+FadeUI_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.FadeUI = self:GetChecked()
+  AbyssUIClassic_ReloadFrameFadeUI:Show()
+end)
 ------------------------------- Miscellaneous -------------------------------
 -- Camera Pitch --
 -- Camera Pitch Function Option 50%
@@ -1081,16 +1095,6 @@ AbyssUIClassic_DisableHealingSpam_CheckButton:SetScript("OnEvent", function(self
       PetHitIndicator.SetText = function() end
     end
   end
-end)
--- Disable healing spam over player --
-local AbyssUIClassic_ShowOnlyNumerics_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ShowOnlyNumerics_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
-AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetPoint("TOPLEFT", 200, -230)
-AbyssUIClassic_ShowOnlyNumerics_CheckButton.Text:SetText("Show Only Numerics")
-AbyssUIClassic_ShowOnlyNumerics_CheckButton.tooltip = "Show only numerics values on player health/power frames"
-AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics)
--- OnClick Function
-AbyssUIClassic_ShowOnlyNumerics_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIClassicAddonSettings.ExtraFunctionShowOnlyNumerics = self:GetChecked()
 end)
 -- 3rd Column
 -- Instance Leave --
