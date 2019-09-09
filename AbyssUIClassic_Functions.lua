@@ -109,17 +109,21 @@ hooksecurefunc("UnitFramePortrait_Update", function(self)
 end)
 -- Class HP Colours
 local function colour(statusbar, unit)
-	local _, class, c
-	if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
-		_, class = UnitClass(unit)
-		c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
-		statusbar:SetStatusBarColor(c.r, c.g, c.b)
-		if ( class == "SHAMAN" ) then
-			statusbar:SetStatusBarColor(0/255, 112/255, 222/255)
-		 else 
-		 	statusbar:SetStatusBarColor(c.r, c.g, c.b)
+	if( AbyssUIClassicAddonSettings.ExtraFunctionFriendlyHealthGreen ~= true ) then
+		local _, class, c
+		if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
+			_, class = UnitClass(unit)
+			c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+			statusbar:SetStatusBarColor(c.r, c.g, c.b)
+			if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true) then
+				statusbar:SetStatusBarColor(0/255, 112/255, 222/255)
+			 else 
+			 	statusbar:SetStatusBarColor(c.r, c.g, c.b)
+			end
+			--PlayerFrameHealthBar:SetStatusBarColor(0, 1, 0)
 		end
-		--PlayerFrameHealthBar:SetStatusBarColor(0, 1, 0)
+	else 
+		return nil
 	end
 end
 hooksecurefunc("UnitFrameHealthBar_Update", colour)
@@ -136,42 +140,46 @@ frame:RegisterEvent("UNIT_FACTION")
 
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
-	--[[
-	local _, class, c,
-	_, class = UnitClass("player")
-	if PlayerFrame:IsShown() and not PlayerFrame.bg then
-		c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-		local bg = PlayerFrame:CreateTexture()
-		bg:SetPoint("TOPLEFT", PlayerFrameBackground)
-		bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
-		bg:SetTexture(PlayerFrameBackground:GetTexture())
-		bg:SetVertexColor(c.r,c.g,c.b)
-		PlayerFrame.bg = true
-		if ( class == "SHAMAN" ) then
-			bg:SetVertexColor(0/255, 112/255, 222/255)
-		 else 
-		 	bg:SetVertexColor(c.r,c.g,c.b)
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
+		--[[
+		local _, class, c,
+		_, class = UnitClass("player")
+		if PlayerFrame:IsShown() and not PlayerFrame.bg then
+			c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+			local bg = PlayerFrame:CreateTexture()
+			bg:SetPoint("TOPLEFT", PlayerFrameBackground)
+			bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
+			bg:SetTexture(PlayerFrameBackground:GetTexture())
+			bg:SetVertexColor(c.r,c.g,c.b)
+			PlayerFrame.bg = true
+			if ( class == "SHAMAN" ) then
+				bg:SetVertexColor(0/255, 112/255, 222/255)
+			 else 
+			 	bg:SetVertexColor(c.r,c.g,c.b)
+			end
 		end
-	end
-    if UnitIsPlayer("player") then
-        c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-        local _, class = UnitClass("player")
-        if ( class == "SHAMAN" ) then
-			PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
-		 else 
-		 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
+	    if UnitIsPlayer("player") then
+	        c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+	        local _, class = UnitClass("player")
+	        if ( class == "SHAMAN" ) then
+				PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
+			 else 
+			 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
+			end
+	    end
+	    --]]
+		if UnitIsPlayer("target") then
+			local _, class2 = UnitClass("target")
+			c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+			TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+			if ( class2 == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
+				TargetFrameNameBackground:SetVertexColor(0/255, 112/255, 222/255)
+			 else 
+			 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
+			end
 		end
-    end
-    --]]
-	if UnitIsPlayer("target") then
-		local _, class2 = UnitClass("target")
-		c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-		TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
-		if ( class2 == "SHAMAN" ) then
-			TargetFrameNameBackground:SetVertexColor(0/255, 112/255, 222/255)
-		 else 
-		 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
-		end
+	else
+		return nil
 	end
 end
 
@@ -248,7 +256,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 			local text2 = GameTooltipTextLeft2:GetText()
 			local text3 = GameTooltipTextLeft3:GetText()
 			local text4 = GameTooltipTextLeft4:GetText()
-			if ( class == "SHAMAN" ) then
+			if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
 				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
 			else
@@ -256,14 +264,14 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
 			end
 			if ( inGuild ~= nil and isPvP == false ) then
-				if ( class == "SHAMAN"  ) then
+				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				else
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				end
 			end
 			if ( inGuild ~= nil and isPvP == true ) then
-				if ( class == "SHAMAN" ) then
+				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
 				else
@@ -340,7 +348,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
 		if color then
-			if ( class == "SHAMAN") then
+			if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 				GameTooltipStatusBar:SetStatusBarColor(0/255, 112/255, 222/255)
 			else
 				GameTooltipStatusBar:SetStatusBarColor(color.r, color.g, color.b)
@@ -469,7 +477,7 @@ CF:SetScript("OnEvent", function(self, event)
 		StatsFrame.text:SetShadowColor(0, 0, 0)
 	end
 	local _, class = UnitClass("player")
-	if ( class == "SHAMAN") then
+	if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 		StatsFrame.text:SetTextColor(0/255, 112/255, 222/255)
 	else
 		StatsFrame.text:SetTextColor(color.r, color.g, color.b)
