@@ -831,10 +831,11 @@ end)
 local FadeUI_CheckButton = CreateFrame("CheckButton", "$parentFadeUI_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 FadeUI_CheckButton:SetPoint("CENTER", -290, -170)
 FadeUI_CheckButton.Text:SetText("|cfff2dc7fMinimalist UI|r")
-FadeUI_CheckButton.tooltip = "Fade the UI when you are out of combat or you are not in a combat zone"
+FadeUI_CheckButton.tooltip = "Fade the UI when you are out of combat ('ATL-CTRL-P' to show frames)"
 FadeUI_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FadeUI)
 -- OnClick Function
 FadeUI_CheckButton:SetScript("OnClick", function(self)
+  SetBindingClick("ALT-CTRL-P", FadeUI_CheckButton:GetName())
   AbyssUIClassicAddonSettings.FadeUI = self:GetChecked()
   AbyssUIClassic_ReloadFrameFadeUI:Show()
 end)
@@ -986,6 +987,17 @@ AbyssUIClassic_ScreenshotLevelUp_CheckButton:SetChecked(AbyssUIClassicAddonSetti
 AbyssUIClassic_ScreenshotLevelUp_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionScreenshotLevelUp = self:GetChecked()
 end)
+-- Remove Background class color --
+local AbyssUIClassic_HideBackgroundClassColor_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_HideBackgroundClassColor_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetPoint("TOPLEFT", 10, -260)
+AbyssUIClassic_HideBackgroundClassColor_CheckButton.Text:SetText("Default Background")
+AbyssUIClassic_HideBackgroundClassColor_CheckButton.tooltip = "Remove the class color background behind the player names"
+AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor)
+-- OnClick Function
+AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 -- 2nd Column
 -- Action Cam --
 local AbyssUIClassicActionCam_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicActionCam_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
@@ -1095,6 +1107,28 @@ AbyssUIClassic_DisableHealingSpam_CheckButton:SetScript("OnEvent", function(self
       PetHitIndicator.SetText = function() end
     end
   end
+end)
+-- Shaman Pink --
+local AbyssUIClassic_ShamanPink_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ShamanPink_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_ShamanPink_CheckButton:SetPoint("TOPLEFT", 200, -230)
+AbyssUIClassic_ShamanPink_CheckButton.Text:SetText("Shaman Pink")
+AbyssUIClassic_ShamanPink_CheckButton.tooltip = "Keep the color pink for Shaman health bars (portrait and tooltip)"
+AbyssUIClassic_ShamanPink_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionShamanPink)
+-- OnClick Function
+AbyssUIClassic_ShamanPink_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionShamanPink = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
+-- Friendly Green --
+local AbyssUIClassic_FriendlyHealthGreen_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_FriendlyHealthGreen_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_FriendlyHealthGreen_CheckButton:SetPoint("TOPLEFT", 200, -260)
+AbyssUIClassic_FriendlyHealthGreen_CheckButton.Text:SetText("Default Friendly Health")
+AbyssUIClassic_FriendlyHealthGreen_CheckButton.tooltip = "Friendly unit health bars in the default color"
+AbyssUIClassic_FriendlyHealthGreen_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionFriendlyHealthGreen)
+-- OnClick Function
+AbyssUIClassic_FriendlyHealthGreen_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionFriendlyHealthGreen = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- 3rd Column
 -- Instance Leave --
@@ -1405,7 +1439,7 @@ end)
 -- AbyssUIClassicClassCircles08_CheckButton
 local AbyssUIClassicClassCircles08_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicClassCircles08_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicClassCircles08_CheckButton:SetPoint("TOPLEFT", 180, -170)
-AbyssUIClassicClassCircles08_CheckButton.Text:SetText("Garyscale")
+AbyssUIClassicClassCircles08_CheckButton.Text:SetText("Grayscale")
 AbyssUIClassicClassCircles08_CheckButton.tooltip = "A grayscale version of UnitPlayerFrame"
 AbyssUIClassicClassCircles08_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIClassCircles08)
 -- OnClick Function
