@@ -11,7 +11,11 @@
 local f = CreateFrame("CheckButton", "$parentFrame", UIParent, "ChatConfigCheckButtonTemplate")
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:SetScript("OnEvent", function(self, event, ...)
-	SetCVar("nameplateMaxDistance", "8e1")
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionDefaultNameplate ~= true ) then
+		SetCVar("nameplateMaxDistance", "8e1")
+	else 
+		SetCVar("nameplateMaxDistance", "4e1")
+	end
 end)
 -- Fade UI
 local FadeUI = CreateFrame("CheckButton", "$parentFadeUI", UIParent, "ChatConfigCheckButtonTemplate")

@@ -1230,6 +1230,17 @@ AbyssUIClassic_WorldMapFade_CheckButton:SetScript("OnEvent", function(self, even
     end
   end
 end)
+-- Default Nameplate Range --
+local AbyssUIClassic_DefaultNameplate_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_DefaultNameplate_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_DefaultNameplate_CheckButton:SetPoint("TOPLEFT", 400, -260)
+AbyssUIClassic_DefaultNameplate_CheckButton.Text:SetText("Default Nameplate Range")
+AbyssUIClassic_DefaultNameplate_CheckButton.tooltip = "Disable the double range of nameplates to Blizzard default value"
+AbyssUIClassic_DefaultNameplate_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionDefaultNameplate)
+-- OnClick Function
+AbyssUIClassic_DefaultNameplate_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionDefaultNameplate = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 --End
 ----------------------------- AbyssUIClassic Stylization ------------------------------
 -- Player Portrait Style --
