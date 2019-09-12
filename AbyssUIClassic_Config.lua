@@ -178,9 +178,9 @@ end)
 -- AbyssUIClassic Action Bar --
 local AbyssUIClassicNewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar3x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -170)
-AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("|cff8484843x12 Actionbar (alfa - risk of glitches) *Retail|r")
-AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds a new bar above the small version of Blizzard MainBar"
---AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
+AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("3x12 Actionbar (beta - risk of glitches)")
+AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds a new bar above the Blizzard MainBar (textures will be hide)"
+AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
 local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -200)
 AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (alfa - risk of glitches) *Retail|r")
@@ -188,8 +188,8 @@ AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds a new bar above 3rd b
 --AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
 -- OnClick Function
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
---  AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
---  AbyssUIClassic_ActionBarInfo:Show()
+  AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
+  AbyssUIClassic_ActionBarInfo:Show()
   AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(nil)
 end)
 --
@@ -203,11 +203,11 @@ AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
   end
 end)
 -- After Login/Reload
---[[
 AbyssUIClassicNewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 == true ) then
     -- Main Function 3x12
+    --[[
     local _G = _G
       for i = 2, 12 do
         local r = "MultiBarRightButton"
@@ -219,10 +219,19 @@ AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, e
         btr.ClearAllPoints = function() end
         btr:SetPoint("LEFT", r..i - 1, "RIGHT", 6, 0)
       end
-    --MultiBarRight
-    MultiBarRight.ClearAllPoints = function() end
-    MultiBarRight:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMLEFT", 46, 135)
-    MultiBarRight.SetPoint = function() end
+    --]]
+    -- MainMenuBar
+    MainMenuBar.ClearAllPoints = function() end
+    MainMenuBar:SetPoint("BOTTOM", UIParent, "BOTTOM", 250, 10)
+    MainMenuBar.SetPoint = function() end
+    --MultiBarBottomRight
+    MultiBarBottomRight.ClearAllPoints = function() end
+    MultiBarBottomRight:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMLEFT", 9, 125)
+    MultiBarBottomRight.SetPoint = function() end
+    --MultiBarBottomLeft
+    MultiBarBottomLeft.ClearAllPoints = function() end
+    MultiBarBottomLeft:SetPoint("TOPRIGHT", MainMenuBar, "BOTTOMLEFT", 9, 45)
+    MultiBarBottomLeft.SetPoint = function() end
     --PetBar
     PetActionBarFrame.ClearAllPoints = function() end
     PetActionBarFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", 0, 45)
@@ -233,20 +242,54 @@ AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, e
     StanceBarFrame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 100, 0)
     StanceBarFrame.SetPoint = function() end
     --ExtraBar
-    ExtraActionBarFrame.ClearAllPoints = function() end
-    ExtraActionBarFrame:SetPoint("BOTTOMRIGHT", MainMenuBar, "BOTTOMRIGHT", 70, 30)
-    ExtraActionBarFrame.SetPoint = function() end
+    --ExtraActionBarFrame.ClearAllPoints = function() end
+    --ExtraActionBarFrame:SetPoint("BOTTOMRIGHT", MainMenuBar, "BOTTOMRIGHT", 70, 30)
+    --ExtraActionBarFrame.SetPoint = function() end
     --VehicleBar
     MainMenuBarVehicleLeaveButton.ClearAllPoints = function() end
     MainMenuBarVehicleLeaveButton:SetPoint("TOPLEFT", MainMenuBar, "TOPLEFT", -70, 70)
     MainMenuBarVehicleLeaveButton.SetPoint = function() end
-    if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 ~= true  then
-      MultiBarLeft.ClearAllPoints = function() end
-      MultiBarLeft:SetPoint("TOPRIGHT", MinimapCluster, "RIGHT", 0, -100)
-      MultiBarLeft.SetPoint = function() end
-    end
+    -- Hide Stuff for classic
+    if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 == true then
+        C_Timer.After(1, function()
+          for i, v in pairs ({
+            MainMenuBarLeftEndCap,
+            MainMenuBarRightEndCap,
+            MainMenuBarTexture0,
+            MainMenuBarTexture1,
+            MainMenuBarTexture2,
+            MainMenuBarTexture3,
+            ActionBarUpButton,
+            ActionBarDownButton,
+            MainMenuBarPageNumber,
+            CharacterMicroButton,
+            SpellbookMicroButton,
+            QuestLogMicroButton,
+            SocialsMicroButton,
+            WorldMapMicroButton,
+            MainMenuMicroButton,
+            HelpMicroButton,
+            MainMenuBarBackpackButton,
+            CharacterBag0Slot,
+            CharacterBag1Slot,
+            CharacterBag2Slot,
+            CharacterBag3Slot,
+            MainMenuBarPerformanceBar,
+          }) do
+            MainMenuExpBar:SetAlpha(0)
+            ReputationWatchBar:SetAlpha(0)
+            TalentMicroButton:SetAlpha(0)
+            v:Hide()
+          end
+        end)
+      else
+        MainMenuExpBar:SetAlpha(1)
+        ReputationWatchBar:SetAlpha(1)
+        TalentMicroButton:SetAlpha(1)
+      end
   end
 end)
+--[[
 AbyssUIClassicNewActionBar4x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 == true  ) then
@@ -819,7 +862,7 @@ end)
 -- Minimal ActionBar --
 local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 MinimalActionBar_CheckButton:SetPoint("CENTER", -290, -140)
-MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
+MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar *Beta")
 MinimalActionBar_CheckButton.tooltip = "Minimalist ActionBar (hide a lot of things)"
 MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
 -- OnClick Function
@@ -996,6 +1039,17 @@ AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetChecked(AbyssUIClassicAdd
 -- OnClick Function
 AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
+-- Disable Guild Name on Tooltip --
+local AbyssUIClassic_DisableGuildTooltip_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_HideBackgroundClassColor_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_DisableGuildTooltip_CheckButton:SetPoint("TOPLEFT", 10, -290)
+AbyssUIClassic_DisableGuildTooltip_CheckButton.Text:SetText("Disable Guild Tooltip")
+AbyssUIClassic_DisableGuildTooltip_CheckButton.tooltip = "Remove the guild name from tooltips"
+AbyssUIClassic_DisableGuildTooltip_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionDisableGuildTootip)
+-- OnClick Function
+AbyssUIClassic_DisableGuildTooltip_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionDisableGuildTootip = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
 -- 2nd Column

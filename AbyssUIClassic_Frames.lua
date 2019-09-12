@@ -640,7 +640,7 @@ AbyssUIClassic_ActionBarInfo.text:SetScale(1.5)
 AbyssUIClassic_ActionBarInfo.text:SetAllPoints(true)
 AbyssUIClassic_ActionBarInfo.text:SetJustifyH("CENTER")
 AbyssUIClassic_ActionBarInfo.text:SetJustifyV("CENTER")
-AbyssUIClassic_ActionBarInfo.text:SetText("Go to: Interface> ActionBar and check: bottom beft bar, right bar 1 and 2.\nAbyssUI|cff0d75d4Classic|r Actionbar glitchs sometimes.")
+AbyssUIClassic_ActionBarInfo.text:SetText("AbyssUI|cff0d75d4Classic|r Actionbar could glitch sometimes.")
 ----------------------------------------------------
 local Border = AbyssUIClassic_ActionBarInfo:CreateTexture(nil, "BACKGROUND")
 Border:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")

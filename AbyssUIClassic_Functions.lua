@@ -245,8 +245,10 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	-- OnTooltipSetUnit
 	local _, unit = GameTooltip:GetUnit()
 	if ( UnitIsPlayer(unit) ) then
-        local guildName, guildRankName, guildRankIndex = GetGuildInfo(unit)
-       	GameTooltip:AddLine(guildName, 1, 1, 1, 1)
+		if ( AbyssUIClassicAddonSettings.ExtraFunctionDisableGuildTootip ~= true ) then
+        	local guildName, guildRankName, guildRankIndex = GetGuildInfo(unit)
+       		GameTooltip:AddLine(guildName, 1, 1, 1, 1)
+       	end
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
 		if ( color ~= nil ) then
@@ -270,7 +272,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 				end
 			end
-			if ( inGuild ~= nil and isPvP == true ) then
+			if ( inGuild ~= nil and isPvP == true and AbyssUIClassicAddonSettings.ExtraFunctionDisableGuildTootip ~= true ) then
 				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
 					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
@@ -362,21 +364,17 @@ end)
 -- StatsFrame
 -- Many thanks to Syiana for part of this
 local StatsFrame = CreateFrame("Frame", "$parentStatsFrame", UIParent)
-
-local movable = false
+local movable = true
 local frame_anchor = "TOP"
 local pos_x = -250
 local pos_y = -6
-StatsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-StatsFrame:RegisterEvent("PET_BAR_UPDATE_COOLDOWN")
-StatsFrame:SetScript("OnEvent", function(self, event, ...)
-	if ( event == "PLAYER_ENTERING_WORLD" or event == "PET_BAR_UPDATE_COOLDOWN" ) then
-		if movable == false then
-			StatsFrame:ClearAllPoints()
-			StatsFrame:SetPoint('TOPLEFT', UIParent, "TOPLEFT", 5, -5)
-		end
-	end
-end)
+StatsFrame:SetPoint('TOPLEFT', UIParent, "TOPLEFT", 5, -5)
+StatsFrame:SetMovable(true)
+StatsFrame:EnableMouse(true)
+StatsFrame:SetClampedToScreen(true)
+StatsFrame:RegisterForDrag("LeftButton")
+StatsFrame:SetScript("OnDragStart", StatsFrame.StartMoving)
+StatsFrame:SetScript("OnDragStop", StatsFrame.StopMovingOrSizing)
 
 local CF = CreateFrame("Frame", "$parentFrame", nil)
 CF:RegisterEvent("PLAYER_LOGIN")
@@ -515,7 +513,8 @@ ScaleElements:RegisterEvent("PLAYER_LOGOUT")
 ScaleElements:SetScript("OnEvent", function(self, event, arg1)
 	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" ) then
 		CastingBarFrame:SetScale(1.05)
-		else return nil
+	else 
+		return nil
 	end
 end)
 --------------------------------------------------------------------------
