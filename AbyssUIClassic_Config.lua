@@ -190,7 +190,6 @@ AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds a new bar above 3rd b
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
   AbyssUIClassic_ActionBarInfo:Show()
-  AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(nil)
 end)
 --
 AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
@@ -862,7 +861,7 @@ end)
 -- Minimal ActionBar --
 local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 MinimalActionBar_CheckButton:SetPoint("CENTER", -290, -140)
-MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar *Beta")
+MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
 MinimalActionBar_CheckButton.tooltip = "Minimalist ActionBar (hide a lot of things)"
 MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
 -- OnClick Function
@@ -873,7 +872,7 @@ end)
 -- Fade UI --
 local FadeUI_CheckButton = CreateFrame("CheckButton", "$parentFadeUI_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
 FadeUI_CheckButton:SetPoint("CENTER", -290, -170)
-FadeUI_CheckButton.Text:SetText("|cfff2dc7fMinimalist UI|r")
+FadeUI_CheckButton.Text:SetText("|cfff2dc7fMinimalist UI *Beta|r")
 FadeUI_CheckButton.tooltip = "Fade the UI when you are out of combat ('ATL-CTRL-P' to show frames)"
 FadeUI_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FadeUI)
 -- OnClick Function
