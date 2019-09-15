@@ -81,7 +81,7 @@ Frame:SetWidth(200)
 Frame:SetScale(1.1)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
-Frame:SetText("Blizzard action bars are weird and glitchy when you try to change them.\nI highly recommend you to use Bartender4 or Dominos\nif you want to have a 3x12 or more action bar.\nKeep in mind that this is a attempt to make a better action bar.\nUse by your own risk.")
+Frame:SetText("I highly recommend the use of Bartender4 or Dominos,\nif you want to have a customizable action bar.\nKeep in mind that this is a attempt to make a better action bar and maybe can glitchy.")
 -- Panel 02 (HideElements)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
@@ -178,47 +178,18 @@ end)
 -- AbyssUIClassic Action Bar --
 local AbyssUIClassicNewActionBar3x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar3x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicNewActionBar3x12_CheckButton:SetPoint("TOPLEFT", 10, -170)
-AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("3x12 Actionbar (beta - risk of glitches)")
-AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds a new bar above the Blizzard MainBar (textures will be hide)"
+AbyssUIClassicNewActionBar3x12_CheckButton.Text:SetText("3x12 Actionbar")
+AbyssUIClassicNewActionBar3x12_CheckButton.tooltip = "Adds a new bar above the Blizzard MainBar (you need to activate every blizzard actionbar)"
 AbyssUIClassicNewActionBar3x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12)
-local AbyssUIClassicNewActionBar4x12_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicNewActionBar4x12_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
-AbyssUIClassicNewActionBar4x12_CheckButton:SetPoint("TOPLEFT", 10, -200)
-AbyssUIClassicNewActionBar4x12_CheckButton.Text:SetText("|cff8484844x12 ActionBar (alfa - risk of glitches) *Retail|r")
-AbyssUIClassicNewActionBar4x12_CheckButton.tooltip = "Adds a new bar above 3rd bar"
---AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12)
 -- OnClick Function
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 = self:GetChecked()
   AbyssUIClassic_ActionBarInfo:Show()
 end)
---
-AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnClick", function(self)
-  if AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 ~= true then
-    AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
-  else
-    --AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 = self:GetChecked()
-    --AbyssUIClassic_ActionBarInfo:Show()
-    AbyssUIClassicNewActionBar4x12_CheckButton:SetChecked(nil)
-  end
-end)
 -- After Login/Reload
 AbyssUIClassicNewActionBar3x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
   if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar3x12 == true ) then
-    -- Main Function 3x12
-    --[[
-    local _G = _G
-      for i = 2, 12 do
-        local r = "MultiBarRightButton"
-        local btr = _G[r..i]
-        btr:SetClampedToScreen(true)
-        btr:SetMovable(1)
-        btr:SetUserPlaced(true)
-        btr:ClearAllPoints()
-        btr.ClearAllPoints = function() end
-        btr:SetPoint("LEFT", r..i - 1, "RIGHT", 6, 0)
-      end
-    --]]
     -- MainMenuBar
     MainMenuBar.ClearAllPoints = function() end
     MainMenuBar:SetPoint("BOTTOM", UIParent, "BOTTOM", 250, 10)
@@ -288,29 +259,17 @@ AbyssUIClassicNewActionBar3x12_CheckButton:SetScript("OnEvent", function(self, e
       end
   end
 end)
---[[
-AbyssUIClassicNewActionBar4x12_CheckButton:RegisterEvent("PLAYER_ENTERING_WORLD")
-AbyssUIClassicNewActionBar4x12_CheckButton:SetScript("OnEvent", function(self, event, ...)
-  if ( AbyssUIClassicAddonSettings.AbyssUIClassicNewActionBar4x12 == true  ) then
-    -- Main function 4x12
-    local _G = _G
-      for i = 2, 12 do
-       local l = "MultiBarLeftButton"
-        local btl = _G[l..i]
-        btl:SetClampedToScreen(true)
-        btl:SetMovable(1)
-        btl:SetUserPlaced(true)
-        btl:ClearAllPoints()
-        btl.ClearAllPoints = function() end
-        btl:SetPoint("LEFT", l..i - 1, "RIGHT", 6, 0)
-      end
-      --MultiBarLeft
-      MultiBarLeft.ClearAllPoints = function() end
-      MultiBarLeft:SetPoint("TOPLEFT", MainMenuBar, "BOTTOMLEFT", 46, 180)
-      MultiBarLeft.SetPoint = function() end
-    end
+-- Minimal ActionBar --
+local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel1, "ChatConfigCheckButtonTemplate")
+MinimalActionBar_CheckButton:SetPoint("TOPLEFT", 10, -200)
+MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
+MinimalActionBar_CheckButton.tooltip = "Minimalist actionbar, hide all the textures"
+MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
+-- OnClick Function
+MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
---]]
 -- End
 ------------------------------- Hide Elements ---------------------------------
 -- MicroMenu/Bags --
@@ -858,21 +817,10 @@ KeepUnitBlizzard_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
--- Minimal ActionBar --
-local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-MinimalActionBar_CheckButton:SetPoint("CENTER", -290, -140)
-MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
-MinimalActionBar_CheckButton.tooltip = "Minimalist ActionBar (hide a lot of things)"
-MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
--- OnClick Function
-MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
-  AbyssUIClassic_ReloadFrame:Show()
-end)
 -- Fade UI --
 local FadeUI_CheckButton = CreateFrame("CheckButton", "$parentFadeUI_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-FadeUI_CheckButton:SetPoint("CENTER", -290, -170)
-FadeUI_CheckButton.Text:SetText("|cfff2dc7fMinimalist UI *Beta|r")
+FadeUI_CheckButton:SetPoint("CENTER", -290, -140)
+FadeUI_CheckButton.Text:SetText("|cfff2dc7fFade UI|r")
 FadeUI_CheckButton.tooltip = "Fade the UI when you are out of combat ('ATL-CTRL-P' to show frames)"
 FadeUI_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FadeUI)
 -- OnClick Function
