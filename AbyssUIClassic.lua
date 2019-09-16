@@ -49,8 +49,7 @@ BasicFrames:SetScript("OnEvent", function(self, event, addon)
 			MiniMapLFGFrameBorder,
 			MiniMapBattlefieldBorder,
 			MiniMapMailBorder,
-			MiniMapBorderTop,
-			GameTimeTexture, }) do
+			MiniMapBorderTop, }) do
 			MiniMapWorldMapButton:SetAlpha(0.3)
 			if AbyssUIClassicAddonSettings ~= nil then
 				if AbyssUIClassicAddonSettings.UIVertexColorFrames01 == true then
