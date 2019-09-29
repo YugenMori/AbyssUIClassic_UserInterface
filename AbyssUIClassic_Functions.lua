@@ -8,6 +8,7 @@
 --------------------------------------------------------------------------------
 -- Action Bar Icon Border Remove
 -- Many thanks to Spyrö for part of this
+--[[
 hooksecurefunc("ActionButton_ShowGrid", function(Button)
 	_G[Button:GetName().."NormalTexture"]:SetVertexColor(.4, .4, .4)
 end)
@@ -25,6 +26,7 @@ for i = 1, 12 do
 		end
 	end
 end
+--]]
 ----------------------------------------------------
 -- Class Icons
 hooksecurefunc("UnitFramePortrait_Update", function(self)
@@ -52,7 +54,7 @@ hooksecurefunc("UnitFramePortrait_Update", function(self)
 				self.portrait:SetTexCoord(0, 1, 0, 1)
 			end
 			if t and AbyssUIClassicAddonSettings.UIClassCircles01 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_ARTISTIC")
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_ARTISTIC01")
 				self.portrait:SetTexCoord(unpack(t))
 			elseif t and AbyssUIClassicAddonSettings.UIClassCircles02 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_BRIGHT")
@@ -61,7 +63,7 @@ hooksecurefunc("UnitFramePortrait_Update", function(self)
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_CLASSIC")
 				self.portrait:SetTexCoord(unpack(t))
 			elseif t and AbyssUIClassicAddonSettings.UIClassCircles04 == true then
-				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_CREST")
+				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_ARTISTIC02")
 				self.portrait:SetTexCoord(unpack(t))
 			elseif t and AbyssUIClassicAddonSettings.UIClassCircles05 == true then
 				self.portrait:SetTexture("Interface\\TargetingFrame\\UI-CLASSES-CIRCLES_DARK")
@@ -137,7 +139,6 @@ frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 --frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
-
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
@@ -179,6 +180,13 @@ local function eventHandler(self, event, ...)
 			end
 		end
 	else
+		return nil
+	end
+	-- Remove background
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName == true ) then
+		TargetFrameNameBackground:SetAlpha(0)
+	else
+		--TargetFrameNameBackground:SetAlpha(1)
 		return nil
 	end
 end
