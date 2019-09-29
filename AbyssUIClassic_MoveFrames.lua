@@ -17,7 +17,7 @@ checkAddon:SetScript("OnEvent", function(self, event, addon)
     if ( addon == "ModernQuestWatch" ) then
         table.remove(Moveframes, 1)
         C_Timer.After(5, function()
-            print("|cfffc160aAbyssUIClassic found that ModernQuestWatch is enable, making changes to avoid conflicts...|r")
+            print("|cfffc160aAbyssUIClassic found that ModernQuestWatch is enabled, making changes to avoid conflicts...|r")
         end)
     else
         return nil
