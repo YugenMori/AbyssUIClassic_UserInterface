@@ -141,53 +141,52 @@ frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
-	if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
-		--[[
-		local _, class, c,
-		_, class = UnitClass("player")
-		if PlayerFrame:IsShown() and not PlayerFrame.bg then
-			c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-			local bg = PlayerFrame:CreateTexture()
-			bg:SetPoint("TOPLEFT", PlayerFrameBackground)
-			bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
-			bg:SetTexture(PlayerFrameBackground:GetTexture())
-			bg:SetVertexColor(c.r,c.g,c.b)
-			PlayerFrame.bg = true
-			if ( class == "SHAMAN" ) then
-				bg:SetVertexColor(0/255, 112/255, 222/255)
-			 else 
-			 	bg:SetVertexColor(c.r,c.g,c.b)
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true ) then
+		if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
+			--[[
+			local _, class, c,
+			_, class = UnitClass("player")
+			if PlayerFrame:IsShown() and not PlayerFrame.bg then
+				c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+				local bg = PlayerFrame:CreateTexture()
+				bg:SetPoint("TOPLEFT", PlayerFrameBackground)
+				bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
+				bg:SetTexture(PlayerFrameBackground:GetTexture())
+				bg:SetVertexColor(c.r,c.g,c.b)
+				PlayerFrame.bg = true
+				if ( class == "SHAMAN" ) then
+					bg:SetVertexColor(0/255, 112/255, 222/255)
+				 else 
+				 	bg:SetVertexColor(c.r,c.g,c.b)
+				end
 			end
-		end
-	    if UnitIsPlayer("player") then
-	        c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-	        local _, class = UnitClass("player")
-	        if ( class == "SHAMAN" ) then
-				PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
-			 else 
-			 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
+		    if UnitIsPlayer("player") then
+		        c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+		        local _, class = UnitClass("player")
+		        if ( class == "SHAMAN" ) then
+					PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
+				 else 
+				 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
+				end
+		    end
+		    --]]
+			if UnitIsPlayer("target") then
+				local _, class2 = UnitClass("target")
+				c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+				TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+				if ( class2 == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
+					TargetFrameNameBackground:SetVertexColor(0/255, 112/255, 222/255)
+				 else 
+				 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
+				end
 			end
-	    end
-	    --]]
-		if UnitIsPlayer("target") then
-			local _, class2 = UnitClass("target")
-			c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-			TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
-			if ( class2 == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
-				TargetFrameNameBackground:SetVertexColor(0/255, 112/255, 222/255)
-			 else 
-			 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
-			end
+		else
+			return nil
 		end
 	else
-		return nil
-	end
-	-- Remove background
-	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName == true ) then
-		TargetFrameNameBackground:SetAlpha(0)
-	else
-		--TargetFrameNameBackground:SetAlpha(1)
-		return nil
+		-- Remove background
+		TargetFrameNameBackground:SetAlpha(0.5)
+		TargetFrameNameBackground:SetVertexColor(0/255, 0/255, 0/255)
 	end
 end
 
@@ -321,57 +320,6 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 		end
 	end
 end)
---[[
-local ONUPDATE_INTERVAL = 0.1
-local TimeSinceLastUpdate = 0
-GameTooltip:HookScript("OnUpdate", function(self, elapsed)
-	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-	if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-		TimeSinceLastUpdate = 0	
-		local _, unit = GameTooltip:GetUnit()
-		if  UnitIsPlayer(unit) then
-			local _, class = UnitClass(unit)
-			local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
-			if ( color ~= nil ) then
-				local text  = GameTooltipTextLeft1:GetText()
-				local text2 = GameTooltipTextLeft2:GetText()
-				local text3 = GameTooltipTextLeft3:GetText()
-				local inGuild = GetGuildInfo("mouseover")
-				local englishFaction, localizedFaction = UnitFactionGroup("mouseover")
-				-- Class Color
-				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
-				if ( inGuild ~= nil ) then
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-					if ( GameTooltipTextLeft3 ~= nil ) then
-						GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
-					end
-					if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
-						GameTooltipTextLeft4:SetTextColor(255, 0.1, 0)
-					elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
-						GameTooltipTextLeft4:SetTextColor(0, 0.5, 255)
-					else 
-						return nil
-					end
-				elseif ( inGuild == nil ) then
-					GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-					if ( englishFaction ~= "Neutral" and englishFaction == "Horde" ) then
-						GameTooltipTextLeft3:SetTextColor(255, 0.1, 0)
-					elseif ( englishFaction ~= "Neutral" and englishFaction == "Alliance" ) then
-						GameTooltipTextLeft3:SetTextColor(0, 0.5, 255)
-					else 
-						return nil
-					end
-				else
-					return nil
-				end
-			end
-		end
-	end
-end)
-GameTooltip:SetScript("OnShow", function(self)
-	TimeSinceLastUpdate = 0
-end)
---]]
 ----------------------------------------------------
 -- Tooltip Background and borders
 local TooltipBackground = GameTooltip:CreateTexture(nil, "BACKGROUND", nil, 1)

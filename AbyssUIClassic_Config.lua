@@ -1006,7 +1006,7 @@ end)
 local AbyssUIClassic_HideBackgroundClassColor_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_HideBackgroundClassColor_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetPoint("TOPLEFT", 10, -260)
 AbyssUIClassic_HideBackgroundClassColor_CheckButton.Text:SetText("Default Background")
-AbyssUIClassic_HideBackgroundClassColor_CheckButton.tooltip = "Remove the class color background behind the player names"
+AbyssUIClassic_HideBackgroundClassColor_CheckButton.tooltip = "Remove the class color background behind the player names to default values (Transparent Name needs to be unchecked)"
 AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor)
 -- OnClick Function
 AbyssUIClassic_HideBackgroundClassColor_CheckButton:SetScript("OnClick", function(self)
@@ -1160,7 +1160,7 @@ end)
 local AbyssUIClassic_TransparentName_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_TransparentName_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_TransparentName_CheckButton:SetPoint("TOPLEFT", 200, -290)
 AbyssUIClassic_TransparentName_CheckButton.Text:SetText("Transparent Name")
-AbyssUIClassic_TransparentName_CheckButton.tooltip = "Remove any color in the target name background (Default Background needs to be unchecked)"
+AbyssUIClassic_TransparentName_CheckButton.tooltip = "Remove any color in the target name background"
 AbyssUIClassic_TransparentName_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionTransparentName)
 -- OnClick Function
 AbyssUIClassic_TransparentName_CheckButton:SetScript("OnClick", function(self)
