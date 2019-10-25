@@ -6,7 +6,7 @@
 --
 -- Frames for AbyssUIClassic
 --------------------------------------------------------------------------------
-
+local addonName, addonTable = ...
 -- AbyssUIClassic_AFKCameraFrame
 local AbyssUIClassic_AFKCameraFrame = CreateFrame("Frame", "$parentAbyssUIClassic_AFKCameraFrame", UIParent)
 AbyssUIClassic_AFKCameraFrame:SetFrameStrata("HIGH")
@@ -191,9 +191,9 @@ PlayerInfo_Faction1.text:SetPoint("TOPRIGHT", 0, -50)
 PlayerInfo_Faction1.text:SetText(localizedFaction)
 -- Faction Color
  if ( englishFaction == "Horde" ) then
- 	PlayerInfo_Faction1.text:SetVertexColor(255/255, 0/255, 0/255)
+ 	PlayerInfo_Faction1.text:SetVertexColor(196/255, 30/255, 59/255)
  elseif ( englishFaction == "Alliance" ) then
- 	PlayerInfo_Faction1.text:SetVertexColor(0/255, 0/255, 255/255)
+ 	PlayerInfo_Faction1.text:SetVertexColor(0/255, 112/255, 222/255)
  elseif ( englishFaction == "Neutral" ) then
 	PlayerInfo_Faction1.text:SetVertexColor(255/255, 255/255, 255/255)
  else
@@ -397,17 +397,30 @@ end)
 -- AbyssUIClassicFirstFrame
 AbyssUIClassicFirstFrame = CreateFrame("Frame", "$parentAbyssUIClassicFirstFrame", UIParent)
 AbyssUIClassicFirstFrame:Hide()
-AbyssUIClassicFirstFrame:SetWidth(350)
-AbyssUIClassicFirstFrame:SetHeight(120)
-AbyssUIClassicFirstFrame:SetPoint("CENTER", "UIParent", "CENTER", 0, 200)
+AbyssUIClassicFirstFrame:SetWidth(GetScreenWidth())
+AbyssUIClassicFirstFrame:SetHeight(GetScreenHeight())
+AbyssUIClassicFirstFrame:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
 AbyssUIClassicFirstFrame:EnableMouse(true)
 AbyssUIClassicFirstFrame:SetFrameStrata("HIGH")
 AbyssUIClassicFirstFrame.text = AbyssUIClassicFirstFrame.text or AbyssUIClassicFirstFrame:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-AbyssUIClassicFirstFrame.text:SetScale(1.5)
+AbyssUIClassicFirstFrame.text:SetScale(5)
 AbyssUIClassicFirstFrame.text:SetAllPoints(true)
 AbyssUIClassicFirstFrame.text:SetJustifyH("CENTER")
 AbyssUIClassicFirstFrame.text:SetJustifyV("CENTER")
-AbyssUIClassicFirstFrame.text:SetText("Thanks for using |cff0d75d4AbyssUIClassic!|r\nThe |cff5f545eDark|r Blizzard UI revamp.\n|cffffcc00'Confirm'|r to ReloadUI")
+AbyssUIClassicFirstFrame.text:SetText("Thank you for choosing AbyssUI|cff0d75d4Classic|r!")
+----------------------------------------------------
+local Subtittle = CreateFrame("Frame", "$parentSubtittle", AbyssUIClassicFirstFrame)
+Subtittle:SetWidth(GetScreenWidth())
+Subtittle:SetHeight(GetScreenHeight())
+Subtittle:SetPoint("CENTER", AbyssUIClassicFirstFrame, "CENTER", 0, -50)
+Subtittle:EnableMouse(false)
+Subtittle:SetFrameStrata("HIGH")
+Subtittle.text = Subtittle.text or Subtittle:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+Subtittle.text:SetScale(3)
+Subtittle.text:SetAllPoints(true)
+Subtittle.text:SetJustifyH("CENTER")
+Subtittle.text:SetJustifyV("CENTER")
+Subtittle.text:SetText("The improved World of Warcraft user interface")
 ----------------------------------------------------
 local AbyssUIClassicBorder = AbyssUIClassicFirstFrame:CreateTexture(nil, "BACKGROUND")
 AbyssUIClassicBorder:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
@@ -425,19 +438,131 @@ Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 Texture:SetAllPoints(AbyssUIClassicFirstFrame)
 AbyssUIClassicFirstFrame.texture = Texture
 ----------------------------------------------------
+local CloseButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicFirstFrame, "UIPanelButtonTemplate")
+CloseButton:SetHeight(40)
+CloseButton:SetWidth(40)
+CloseButton:SetPoint("TOPRIGHT", AbyssUIClassicFirstFrame, "TOPRIGHT", 0, 0)
+CloseButton:SetText("x")
+CloseButton:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+----------------------------------------------------
+local BorderCloseButton = CloseButton:CreateTexture(nil, "ARTWORK")
+BorderCloseButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+BorderCloseButton:SetAllPoints(CloseButton)
+BorderCloseButton:SetVertexColor(0.34, 0.34, 0.34, 1)
+CloseButton:SetScript("OnClick", function()
+	AbyssUIClassicFirstFrame:Hide()
+	AbyssUIClassicSecondFrame:Show()
+end)
+----------------------------------------------------
 local FrameButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicFirstFrame, "UIPanelButtonTemplate")
-FrameButton:SetHeight(24)
-FrameButton:SetWidth(70)
-FrameButton:SetPoint("BOTTOM", AbyssUIClassicFirstFrame, "BOTTOM", 0, 10)
-FrameButton:SetText("Confirm")
+FrameButton:SetHeight(GetScreenHeight())
+FrameButton:SetWidth(GetScreenWidth())
+FrameButton:SetPoint("CENTER", AbyssUIClassicFirstFrame, "CENTER", 0, 0)
 FrameButton:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+FrameButton:SetAlpha(0)
+FrameButton:SetScript("OnClick", function()
+	UIFrameFadeIn(AbyssUIClassicFirstFrame, 1, 1, 0)
+	C_Timer.After(1, function()
+		AbyssUIClassicFirstFrame:Hide()
+		UIFrameFadeIn(AbyssUIClassicSecondFrame, 1, 0, 1)
+	end)
+end)
+----------------------------------------------------
+-- AbyssUIClassicSecondFrame
+AbyssUIClassicSecondFrame = CreateFrame("Frame", "$parentAbyssUIClassicSecondFrame", UIParent)
+AbyssUIClassicSecondFrame:Hide()
+AbyssUIClassicSecondFrame:SetWidth(GetScreenWidth())
+AbyssUIClassicSecondFrame:SetHeight(GetScreenHeight())
+AbyssUIClassicSecondFrame:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+AbyssUIClassicSecondFrame:EnableMouse(true)
+AbyssUIClassicSecondFrame:SetFrameStrata("HIGH")
+AbyssUIClassicSecondFrame.text = AbyssUIClassicSecondFrame.text or AbyssUIClassicSecondFrame:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+AbyssUIClassicSecondFrame.text:SetScale(2)
+AbyssUIClassicSecondFrame.text:SetAllPoints(true)
+AbyssUIClassicSecondFrame.text:SetJustifyH("CENTER")
+AbyssUIClassicSecondFrame.text:SetJustifyV("CENTER")
+AbyssUIClassicSecondFrame.text:SetText("First we need to save the variables"
+.." of the interface for the first use of AbyssUI.\n\nYou can choose to configure by yourself (Confirm)"
+.." or use the recommended settings (Recommended).\n\nIf you choose to configure,"
+.." the game will reload and then you can go to the configuration panel by typing '/abyssui config'.\n\n"
+.."If you choose the recommended settings, the UI will load the settings that are the mostly"
+.." recommended to use.\nYou always can configure the interface the way you would like by"
+.." typing /abyssui config in the chat.")
+----------------------------------------------------
+local AbyssUIClassicBorder = AbyssUIClassicSecondFrame:CreateTexture(nil, "BACKGROUND")
+AbyssUIClassicBorder:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+AbyssUIClassicBorder:SetPoint("TOPLEFT", -3, 3)
+AbyssUIClassicBorder:SetPoint("BOTTOMRIGHT", 3, -3)
+AbyssUIClassicBorder:SetVertexColor(0.2, 0.2, 0.2, 0.6)
+----------------------------------------------------
+local BorderBody = AbyssUIClassicSecondFrame:CreateTexture(nil, "ARTWORK")
+BorderBody:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+BorderBody:SetAllPoints(AbyssUIClassicSecondFrame)
+BorderBody:SetVertexColor(0.34, 0.34, 0.34, 0.7)
+----------------------------------------------------
+local Texture = AbyssUIClassicSecondFrame:CreateTexture(nil, "BACKGROUND")
+Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+Texture:SetAllPoints(AbyssUIClassicSecondFrame)
+AbyssUIClassicSecondFrame.texture = Texture
+----------------------------------------------------
+local CloseButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
+CloseButton:SetHeight(40)
+CloseButton:SetWidth(40)
+CloseButton:SetPoint("TOPRIGHT", AbyssUIClassicSecondFrame, "TOPRIGHT", 0, 0)
+CloseButton:SetText("x")
+CloseButton:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+----------------------------------------------------
+local BorderCloseButton = CloseButton:CreateTexture(nil, "ARTWORK")
+BorderCloseButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+BorderCloseButton:SetAllPoints(CloseButton)
+BorderCloseButton:SetVertexColor(0.34, 0.34, 0.34, 1)
+CloseButton:SetScript("OnClick", function()
+	AbyssUIClassicSecondFrame:Hide()
+	ReloadUI()
+end)
+----------------------------------------------------
+local FrameButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
+FrameButton:SetHeight(40)
+FrameButton:SetWidth(120)
+FrameButton:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", -100, -200)
+FrameButton:SetText("Confirm")
 ----------------------------------------------------
 local BorderButton = FrameButton:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButton)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButton:SetScript("OnClick", function()
-	AbyssUIClassicFirstFrame:Hide()
+	AbyssUIClassicSecondFrame:Hide()
+	ReloadUI()
+end)
+----------------------------------------------------
+local FrameButton2 = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
+FrameButton2:SetHeight(40)
+FrameButton2:SetWidth(120)
+FrameButton2:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", 100, -200)
+FrameButton2:SetText("Recommended")
+----------------------------------------------------
+local BorderButton = FrameButton2:CreateTexture(nil, "ARTWORK")
+BorderButton:SetAllPoints(FrameButton2)
+FrameButton2:SetScript("OnClick", function()
+	-- Set
+	for i, v in pairs {
+		addonTable.CameraSmooth50,
+		addonTable.InspectTarget,
+		addonTable.AutoSellGray,
+		addonTable.DisableHealingSpam,
+		addonTable.ConfirmPopUps,
+		addonTable.UnitFrameImproved,
+	} do
+	 	v:SetChecked(true)
+	end
+	-- Get
+	AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 = addonTable.CameraSmooth50:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget = addonTable.InspectTarget:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionSellGray = addonTable.AutoSellGray:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionDisableHealingSpam = addonTable.DisableHealingSpam:GetChecked()
+	--AbyssUIClassicAddonSettings.ExtraFunctionInstanceLeave = addonTable.InstanceLeave:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps = addonTable.ConfirmPopUps:GetChecked()
+	AbyssUIClassicAddonSettings.UnitFrameImproved = addonTable.UnitFrameImproved:GetChecked()
+	AbyssUIClassicSecondFrame:Hide()
 	ReloadUI()
 end)
 ----------------------------------------------------
@@ -757,7 +882,7 @@ AbyssUIClassicSave:SetScript("OnEvent", function(self, event, arg1)
 		else
 			local name, elapsed = UnitName("player"), time() - AbyssUIClassicProfile
 			C_Timer.After(4, function()
-				print("Thanks for using |cff0d75d4AbyssUIClassic!|r The |cff5f545eDark|r Blizzard UI revamp.")
+				print("Thank you for choosing |cff0d75d4AbyssUIClassic!|r\nThe improved World of Warcraft user interface.")
 			end)
 			C_Timer.After(5, function()
 				AbyssUIClassicDailyInfo()

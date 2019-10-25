@@ -6,8 +6,6 @@
 --
 -- Dark Minimalist UI for World of Warcraft
 --------------------------------------------------------------------------------
-
---------------------
 -- Darker UI Core --
 --------------------
 local BasicFrames = CreateFrame("Frame")

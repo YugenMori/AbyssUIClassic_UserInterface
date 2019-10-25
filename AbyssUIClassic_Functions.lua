@@ -5,28 +5,6 @@
 -- Hope you like my addOn ^^
 --
 -- Functions for AbyssUIClassic
---------------------------------------------------------------------------------
--- Action Bar Icon Border Remove
--- Many thanks to Spyrö for part of this
---[[
-hooksecurefunc("ActionButton_ShowGrid", function(Button)
-	_G[Button:GetName().."NormalTexture"]:SetVertexColor(.4, .4, .4)
-end)
-
-for _, Bar in pairs({ "Action",
-	"MultiBarBottomLeft",
-	"MultiBarBottomRight",
-	"MultiBarLeft",
-	"MultiBarRight",
-	"PetAction",
-	"Buff", }) do
-for i = 1, 12 do
-	local Button = Bar.."Button"..i
-		if _G[Button] then _G[Button.."Icon"]:SetTexCoord(0.05, 0.95, 0.05, 0.95)
-		end
-	end
-end
---]]
 ----------------------------------------------------
 -- Class Icons
 hooksecurefunc("UnitFramePortrait_Update", function(self)
@@ -141,35 +119,8 @@ frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
-	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true ) then
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true or AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
 		if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
-			--[[
-			local _, class, c,
-			_, class = UnitClass("player")
-			if PlayerFrame:IsShown() and not PlayerFrame.bg then
-				c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-				local bg = PlayerFrame:CreateTexture()
-				bg:SetPoint("TOPLEFT", PlayerFrameBackground)
-				bg:SetPoint("BOTTOMRIGHT", PlayerFrameBackground, 0, 22)
-				bg:SetTexture(PlayerFrameBackground:GetTexture())
-				bg:SetVertexColor(c.r,c.g,c.b)
-				PlayerFrame.bg = true
-				if ( class == "SHAMAN" ) then
-					bg:SetVertexColor(0/255, 112/255, 222/255)
-				 else 
-				 	bg:SetVertexColor(c.r,c.g,c.b)
-				end
-			end
-		    if UnitIsPlayer("player") then
-		        c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-		        local _, class = UnitClass("player")
-		        if ( class == "SHAMAN" ) then
-					PlayerFrameBackground:SetVertexColor(0/255, 112/255, 222/255)
-				 else 
-				 	PlayerFrameBackground:SetVertexColor(c.r,c.g,c.b)
-				end
-		    end
-		    --]]
 			if UnitIsPlayer("target") then
 				local _, class2 = UnitClass("target")
 				c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
@@ -211,19 +162,23 @@ CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, 0)
 CastingBarFrame.update = .1
 
 CastingBarFrame:HookScript("OnUpdate", function(self, elapsed)
-    if not self.timer then return end
-    if self.update and self.update < elapsed then
-        if self.casting then
-            self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
-        elseif self.channeling then
-            self.timer:SetText(format("%.1f", max(self.value, 0)))
-        else
-            self.timer:SetText("")
-        end
-        self.update = .1
-    else
-        self.update = self.update - elapsed
-    end
+    if ( AbyssUIClassicAddonSettings.HideCastTimer ~= true ) then
+	    if not self.timer then return end
+	    if self.update and self.update < elapsed then
+	        if self.casting then
+	            self.timer:SetText(format("%2.1f/%1.1f", max(self.maxValue - self.value, 0), self.maxValue))
+	        elseif self.channeling then
+	            self.timer:SetText(format("%.1f", max(self.value, 0)))
+	        else
+	            self.timer:SetText("")
+	        end
+	        self.update = .1
+	    else
+	        self.update = self.update - elapsed
+	    end
+	else
+		return nil
+	end
 end)
 ----------------------------------------------------
 -- Minimap Tweaks
@@ -259,37 +214,10 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
 		if ( color ~= nil ) then
-			--local inGuild = GetGuildInfo(unit)
-			--local isPvP = UnitIsPVP(unit)
 			local text  = GameTooltipTextLeft1:GetText()
 			local text2 = GameTooltipTextLeft2:GetText()
 			local text3 = GameTooltipTextLeft3:GetText()
 			local text4 = GameTooltipTextLeft4:GetText()
-			--[[
-			if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
-				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
-				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-			else
-				GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
-				GameTooltipTextLeft2:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text2:match("|cff\x\x\x\x\x\x(.+)|r") or text2)
-			end
-			if ( inGuild ~= nil and isPvP == false ) then
-				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
-				else
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
-				end
-			end
-			if ( inGuild ~= nil and isPvP == true and AbyssUIClassicAddonSettings.ExtraFunctionDisableGuildTootip ~= true ) then
-				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
-					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
-				else
-					GameTooltipTextLeft3:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text3:match("|cff\x\x\x\x\x\x(.+)|r") or text3)
-					GameTooltipTextLeft4:SetFormattedText("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text4:match("|cff\x\x\x\x\x\x(.+)|r") or text4)
-				end
-			end
-			--]]
 			if ( text ~= nil and text2 ~= nil ) then
 				if ( class == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true ) then
 					GameTooltipTextLeft1:SetFormattedText("|cff%02x%02x%02x%s|r", 0, 112, 222, text:match("|cff\x\x\x\x\x\x(.+)|r") or text)
@@ -502,25 +430,6 @@ ScaleElements:SetScript("OnEvent", function(self, event, arg1)
 		return nil
 	end
 end)
---------------------------------------------------------------------------
--- Tooltip Instant Fade
--- Many thanks to sacrife for part of this
---[[
-GameTooltip.FadeOut = function(self)
-	GameTooltip:Hide()
-end
-local hasUnit
-local updateFrame = CreateFrame("Frame", "$parentUpdateFrame", nil)
-updateFrame:SetScript("OnUpdate", function(self)
-	local _, unit = GameTooltip:GetUnit()
-	if hasUnit and not unit then
-		GameTooltip:Hide()
-		hasUnit = nil
-	elseif unit then
-		hasUnit = true
-	end
-end)
---]]
 ----------------------------------------------------
 -- Auto Repair/Sell Grey
 local AbyssUIClassic_AutoSell = CreateFrame("Frame", "$parentparentAbyssUIClassic_AutoSell", nil)
@@ -554,6 +463,7 @@ AbyssUIClassic_AutoSell:SetScript("OnEvent", function()
 end)
 ----------------------------------------------------
 -- Target Mob(Enemy) Health Bar Color
+--[[ OLD script
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 
@@ -574,13 +484,60 @@ frame:SetScript("OnEvent", eventHandler)
 for _, BarTextures in pairs({ TargetFrameNameBackground }) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
+--]]
+--New Script (beta)
+local frame = CreateFrame("Frame", "$parentFrame", nil)
+frame:RegisterEvent("PLAYER_TARGET_CHANGED")
+local function eventHandler(self, event, ...)
+	if ( event == "PLAYER_TARGET_CHANGED" ) then
+		if ( UnitReaction("player", "target") ~= nil ) then
+			local target = UnitReaction("player", "target")
+			if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
+				TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
+			elseif ( UnitIsPlayer("target") == false and target == 4 ) then
+				TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
+			elseif ( UnitIsPlayer("target") == false and target > 4 ) then
+				TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
+			else
+				return nil
+			end
+		else 
+			return nil
+		end
+	else
+		return nil
+	end
+end
+frame:SetScript("OnEvent", eventHandler)
+for _, BarTextures in pairs({ TargetFrameNameBackground, }) do
+	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
+end
 ----------------------------------------------------
 -- Keep the color when health changes
+--[[ Old 
 hooksecurefunc("HealthBar_OnValueChanged", function()
 	if UnitIsEnemy("player", "target") and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) then
 		TargetFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
 	elseif not (UnitIsEnemy("player", "target")) and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) and UnitReaction("player", "target") == 4 then
 		TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
+	end
+end)
+--]]
+-- New (beta)
+hooksecurefunc("HealthBar_OnValueChanged", function()
+	if ( UnitReaction("player", "target") ~= nil ) then
+		local target = UnitReaction("player", "target")
+		if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
+			TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
+		elseif ( UnitIsPlayer("target") == false and target == 4 ) then
+			TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
+		elseif ( UnitIsPlayer("target") == false and target > 4 ) then
+			TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
+		else
+			return nil
+		end
+	else 
+		return nil
 	end
 end)
 ----------------------------------------------------
@@ -589,23 +546,32 @@ function AbyssUIClassicStart()
 	AbyssUIClassicFirstFrame:Show()
 end
 ----------------------------------------------------
--- ActionBarScale and Minimap
-local frame = CreateFrame("Frame", "$parentFrame", UIParent)
-MinimapCluster:EnableMouse( false )
-MinimapCluster:SetParent( frame )
-MinimapCluster:SetFrameStrata( frame:GetFrameStrata() )
-MinimapCluster:SetFrameLevel( frame:GetFrameLevel()+1 )
-
-MinimapCluster:SetMovable( true )
-MinimapCluster:StartMoving()
-MinimapCluster:StopMovingOrSizing()
-
-hooksecurefunc(MultiBarRight, "SetScale", function(self, scale)
-	if scale < 1 then self:SetScale(1) end
+-- UI Scale Elements (On Load)
+local ScaleElements = CreateFrame("Frame", "$parentScaleElements", nil)
+ScaleElements:RegisterEvent("ADDON_LOADED")
+ScaleElements:RegisterEvent("PLAYER_LOGOUT")
+ScaleElements:SetScript("OnEvent", function(self, event, arg1)
+	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" ) then
+		CastingBarFrame:SetScale(1.05)
+	else 
+		return nil
+	end
 end)
-
-hooksecurefunc(MultiBarLeft, "SetScale", function(self, scale)
-	if scale < 1 then self:SetScale(1) end
+-- Pixel Perfect
+local PixelPerfect = CreateFrame("Frame", "$parentPixelPerfect", nil)
+PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
+PixelPerfect:SetScript("OnEvent", function(self, event, arg1)
+if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionPixelPerfect ~= true) then
+		SetCVar("useUiScale", 0)
+		local sv = GetScreenHeight()
+		if ( sv >= 768 ) then 
+			UIParent:SetScale(768/GetScreenHeight())
+		else 
+			return nil
+		end
+	else 
+		return nil
+	end
 end)
 ----------------------------------------------------
 -- Color Picker 
@@ -774,6 +740,22 @@ AbyssUIClassic_MinimalActionBar:SetScript("OnEvent", function(self, event, ...)
 	    	TalentMicroButton:SetAlpha(1)
 	    end
 	else 
+		return nil
+	end
+end)
+-- Elite Portrait
+local AbyssUIClassic_ElitePortrait = CreateFrame("Button", '$parentAbyssUIClassic_ElitePortrait', nil)
+AbyssUIClassic_ElitePortrait:RegisterEvent("PLAYER_ENTERING_WORLD")
+AbyssUIClassic_ElitePortrait:SetScript("OnEvent", function(self, event, ...)
+    if ( AbyssUIClassicAddonSettings.ElitePortrait == true and AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
+    	PlayerFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Elite")
+    	TargetFrameTextureFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-RareMob")
+    	--FocusFrameTextureFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-RareMob")
+	elseif ( AbyssUIClassicAddonSettings.ElitePortrait == true and AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
+		PlayerFrameTexture:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\UI-TargetingFrame-Elite")
+	    TargetFrameTextureFrameTexture:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\UI-TargetingFrame-Rare")
+	    --FocusFrameTextureFrameTexture:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\UI-TargetingFrame-Rare")
+	else
 		return nil
 	end
 end)
