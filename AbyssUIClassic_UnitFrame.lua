@@ -66,7 +66,11 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				local localizedClass, englishClass = UnitClass(unit);
 				local classColor = RAID_CLASS_COLORS[englishClass];
 				if ( classColor ) then
-					r, g, b = classColor.r, classColor.g, classColor.b;
+					if ( englishClass == "SHAMAN" and AbyssUIClassicAddonSettings.ExtraFunctionShamanPink ~= true) then
+						r, g, b = 0/255, 112/255, 222/255
+					 else 
+						r, g, b = classColor.r, classColor.g, classColor.b;
+					end
 				else
 					if ( UnitIsFriend("player", unit) ) then
 						r, g, b = 0.0, 1.0, 0.0;

@@ -419,18 +419,6 @@ function AbyssUIClassic_StatsFrames1Show()
 	StatsFrame:Show()
 end
 ----------------------------------------------------
--- UI Scale Elements
-local ScaleElements = CreateFrame("Frame", "$parentScaleElements", nil)
-ScaleElements:RegisterEvent("ADDON_LOADED")
-ScaleElements:RegisterEvent("PLAYER_LOGOUT")
-ScaleElements:SetScript("OnEvent", function(self, event, arg1)
-	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" ) then
-		CastingBarFrame:SetScale(1.05)
-	else 
-		return nil
-	end
-end)
-----------------------------------------------------
 -- Auto Repair/Sell Grey
 local AbyssUIClassic_AutoSell = CreateFrame("Frame", "$parentparentAbyssUIClassic_AutoSell", nil)
 AbyssUIClassic_AutoSell:RegisterEvent("MERCHANT_SHOW")
@@ -463,29 +451,6 @@ AbyssUIClassic_AutoSell:SetScript("OnEvent", function()
 end)
 ----------------------------------------------------
 -- Target Mob(Enemy) Health Bar Color
---[[ OLD script
-local frame = CreateFrame("Frame", "$parentFrame", nil)
-frame:RegisterEvent("PLAYER_TARGET_CHANGED")
-
-local function eventHandler(self, event, ...)
-	if ( event == "PLAYER_TARGET_CHANGED") then
-		if UnitIsEnemy("player", "target") and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) then
-			TargetFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-		elseif not (UnitIsEnemy("player", "target")) and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) and UnitReaction("player", "target") == 4 then
-			TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
-		end
-	else
-		return nil
-	end
-end
-
-frame:SetScript("OnEvent", eventHandler)
-
-for _, BarTextures in pairs({ TargetFrameNameBackground }) do
-	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
-end
---]]
---New Script (beta)
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 local function eventHandler(self, event, ...)
@@ -514,16 +479,6 @@ for _, BarTextures in pairs({ TargetFrameNameBackground, }) do
 end
 ----------------------------------------------------
 -- Keep the color when health changes
---[[ Old 
-hooksecurefunc("HealthBar_OnValueChanged", function()
-	if UnitIsEnemy("player", "target") and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) then
-		TargetFrameHealthBar:SetStatusBarColor(208/255, 23/255, 42/255)
-	elseif not (UnitIsEnemy("player", "target")) and not (UnitIsFriend("player", "target")) and not (UnitIsPlayer("target")) and UnitReaction("player", "target") == 4 then
-		TargetFrameHealthBar:SetStatusBarColor(244/255, 243/255, 119/255)
-	end
-end)
---]]
--- New (beta)
 hooksecurefunc("HealthBar_OnValueChanged", function()
 	if ( UnitReaction("player", "target") ~= nil ) then
 		local target = UnitReaction("player", "target")
