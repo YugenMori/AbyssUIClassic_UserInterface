@@ -516,7 +516,7 @@ end)
 local PixelPerfect = CreateFrame("Frame", "$parentPixelPerfect", nil)
 PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
 PixelPerfect:SetScript("OnEvent", function(self, event, arg1)
-if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionPixelPerfect ~= true) then
+if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionPixelPerfect == true) then
 		SetCVar("useUiScale", 0)
 		local sv = GetScreenHeight()
 		if ( sv >= 768 ) then 
