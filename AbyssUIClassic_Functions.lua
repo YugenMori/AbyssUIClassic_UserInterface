@@ -115,11 +115,10 @@ end)
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
---frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
-	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true or AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true ) then
 		if ( AbyssUIClassicAddonSettings.ExtraFunctionHideBackgroundClassColor ~= true ) then
 			if UnitIsPlayer("target") then
 				local _, class2 = UnitClass("target")
@@ -130,13 +129,15 @@ local function eventHandler(self, event, ...)
 				 else 
 				 	TargetFrameNameBackground:SetVertexColor(c.r,c.g,c.b)
 				end
+			else
+				return nil
 			end
 		else
 			return nil
 		end
 	else
 		-- Remove background
-		TargetFrameNameBackground:SetAlpha(0.5)
+		TargetFrameNameBackground:SetAlpha(0)
 		TargetFrameNameBackground:SetVertexColor(0/255, 0/255, 0/255)
 	end
 end
@@ -454,7 +455,37 @@ end)
 local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 local function eventHandler(self, event, ...)
-	if ( event == "PLAYER_TARGET_CHANGED" ) then
+	if ( AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
+		if ( event == "PLAYER_TARGET_CHANGED" ) then
+			if ( UnitReaction("player", "target") ~= nil ) then
+				local target = UnitReaction("player", "target")
+				if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
+					TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
+				elseif ( UnitIsPlayer("target") == false and target == 4 ) then
+					TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
+				elseif ( UnitIsPlayer("target") == false and target > 4 ) then
+					TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
+				else
+					return nil
+				end
+			else 
+				return nil
+			end
+		else
+			return nil
+		end
+	else
+		return nil
+	end
+end
+frame:SetScript("OnEvent", eventHandler)
+for _, BarTextures in pairs({ TargetFrameNameBackground, }) do
+	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
+end
+----------------------------------------------------
+-- Keep the color when health changes
+hooksecurefunc("HealthBar_OnValueChanged", function()
+	if ( AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
 		if ( UnitReaction("player", "target") ~= nil ) then
 			local target = UnitReaction("player", "target")
 			if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
@@ -471,29 +502,7 @@ local function eventHandler(self, event, ...)
 		end
 	else
 		return nil
-	end
-end
-frame:SetScript("OnEvent", eventHandler)
-for _, BarTextures in pairs({ TargetFrameNameBackground, }) do
-	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
-end
-----------------------------------------------------
--- Keep the color when health changes
-hooksecurefunc("HealthBar_OnValueChanged", function()
-	if ( UnitReaction("player", "target") ~= nil ) then
-		local target = UnitReaction("player", "target")
-		if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
-			TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
-		elseif ( UnitIsPlayer("target") == false and target == 4 ) then
-			TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
-		elseif ( UnitIsPlayer("target") == false and target > 4 ) then
-			TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
-		else
-			return nil
-		end
-	else 
-		return nil
-	end
+	end		
 end)
 ----------------------------------------------------
 -- Start Function
@@ -716,13 +725,18 @@ AbyssUIClassic_ElitePortrait:SetScript("OnEvent", function(self, event, ...)
 end)
 ----------------------------------------------------
 -- DailyInfo Function
-function AbyssUIClassicDailyInfo()
-	print("\n|cfff2dc7f<< AbyssUIClassic Daily Info >>|r")
-	C_Timer.After(0.5, function ()
+-- DailyInfo Function
+local AbyssUIClassicDailyInfo = CreateFrame("Frame")
+AbyssUIClassicDailyInfo:RegisterEvent("PLAYER_LOGIN")
+AbyssUIClassicDailyInfo:SetScript("OnEvent", function(self, event, arg1)
+	C_Timer.After(3, function()
+		print("Thank you for choosing |cff0d75d4AbyssUIClassic|r")
+		print("The improved World of Warcraft user interface.")
+	end)
+	C_Timer.After(4, function()
 		--local HonorLevel = UnitHonorLevel("player")
 		local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
-		print("\n|cfff2dc7f<< AbyssUIClassic Daily Info >>|r")
-		
+		print("|cfff2dc7f~ AbyssUIClassic Daily Info ~|r")
 		if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
 			print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
 		else
@@ -731,9 +745,14 @@ function AbyssUIClassicDailyInfo()
 		--print("|cfff2dc7fHonor Level: |r|cffffcc00" .. HonorLevel .. "|r")
 		--print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
 		print("|cfff2dc7fWoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
-		print("|cfff2dc7fAbyssUI Version: |r|cffffcc00" .. AddonVersion .. "|r")
+		print("|cfff2dc7fAbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
+		if ( AbyssUIClassicProfile ~= nil) then 
+			local name, elapsed = UnitName("player"), time() - AbyssUIClassicProfile
+			print("|cfff2dc7fTime since last login: |r" .. name .. " you were gone for |cffffcc00" .. SecondsToTime(elapsed) .. "|r")
+			print("Type |cffffcc00/abyssui|r for a list of commands")
+		end
 	end)
+end)
 
-end
 ----------------------------------------------------
 -- End

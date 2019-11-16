@@ -117,22 +117,6 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				return nil
 			end
 		end
-		--[[
-		local eventVehicleHandle = CreateFrame("Frame", "$parent_eventVehicleHandle", nil)
-		eventVehicleHandle:RegisterEvent("UNIT_EXITED_VEHICLE")
-		eventVehicleHandle:SetScript("OnEvent", function(self, event, ...)
-			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
-				C_Timer.After(0.1, function () 
-					PlayerFrameHealthBar:SetWidth(119);
-					PlayerFrameHealthBar:SetHeight(29);
-					PlayerFrameHealthBar:SetPoint("TOPLEFT", PlayerFrame,"TOPLEFT", 106, -22);
-					PlayerFrameHealthBarText:SetPoint("CENTER", 50, 6);
-				end)
-			else
-				return nil
-			end
-		end)
-		--]]
 		-- TargetFrameStyle
 		local function UnitFramesImproved_Style_TargetFrame(self)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
@@ -283,8 +267,8 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 					for i, v in pairs ({
 						PlayerName,
 						TargetFrameTextureFrameName, }) do 
-						v:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
-						v:SetVertexColor(255, 239, 203)
+						v:SetFont("Fonts\\FRIZQT__.TTF", 10, "OUTLINE")
+						--v:SetVertexColor(255, 239, 203)
 					end
 				end
 			else
@@ -372,6 +356,17 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				return nil
 			end
 		end
+		--StatusBarTextString
+		local function CreateStatusBarText(name, parentName, parent, point, x, y)
+			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
+				local fontString = parent:CreateFontString(parentName..name, nil, "TextStatusBarText")
+				fontString:SetPoint(point, parent, point, x, y)
+				
+				return fontString
+			else
+				return nil
+			end
+		end
 		-- EnableFrame
 		local function EnableUnitFramesImproved()
 			-- Generic status text hook
@@ -403,42 +398,46 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				UnitFramesImproved_Style_TargetFrame(FocusFrame);
 			end
 			if (not FocusFrame) then
-				UnitFramesImproved_Style_TargetOfTargetFrame();			
+				UnitFramesImproved_Style_TargetOfTargetFrame();
 				-- Add TargetFrame status text for classic
 				if (not FocusFrame) then
 					-- Update some values
 					TextStatusBar_UpdateTextString(PlayerFrame.healthbar);
 					TextStatusBar_UpdateTextString(PlayerFrame.manabar);
 					-- Don't force text on target
-					--[[ 
 					TargetFrameHealthBar.TextString = CreateStatusBarText("Text", "TargetFrameHealthBar", TargetFrameTextureFrame, "CENTER", -50, 3)
 					TargetFrameHealthBar.LeftText = CreateStatusBarText("TextLeft", "TargetFrameHealthBar", TargetFrameTextureFrame, "LEFT", 8, 3)
 					TargetFrameHealthBar.RightText = CreateStatusBarText("TextRight", "TargetFrameHealthBar", TargetFrameTextureFrame, "RIGHT", -110, 3)
 					
 					TargetFrameManaBar.TextString = CreateStatusBarText("Text", "TargetFrameManaBar", TargetFrameTextureFrame, "CENTER", -50, -8)
 					TargetFrameManaBar.LeftText = CreateStatusBarText("TextLeft", "TargetFrameManaBar", TargetFrameTextureFrame, "LEFT", 8, -8)
-					TargetFrameManaBar.RightText = CreateStatusBarText("TextRight", "TargetFrameManaBar", TargetFrameTextureFrame, "RIGHT", -110, -8)
-					--]]
+					TargetFrameManaBar.RightText = CreateStatusBarText("TextRight", "TargetFrameManaBar", TargetFrameTextureFrame, "RIGHT", -110, -8)	
 				end
 			else
 				return nil
 			end
 		end
 		-- Create the addon main instance
-		local UnitFramesImproved = CreateFrame('Button', 'UnitFramesImproved');
-			-- Event listener to make sure we enable the addon at the right time
-		function UnitFramesImproved:PLAYER_ENTERING_WORLD()
-			-- Set some default settings
-			if (characterSettings == nil) then
-				UnitFramesImproved_LoadDefaultSettings();
-			end
+		local UnitFramesImprovedSettings = CreateFrame('Button', 'UnitFramesImproved');
+		-- Event listener to make sure we enable the addon at the right time
+		UnitFramesImprovedSettings:RegisterEvent("PLAYER_ENTERING_WORLD")
+		UnitFramesImprovedSettings:SetScript("OnEvent", function(self, event)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
+				-- Set some default settings
+				if (characterSettings == nil) then
+					UnitFramesImproved_LoadDefaultSettings();
+				end
 				EnableUnitFramesImproved();
+			else
+				return nil
 			end
-		end
-		function UnitFramesImproved:VARIABLES_LOADED()
+		end)
+		local UnitFramesImprovedApplySettings = CreateFrame('Button', 'UnitFramesImproved');
+		-- Event listener to make sure we enable the addon at the right time
+		UnitFramesImprovedApplySettings:RegisterEvent("VARIABLES_LOADED")
+		UnitFramesImprovedApplySettings:SetScript("OnEvent", function(self, event)
 			-- Set some default settings
-			if (characterSettings == nil) then
+			if ( characterSettings == nil ) then
 				UnitFramesImproved_LoadDefaultSettings();
 			end
 			if (not (characterSettings["PlayerFrameAnchor"] == nil)) then
@@ -449,25 +448,20 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				characterSettings["PlayerFrameAnchor"] = nil;
 			end
 			UnitFramesImproved_ApplySettings(characterSettings);
-		end
-		--StatusBarTextString
-		local function CreateStatusBarText(name, parentName, parent, point, x, y)
+		end)
+		-- Bootstrap
+		--[[
+		local function UnitFramesImproved_StartUp(self)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
-				local fontString = parent:CreateFontString(parentName..name, nil, "TextStatusBarText")
-				fontString:SetPoint(point, parent, point, x, y)
-				
-				return fontString
+				--self:SetScript('OnEvent', function(self, event) self[event](self) end);
+				--self:RegisterEvent('PLAYER_ENTERING_WORLD');
+				self:RegisterEvent('VARIABLES_LOADED');
 			else
 				return nil
 			end
 		end
-		-- Bootstrap
-		local function UnitFramesImproved_StartUp(self)
-			self:SetScript('OnEvent', function(self, event) self[event](self) end);
-			self:RegisterEvent('PLAYER_ENTERING_WORLD');
-			self:RegisterEvent('VARIABLES_LOADED');
-		end
-		UnitFramesImproved_StartUp(UnitFramesImproved);
+		--]]
+		--UnitFramesImproved_StartUp(UnitFramesImproved);
 	else
 		return nil
 	end

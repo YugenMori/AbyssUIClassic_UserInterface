@@ -192,8 +192,20 @@ FrameButton:SetWidth(140)
 FrameButton:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", -200, -200)
 FrameButton:SetText("Classic DailyInfo")
 FrameButton:SetScript("OnClick", function()
-  C_WowTokenPublic.UpdateMarketPrice()
-  AbyssUIClassicDailyInfo()
+  C_Timer.After(0.5, function()
+    --local HonorLevel = UnitHonorLevel("player")
+    local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
+    print("|cfff2dc7f~ AbyssUIClassic Daily Info ~|r")
+    if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
+      print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
+    else
+      print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
+    end
+    --print("|cfff2dc7fHonor Level: |r|cffffcc00" .. HonorLevel .. "|r")
+    --print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
+    print("|cfff2dc7fWoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
+    print("|cfff2dc7fAbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
+  end)
 end)
 -- Clear Action Bar --
 local FrameButton = CreateFrame("Button","$parentExtraClearActionButton", AbyssUIClassic_Config.panel, "UIPanelButtonTemplate")
@@ -1225,7 +1237,7 @@ end)
 -- Transparent Background Name --
 local AbyssUIClassic_TransparentName_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_TransparentName_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_TransparentName_CheckButton:SetPoint("TOPLEFT", 200, -290)
-AbyssUIClassic_TransparentName_CheckButton.Text:SetText("Transparent Name")
+AbyssUIClassic_TransparentName_CheckButton.Text:SetText("Transparent Name BKGD")
 AbyssUIClassic_TransparentName_CheckButton.tooltip = "Remove any color in the target name background"
 AbyssUIClassic_TransparentName_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionTransparentName)
 -- OnClick Function
