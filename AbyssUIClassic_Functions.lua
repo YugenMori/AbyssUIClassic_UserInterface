@@ -137,7 +137,7 @@ local function eventHandler(self, event, ...)
 		end
 	else
 		-- Remove background
-		TargetFrameNameBackground:SetAlpha(0)
+		TargetFrameNameBackground:SetAlpha(0.5)
 		TargetFrameNameBackground:SetVertexColor(0/255, 0/255, 0/255)
 	end
 end
@@ -409,16 +409,21 @@ CF:SetScript("OnEvent", function(self, event)
 			self:SetHeight(StatsFrame.text:GetStringHeight())
 		end
 	end
-	StatsFrame:SetScript("OnUpdate", update)
+	if ( AbyssUIClassicAddonSettings.DisableSquareMinimap == true ) then
+		StatsFrame:SetScript("OnUpdate", update)
+	else
+		return nil
+	end
 end)
--- Hide
-function AbyssUIClassic_StatsFrames1Hide()
-	StatsFrame:Hide()
-end
--- Show
-function AbyssUIClassic_StatsFrames1Show()
-	StatsFrame:Show()
-end
+local StatsFrameCheck_ = CreateFrame("CheckButton", "$parentStatsFrameCheck_", UIParent, "ChatConfigCheckButtonTemplate")
+StatsFrameCheck_:RegisterEvent("PLAYER_ENTERING_WORLD")
+StatsFrameCheck_:SetScript("OnEvent", function(self, event, ...)
+	if ( AbyssUIClassicAddonSettings.HideFPSMSFrame == true or AbyssUIClassicAddonSettings.FadeUI == true ) then
+		StatsFrame:Hide()
+	else
+		StatsFrame:Show()
+	end
+end)
 ----------------------------------------------------
 -- Auto Repair/Sell Grey
 local AbyssUIClassic_AutoSell = CreateFrame("Frame", "$parentparentAbyssUIClassic_AutoSell", nil)
@@ -522,6 +527,7 @@ ScaleElements:SetScript("OnEvent", function(self, event, arg1)
 	end
 end)
 -- Pixel Perfect
+--[[
 local PixelPerfect = CreateFrame("Frame", "$parentPixelPerfect", nil)
 PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
 PixelPerfect:SetScript("OnEvent", function(self, event, arg1)
@@ -537,6 +543,7 @@ if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunct
 		return nil
 	end
 end)
+--]]
 ----------------------------------------------------
 -- Color Picker 
 -- Many thanks to Fizz for part of this :thumbsup:

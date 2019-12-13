@@ -8,9 +8,9 @@
 -- Simple frame mover for AbyssUIClassic
 --------------------------------------------------------------------------------
 -- Frame Stuff
--- Thanks to Fizz for part of this (the good part)
+-- Thanks to Fizz for part of this
 local UnLocked
-local Moveframes = { QuestWatchFrame, MinimapCluster, PlayerFrame, TargetFrame, PartyMemberFrame1, } -- So we don't create a new table each time
+local Moveframes = { QuestWatchFrame, PlayerFrame, TargetFrame, PartyMemberFrame1, } -- So we don't create a new table each time
 local checkAddon = CreateFrame("Frame")
 checkAddon:RegisterEvent("ADDON_LOADED")
 checkAddon:SetScript("OnEvent", function(self, event, addon)
