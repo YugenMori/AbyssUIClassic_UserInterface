@@ -351,10 +351,10 @@ SquareMinimap_:SetScript("OnEvent", function(self, event, ...)
 			local fontSize = 12
 			local fontFlag = "THINOUTLINE"			-- "THINOUTLINE", "OUTLINE MONOCHROME", "OUTLINE" or nil (no outline)
 
-			local backdropcolor = {26/255, 25/255, 31/255}		-- backdrop color	
+			local backdropcolor = {0/255, 0/255, 0/255}			-- backdrop color	
 			local brdcolor = {0/255, 0/255, 0/255}				-- backdrop border color
 			local infocolor = {41/255, 41/255, 41/255}			-- info panel color
-			local IpanelBGalpha = 0.3							-- info panel background alpha
+			local IpanelBGalpha = 0.5							-- info panel background alpha
 
 			local classColoredBorder = false					-- color border by class
 			local scale = 1

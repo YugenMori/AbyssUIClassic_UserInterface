@@ -1341,7 +1341,7 @@ KeepUnitDark_CheckButton:SetScript("OnClick", function(self)
    KeepUnitDark_CheckButton:SetChecked(nil)
  else
    AbyssUIClassicAddonSettings.KeepUnitDark = self:GetChecked()
-   AbyssUI_ReloadFrame:Show()
+   AbyssUIClassic_ReloadFrame:Show()
  end
 end)
  -- After Login/Reload
@@ -1368,7 +1368,7 @@ KeepUnitBlizzard_CheckButton:SetScript("OnClick", function(self)
     KeepUnitBlizzard_CheckButton:SetChecked(nil)
   else
     AbyssUIClassicAddonSettings.KeepUnitBlizzard = self:GetChecked()
-    AbyssUI_ReloadFrame:Show()
+    AbyssUIClassic_ReloadFrame:Show()
   end
 end)
 -- After Login/Reload
@@ -1391,7 +1391,7 @@ FadeUI_CheckButton:SetChecked(AbyssUIClassicAddonSettings.FadeUI)
 -- OnClick Function
 FadeUI_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.FadeUI = self:GetChecked()
-  AbyssUI_ReloadFrameFadeUI:Show()
+  AbyssUIClassic_ReloadFrameFadeUI:Show()
 end)
 -- Elite Portrait --
 local ElitePortrait_CheckButton = CreateFrame("CheckButton", "$parentElitePortrait_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
@@ -1402,7 +1402,7 @@ ElitePortrait_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ElitePortrait)
 -- OnClick Function
 ElitePortrait_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ElitePortrait = self:GetChecked()
-  AbyssUI_ReloadFrame:Show()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- Disable Square Minimap --
 local DisableSquareMinimap_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
@@ -1414,7 +1414,7 @@ DisableSquareMinimap_CheckButton:SetChecked(AbyssUIClassicAddonSettings.DisableS
 -- OnClick Function
 DisableSquareMinimap_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.DisableSquareMinimap = self:GetChecked()
-  AbyssUI_ReloadFrame:Show()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- Minimal ActionBar --
 local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
@@ -1425,7 +1425,7 @@ MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActio
 -- OnClick Function
 MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
-  AbyssUI_ReloadFrame:Show()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 -- UnitFrame Improved --
 local UnitFrameImproved_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
@@ -1438,7 +1438,7 @@ addonTable.UnitFrameImproved = UnitFrameImproved_CheckButton
 -- OnClick Function
 UnitFrameImproved_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.UnitFrameImproved = self:GetChecked()
-  AbyssUI_ReloadFrame:Show()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 ----------------------------- AbyssUIClassic Stylization ------------------------------
 -- Player Portrait Style --
