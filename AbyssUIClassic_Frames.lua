@@ -8,33 +8,22 @@
 --------------------------------------------------------------------------------
 local addonName, addonTable = ...
 -- AbyssUIClassic_AFKCameraFrame
-local AbyssUIClassic_AFKCameraFrame = CreateFrame("Frame", "$parentAbyssUIClassic_AFKCameraFrame", UIParent)
+local AbyssUIClassic_AFKCameraFrame = CreateFrame("Frame", "$parentAbyssUI_AFKCameraFrame", WorldFrame)
 AbyssUIClassic_AFKCameraFrame:SetFrameStrata("HIGH")
-AbyssUIClassic_AFKCameraFrame:SetWidth(GetScreenWidth())
-AbyssUIClassic_AFKCameraFrame:SetHeight(GetScreenHeight())
+AbyssUIClassic_AFKCameraFrame:SetScale(UIParent:GetScale())
+AbyssUIClassic_AFKCameraFrame:SetAllPoints(UIParent)
 AbyssUIClassic_AFKCameraFrame:SetClampedToScreen(true)
-AbyssUIClassic_AFKCameraFrame:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+AbyssUIClassic_AFKCameraFrame:Hide()
+-- Text
 AbyssUIClassic_AFKCameraFrame.text = AbyssUIClassic_AFKCameraFrame.text or AbyssUIClassic_AFKCameraFrame:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-AbyssUIClassic_AFKCameraFrame.text:SetScale(3)
+AbyssUIClassic_AFKCameraFrame.text:SetScale(2)
 AbyssUIClassic_AFKCameraFrame.text:SetAllPoints(true)
-AbyssUIClassic_AFKCameraFrame.text:SetJustifyH("CENTER")
-AbyssUIClassic_AFKCameraFrame.text:SetJustifyV("CENTER")
+AbyssUIClassic_AFKCameraFrame.text:SetJustifyH("BOTTOM")
+AbyssUIClassic_AFKCameraFrame.text:SetJustifyV("BOTTOM")
 AbyssUIClassic_AFKCameraFrame.text:SetWidth(GetScreenWidth()/4)
 AbyssUIClassic_AFKCameraFrame.text:SetHeight(GetScreenHeight()/2)
-AbyssUIClassic_AFKCameraFrame.text:SetText("|cff0d75d4AbyssUIClassic|r\nMove to leave AFK Mode")
-AbyssUIClassic_AFKCameraFrame:Hide()
-----------------------------------------------------
-local AbyssUIClassicBorder = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "BACKGROUND")
-AbyssUIClassicBorder:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
-AbyssUIClassicBorder:SetPoint("TOPLEFT", -3, 3)
-AbyssUIClassicBorder:SetPoint("BOTTOMRIGHT", 3, -3)
-AbyssUIClassicBorder:SetVertexColor(0.7, 0.7, 0.7, 0.7)
-----------------------------------------------------
-local BorderBody = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "ARTWORK")
-BorderBody:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
-BorderBody:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
-BorderBody:SetVertexColor(0.7, 0.7, 0.7, 0.7)
-----------------------------------------------------
+AbyssUIClassic_AFKCameraFrame.text:SetText("Move to leave AFK Mode")
+-- Texture
 local Texture = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "BACKGROUND")
 Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 Texture:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
@@ -48,11 +37,10 @@ AbyssUIClassic_AFKCamera:RegisterEvent("PLAYER_ENTERING_WORLD")
 -- ModelFrameAFKMode
 -- Model1
 local AbyssUIClassic_ModelFrameAFKMode = CreateFrame("Frame", "$parentAbyssUIClassic_ModelFrameAFKMode", AbyssUIClassic_AFKCameraFrame)
-AbyssUIClassic_ModelFrameAFKMode:SetPoint("TOPLEFT", 0, 0)
+AbyssUIClassic_ModelFrameAFKMode:SetPoint("BOTTOMRIGHT", 50, 0)
 AbyssUIClassic_ModelFrameAFKMode:SetWidth(GetScreenWidth()/4)
 AbyssUIClassic_ModelFrameAFKMode:SetHeight(GetScreenHeight()/2)
 AbyssUIClassic_ModelFrameAFKMode:SetAlpha(1)
-
 local ModelFrame_Model1 = CreateFrame("PlayerModel", "$parentModelFrame_Model1", AbyssUIClassic_ModelFrameAFKMode)
 ModelFrame_Model1:SetUnit("player")
 ModelFrame_Model1:SetAlpha(1)
@@ -65,25 +53,17 @@ local x, y, z = ModelFrame_Model1:GetCameraPosition()
 local PlayerInfo_Name1 = CreateFrame("Frame", "$parentPlayerInfo_Name1", AbyssUIClassic_AFKCameraFrame)
 local playerName = UnitName("player")
 PlayerInfo_Name1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
-PlayerInfo_Name1:SetScale(3)
+PlayerInfo_Name1:SetScale(4)
 PlayerInfo_Name1.text = PlayerInfo_Name1.text or PlayerInfo_Name1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_Name1.text:SetPoint("TOPRIGHT", 0, -10)
+PlayerInfo_Name1.text:SetPoint("TOP", 0, -1)
 PlayerInfo_Name1.text:SetText(playerName)
--- Level
-local PlayerInfo_Level1 = CreateFrame("Frame", "$parentPlayerInfo_Level1", AbyssUIClassic_AFKCameraFrame)
-local level = UnitLevel("player")
-PlayerInfo_Level1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
-PlayerInfo_Level1:SetScale(3)
-PlayerInfo_Level1.text = PlayerInfo_Level1.text or PlayerInfo_Level1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_Level1.text:SetPoint("TOPRIGHT", 0, -20)
-PlayerInfo_Level1.text:SetText(level)
 -- Race
 local PlayerInfo_Race1 = CreateFrame("Frame", "$parentPlayerInfo_Race1", AbyssUIClassic_AFKCameraFrame)
 local race, raceEn = UnitRace("player")
 PlayerInfo_Race1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_Race1:SetScale(3)
 PlayerInfo_Race1.text = PlayerInfo_Race1.text or PlayerInfo_Race1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_Race1.text:SetPoint("TOPRIGHT", 0, -30)
+PlayerInfo_Race1.text:SetPoint("BOTTOMLEFT", 5, 100)
 PlayerInfo_Race1.text:SetText(raceEn)
 -- Class
 local PlayerInfo_Class1 = CreateFrame("Frame", "$parentPlayerInfo_Class1", AbyssUIClassic_AFKCameraFrame)
@@ -91,103 +71,41 @@ local playerClass, englishClass = UnitClass("player")
 PlayerInfo_Class1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_Class1:SetScale(3)
 PlayerInfo_Class1.text = PlayerInfo_Class1.text or PlayerInfo_Class1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_Class1.text:SetPoint("TOPRIGHT", 0, -40)
+PlayerInfo_Class1.text:SetPoint("BOTTOMLEFT", 5, 90)
 PlayerInfo_Class1.text:SetText(playerClass)
--- Class colorization (all player info)
- if ( englishClass == "DEATHKNIGHT" ) then
- 	for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(196/255, 30/255, 59/255)
- 	end 
- elseif ( englishClass == "DEMONHUNTER" ) then
- 	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(163/255, 48/255, 201/255)
- 	end 
- elseif ( englishClass == "DRUID" ) then
- 	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(255/255, 125/255, 10/255)
- 	end 
- elseif ( englishClass == "HUNTER" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(171/255, 212/255, 115/255)
- 	end 
- elseif ( englishClass == "MAGE" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(105/255, 204/255, 240/255)
- 	end 
- elseif ( englishClass == "MONK" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(0/255, 255/255, 150/255)
- 	end 
- elseif ( englishClass == "PALADIN" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(245/255, 140/255, 186/255)
- 	end 
- elseif ( englishClass == "PRIEST" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(255/255, 255/255, 255/255)
- 	end 
- elseif ( englishClass == "ROGUE" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(255/255, 245/255, 105/255)
- 	end 
- elseif ( englishClass == "SHAMAN" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(0/255, 112/255, 222/255)
- 	end 
- elseif ( englishClass == "WARLOCK" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(148/255, 130/255, 201/255)
- 	end 
- elseif ( englishClass == "WARRIOR" ) then
-  	 for i, v in pairs({ PlayerInfo_Name1, 
- 		PlayerInfo_Level1, 
- 		PlayerInfo_Race1, 
- 		PlayerInfo_Class1, }) do
- 		v.text:SetVertexColor(199/255, 156/255, 110/255)
- 	end 
- else
- 	return nil
- end
+-- Level
+local PlayerInfo_Level1 = CreateFrame("Frame", "$parentPlayerInfo_Level1", AbyssUIClassic_AFKCameraFrame)
+local level = UnitLevel("player")
+PlayerInfo_Level1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
+PlayerInfo_Level1:SetScale(3)
+PlayerInfo_Level1.text = PlayerInfo_Level1.text or PlayerInfo_Level1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_Level1.text:SetPoint("BOTTOMLEFT", 5, 80)
+PlayerInfo_Level1.text:SetText(level)
+--[[
+-- Honor Level
+local PlayerInfo_Honor1 = CreateFrame("Frame", "$parentPlayerInfo_Class1", AbyssUI_AFKCameraFrame)
+local HonorLevel = UnitHonorLevel("player")
+PlayerInfo_Honor1:SetAllPoints(AbyssUI_AFKCameraFrame)
+PlayerInfo_Honor1:SetScale(3)
+PlayerInfo_Honor1.text = PlayerInfo_Honor1.text or PlayerInfo_Honor1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_Honor1.text:SetPoint("BOTTOMLEFT", 5, 60)
+PlayerInfo_Honor1.text:SetText("Honor: "..HonorLevel)
+--]]
+-- Zone
+local PlayerInfo_CurrentZone1 = CreateFrame("Frame", "$parentPlayerInfo_Class1", AbyssUIClassic_AFKCameraFrame)
+local zoneName = GetZoneText()
+PlayerInfo_CurrentZone1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
+PlayerInfo_CurrentZone1:SetScale(3)
+PlayerInfo_CurrentZone1.text = PlayerInfo_CurrentZone1.text or PlayerInfo_CurrentZone1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_CurrentZone1.text:SetPoint("BOTTOMLEFT", 5, 70)
+PlayerInfo_CurrentZone1.text:SetText(zoneName)
 -- Faction
 local PlayerInfo_Faction1 = CreateFrame("Frame", "$parentPlayerInfo_Faction1", AbyssUIClassic_AFKCameraFrame)
 local englishFaction, localizedFaction = UnitFactionGroup("player")
 PlayerInfo_Faction1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_Faction1:SetScale(3)
 PlayerInfo_Faction1.text = PlayerInfo_Faction1.text or PlayerInfo_Faction1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_Faction1.text:SetPoint("TOPRIGHT", 0, -50)
+PlayerInfo_Faction1.text:SetPoint("BOTTOMLEFT", 5, 60)
 PlayerInfo_Faction1.text:SetText(localizedFaction)
 -- Faction Color
  if ( englishFaction == "Horde" ) then
@@ -199,6 +117,127 @@ PlayerInfo_Faction1.text:SetText(localizedFaction)
  else
  	return nil
  end
+-- Guild Info
+local PlayerInfo_Guild1 = CreateFrame("Frame", "$parentPlayerInfo_Class1", AbyssUIClassic_AFKCameraFrame)
+local guildName, guildRankName, guildRankIndex = GetGuildInfo("player")
+PlayerInfo_Guild1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
+PlayerInfo_Guild1:SetScale(3)
+PlayerInfo_Guild1.text = PlayerInfo_Guild1.text or PlayerInfo_Guild1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+PlayerInfo_Guild1.text:SetPoint("BOTTOMLEFT", 5, 50)
+PlayerInfo_Guild1.text:SetText(guildName)
+-- Class colorization (all player info)
+ if ( englishClass == "DEATHKNIGHT" ) then
+ 	for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(196/255, 30/255, 59/255)
+ 	end 
+ elseif ( englishClass == "DEMONHUNTER" ) then
+ 	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1,
+		 }) do
+ 		v.text:SetVertexColor(163/255, 48/255, 201/255)
+ 	end 
+ elseif ( englishClass == "DRUID" ) then
+ 	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(255/255, 125/255, 10/255)
+ 	end 
+ elseif ( englishClass == "HUNTER" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(171/255, 212/255, 115/255)
+ 	end 
+ elseif ( englishClass == "MAGE" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(105/255, 204/255, 240/255)
+ 	end 
+ elseif ( englishClass == "MONK" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(0/255, 255/255, 150/255)
+ 	end 
+ elseif ( englishClass == "PALADIN" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(245/255, 140/255, 186/255)
+ 	end 
+ elseif ( englishClass == "PRIEST" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(255/255, 255/255, 255/255)
+ 	end 
+ elseif ( englishClass == "ROGUE" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(255/255, 245/255, 105/255)
+ 	end 
+ elseif ( englishClass == "SHAMAN" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(0/255, 112/255, 222/255)
+ 	end 
+ elseif ( englishClass == "WARLOCK" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(148/255, 130/255, 201/255)
+ 	end 
+ elseif ( englishClass == "WARRIOR" ) then
+  	 for i, v in pairs({ PlayerInfo_Name1, 
+ 		PlayerInfo_Level1, 
+ 		PlayerInfo_Race1, 
+ 		PlayerInfo_Class1,
+		PlayerInfo_CurrentZone1,
+		PlayerInfo_Guild1, }) do
+ 		v.text:SetVertexColor(199/255, 156/255, 110/255)
+ 	end 
+ else
+ 	return nil
+ end
  -- Gold Amount
 local PlayerInfo_GoldAmount1 = CreateFrame("Frame", "$parentPlayerInfo_GoldAmount1", AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_GoldAmount1:RegisterEvent("PLAYER_FLAGS_CHANGED")
@@ -207,15 +246,15 @@ local money = GetCoinTextureString(GetMoney())
 PlayerInfo_GoldAmount1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 PlayerInfo_GoldAmount1:SetScale(2)
 PlayerInfo_GoldAmount1.text = PlayerInfo_GoldAmount1.text or PlayerInfo_GoldAmount1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-PlayerInfo_GoldAmount1.text:SetPoint("BOTTOMLEFT", 0, 0)
-PlayerInfo_GoldAmount1.text:SetText("  "..money)
+PlayerInfo_GoldAmount1.text:SetPoint("TOPLEFT", 5, -1)
+PlayerInfo_GoldAmount1.text:SetText("Resources: "..money)
 -- ExtraInfoAFKMode
 -- CLock
 local ExtraInfo_Clock1 = CreateFrame("Frame", "$parentExtraInfo_Clock1", AbyssUIClassic_AFKCameraFrame)
 ExtraInfo_Clock1:SetAllPoints(AbyssUIClassic_AFKCameraFrame)
 ExtraInfo_Clock1:SetScale(3)
 ExtraInfo_Clock1.text = ExtraInfo_Clock1.text or ExtraInfo_Clock1:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
-ExtraInfo_Clock1.text:SetPoint("BOTTOMRIGHT", 0, 0)
+ExtraInfo_Clock1.text:SetPoint("TOPRIGHT", -5, -1)
 function ExtraInfo_Clock1:onUpdate(sinceLastUpdate)
 	self.sinceLastUpdate = (self.sinceLastUpdate or 0) + sinceLastUpdate
 	if ( self.sinceLastUpdate >= 5 ) then
@@ -235,6 +274,9 @@ local function AbyssUIClassic_UpdateAFKCameraData()
 	level = UnitLevel("player")
 	race, raceEn = UnitRace("player")
 	playerClass, englishClass = UnitClass("player")
+	--HonorLevel = UnitHonorLevel("player")
+ 	zoneName = GetZoneText()
+	guildName, guildRankName, guildRankIndex = GetGuildInfo("player")
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
 		dataTime = date("%H:%M |cffffcc00%m/%d/%y|r ")
 	else
@@ -244,13 +286,26 @@ local function AbyssUIClassic_UpdateAFKCameraData()
 	money = GetCoinTextureString(GetMoney())
 	-- Set
 	PlayerInfo_Name1.text:SetText(playerName)
-	PlayerInfo_Level1.text:SetText(level)
+	PlayerInfo_Level1.text:SetText("Level: "..level)
 	PlayerInfo_Race1.text:SetText(race)
 	PlayerInfo_Class1.text:SetText(playerClass)
 	ExtraInfo_Clock1.text:SetText(dataTime)
-	PlayerInfo_Faction1.text:SetText(localizedFaction)
-	PlayerInfo_GoldAmount1.text:SetText("  "..money)
+	--PlayerInfo_Honor1.text:SetText("Honor: "..HonorLevel)
+	PlayerInfo_GoldAmount1.text:SetText("Resources: "..money)
+	PlayerInfo_CurrentZone1.text:SetText(zoneName)
+	PlayerInfo_Guild1.text:SetText(guildName)
 end
+-- Clock Update
+local timer = ExtraInfo_Clock1:CreateAnimationGroup()
+local timerAnim = timer:CreateAnimation()
+timerAnim:SetDuration(5) -- how often you want it to finish
+timer:SetScript("OnFinished", function(self, requested)
+    -- requested = true if you used timer:Stop(), false if it finished naturally
+    AbyssUIClassic_UpdateAFKCameraData()
+    self:Play() -- start it over again
+end)
+timer:Play()
+----------------------------------------------------
 -- AbyssUIClassic_AFKCamera SetScript
 AbyssUIClassic_AFKCamera:SetScript("OnEvent", function(self, event, ...)
 	local inInstance, instanceType = IsInInstance()
@@ -258,14 +313,18 @@ AbyssUIClassic_AFKCamera:SetScript("OnEvent", function(self, event, ...)
 		if ( event == "PLAYER_FLAGS_CHANGED" or event == "PLAYER_ENTERING_WORLD" ) then
 			local isAFK = UnitIsAFK("player")
 			if isAFK == true and inInstance ~= true then
+				UIFrameFadeIn(UIParent, 4, 1, 0)
 				AbyssUIClassic_UpdateAFKCameraData()
 				UIFrameFadeIn(AbyssUIClassic_AFKCameraFrame, 3, 0, 1)
 			elseif isAFK == false and inInstance ~= true then
 				AbyssUIClassic_AFKCameraFrame:Hide()
+				UIFrameFadeIn(UIParent, 2, 0, 1)
 			elseif isAFK == true and inInstance == true then
 				AbyssUIClassic_AFKCameraFrame:Hide()
+				UIParent:SetAlpha(1)
 			elseif isAFK == false and inInstance == true then
 				AbyssUIClassic_AFKCameraFrame:Hide()
+				UIParent:SetAlpha(1)
 			else
 				AbyssUIClassic_AFKCameraFrame:Hide()
 			end

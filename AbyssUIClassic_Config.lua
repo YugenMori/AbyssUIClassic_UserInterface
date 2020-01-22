@@ -461,7 +461,7 @@ ObjTracker_CheckButton:SetScript("OnEvent", function(self, event, ...)
     end
   end
 end)
--- Disable Nameplate Changes --
+-- Hide FPS/MS Frame --
 local FPSMSFrame_CheckButton = CreateFrame("CheckButton", "$parentFPSMSFrame_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 FPSMSFrame_CheckButton:SetPoint("TOPLEFT", 10, -200)
 FPSMSFrame_CheckButton.Text:SetText("Hide FPS/MS Frame (*)")
@@ -1317,6 +1317,18 @@ AbyssUIClassic_NameplateChanges_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionNameplateChanges = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
+-- Disable ChatBubble Changes --
+local AbyssUIClassic_ChatBubbleChanges_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_NameplateChanges_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_ChatBubbleChanges_CheckButton:SetPoint("TOPLEFT", 400, -350)
+AbyssUIClassic_ChatBubbleChanges_CheckButton.Text:SetText("Disable ChatBubble Changes")
+AbyssUIClassic_ChatBubbleChanges_CheckButton.tooltip = "This option will remove any change that was made to the chatbubbles (the frame text above players)"
+AbyssUIClassic_ChatBubbleChanges_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges)
+addonTable.NameplateChanges = AbyssUIClassic_ChatBubbleChanges_CheckButton
+-- OnClick Function
+AbyssUIClassic_ChatBubbleChanges_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 --End
 ----------------------------------- Extras  -----------------------------------
 -- Read tooltip--
@@ -1427,9 +1439,21 @@ MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.MinimalActionBar = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
+-- Disable UnitFrame Smoke --
+local DisableUnitFrameSmoke_CheckButton = CreateFrame("CheckButton", "$parentDisableUnitFrameSmoke_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+DisableUnitFrameSmoke_CheckButton:SetPoint("TOPLEFT", 10, -260)
+DisableUnitFrameSmoke_CheckButton.Text:SetText("Disable Smoke Texture")
+DisableUnitFrameSmoke_CheckButton.tooltip = "It will disable the 'smoke' texture around the portrait in "..
+"the UnitFrame Improved version of it"
+DisableUnitFrameSmoke_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture)
+-- OnClick Function
+DisableUnitFrameSmoke_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 -- UnitFrame Improved --
 local UnitFrameImproved_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-UnitFrameImproved_CheckButton:SetPoint("TOPLEFT", 10, -260)
+UnitFrameImproved_CheckButton:SetPoint("TOPLEFT", 10, -290)
 UnitFrameImproved_CheckButton.Text:SetText("|cfff2dc7fUnitFrame Improved|r")
 UnitFrameImproved_CheckButton.tooltip = "This is a improved version of unitframes,"..
 " it changes those frames to a more beautiful and complete version (recommended use)"

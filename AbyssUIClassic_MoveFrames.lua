@@ -98,6 +98,20 @@ local function AbyssUIClassicMoveFrames_Slashhandler()
     print("/abyssui |cffffcc00reload|r ~Reload the UI")
     print("/abyssui |cffffcc00more|r ~For more commands")
 end
+-- DailyInfo Function (For Slash)
+local function AbyssUIClassicDailyInfo_Slash()
+    local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
+    print("|cfff2dc7f~ AbyssUIClassic Daily Info ~|r")
+    if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
+        print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
+    else
+        print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
+    end
+    --print("|cfff2dc7fHonor Level: |r|cffffcc00" .. HonorLevel .. "|r")
+    --print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
+    print("|cfff2dc7fWoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
+    print("|cfff2dc7fAbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
+end
 -- Function
 local function AbyssUIClassicMoveFrames_Slash(msg)
     if ( msg ~= "" ) then
@@ -113,7 +127,7 @@ local function AbyssUIClassicMoveFrames_Slash(msg)
         elseif (msg == "reset") then
             AbyssUIClassicMoveFrames_Reset()
         elseif (msg == "daily") then
-            AbyssUIClassicDailyInfo()
+            AbyssUIClassicDailyInfo_Slash()
         elseif (msg == "reload") then
             ReloadUI()
         elseif (msg == "more") then
