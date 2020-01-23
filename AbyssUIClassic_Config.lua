@@ -324,7 +324,7 @@ PSINFOHide_CheckButton:SetWidth(200)
 PSINFOHide_CheckButton:SetScale(1)
 PSINFOHide_CheckButton = PSINFOHide_CheckButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 PSINFOHide_CheckButton:SetPoint("LEFT")
-PSINFOHide_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to read.")
+PSINFOHide_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to be read.")
 -- MicroMenu/Bags --
 local MicroMenu_CheckButton = CreateFrame("CheckButton", "$parentMicroMenu_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 MicroMenu_CheckButton:SetPoint("TOPLEFT", 10, -80)
@@ -865,6 +865,14 @@ HideUnitImprovedFaction_CheckButton:SetScript("OnClick", function(self)
 end)
 -- End
 ------------------------------- Miscellaneous -------------------------------
+local PSINFOHide_CheckButton = CreateFrame("Frame","$parentPSINFOHide_CheckButton", AbyssUIClassic_Config.childpanel3)
+PSINFOHide_CheckButton:SetPoint("BOTTOMLEFT", AbyssUIClassic_Config.childpanel3, "BOTTOMLEFT", 10, 10)
+PSINFOHide_CheckButton:SetHeight(24)
+PSINFOHide_CheckButton:SetWidth(200)
+PSINFOHide_CheckButton:SetScale(1)
+PSINFOHide_CheckButton = PSINFOHide_CheckButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+PSINFOHide_CheckButton:SetPoint("LEFT")
+PSINFOHide_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to be read.")
 -- Camera Pitch --
 -- Camera Pitch Function Option 50%
 local CameraSmooth50_CheckButton = CreateFrame("CheckButton", "$parentCameraSmooth50_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
@@ -1323,10 +1331,22 @@ AbyssUIClassic_ChatBubbleChanges_CheckButton:SetPoint("TOPLEFT", 400, -350)
 AbyssUIClassic_ChatBubbleChanges_CheckButton.Text:SetText("Disable ChatBubble Changes")
 AbyssUIClassic_ChatBubbleChanges_CheckButton.tooltip = "This option will remove any change that was made to the chatbubbles (the frame text above players)"
 AbyssUIClassic_ChatBubbleChanges_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges)
-addonTable.NameplateChanges = AbyssUIClassic_ChatBubbleChanges_CheckButton
 -- OnClick Function
 AbyssUIClassic_ChatBubbleChanges_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
+-- Disable Damage Font --
+local AbyssUIClassic_DamageFont_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_DamageFont_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
+AbyssUIClassic_DamageFont_CheckButton:SetPoint("TOPLEFT", 400, -380)
+AbyssUIClassic_DamageFont_CheckButton.Text:SetText("Disable Damage Font (*)")
+AbyssUIClassic_DamageFont_CheckButton.tooltip = "This option will remove any change to the damage font text."..
+"\n*You need to restart the game so the font can be reloaded. You can change it to any font, "..
+"go to Textures->font and replace the file keeping the same name"
+AbyssUIClassic_DamageFont_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionDamageFont)
+-- OnClick Function
+AbyssUIClassic_DamageFont_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ExtraFunctionDamageFont = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
 --End
@@ -1339,7 +1359,7 @@ PSINFO_CheckButton:SetWidth(200)
 PSINFO_CheckButton:SetScale(1)
 PSINFO_CheckButton = PSINFO_CheckButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 PSINFO_CheckButton:SetPoint("LEFT")
-PSINFO_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to read.")
+PSINFO_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to be read.")
 -- Keep UnitFrame Dark --
 local KeepUnitDark_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitDark_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
 KeepUnitDark_CheckButton:SetPoint("TOPLEFT", 10, -80)

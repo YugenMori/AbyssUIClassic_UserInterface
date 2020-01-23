@@ -318,7 +318,7 @@ AbyssUIClassic_AFKCamera:SetScript("OnEvent", function(self, event, ...)
 				UIFrameFadeIn(AbyssUIClassic_AFKCameraFrame, 3, 0, 1)
 			elseif isAFK == false and inInstance ~= true then
 				AbyssUIClassic_AFKCameraFrame:Hide()
-				UIFrameFadeIn(UIParent, 2, 0, 1)
+				UIParent:SetAlpha(1)
 			elseif isAFK == true and inInstance == true then
 				AbyssUIClassic_AFKCameraFrame:Hide()
 				UIParent:SetAlpha(1)
