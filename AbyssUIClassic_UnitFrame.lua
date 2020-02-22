@@ -285,7 +285,7 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 						TargetFrameTextureFrameName,
 						TargetFrameHealthBarText,
 						TargetFrameManaBarText, }) do 
-						v:SetFont("Fonts\\FRIZQT__.TTF", 11)
+						v:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf", 10)
 						v:SetVertexColor(255/255, 255/255, 255/255)
 						v:SetShadowColor(0, 0, 0)
 						v:SetShadowOffset(1, -1)

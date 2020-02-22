@@ -251,7 +251,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 end)
 ----------------------------------------------------
 -- Tooltip Background and borders
-local TooltipBackground = GameTooltip:CreateTexture(nil, "BACKGROUND", nil, 1)
+local TooltipBackground = GameTooltip:CreateTexture(nil, "LOW", nil, 1)
 TooltipBackground:SetPoint("TOPLEFT", 3, -3)
 TooltipBackground:SetPoint("BOTTOMRIGHT", -3, 3)
 TooltipBackground:SetColorTexture(0.02, 0.02, 0.02)
@@ -275,6 +275,31 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	end
 end)
 ----------------------------------------------------
+-- Tooltip Faction
+-- Only create the texture once.
+local TooltipFaction = GameTooltip:CreateTexture(GameTooltip, "BACKGROUND", nil, 1)
+TooltipFaction:SetSize(40, 40)
+TooltipFaction:SetPoint("TOPRIGHT", 0, -5)
+GameTooltip:HookScript("OnUpdate", function(self, elapsed)
+    local _, unit = GameTooltip:GetUnit()
+    if UnitIsPlayer(unit) then
+        local englishFaction, localizedFaction = UnitFactionGroup(unit)
+        if ( englishFaction == "Horde" ) then
+            TooltipFaction:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\faction\\PVP-Currency-Horde")
+            TooltipFaction:Show()
+        elseif ( englishFaction == "Alliance" ) then
+                TooltipFaction:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\faction\\PVP-Currency-Alliance")
+            TooltipFaction:Show()
+        elseif ( englishFaction == "Neutral" ) then
+            -- TooltipFaction:SetTexture("")
+            TooltipFaction:Hide()
+        else
+            TooltipFaction:Hide()
+        end
+    else
+        TooltipFaction:Hide()
+    end
+end)
 -- StatsFrame
 -- Many thanks to Syiana for part of this
 local StatsFrame = CreateFrame("Frame", "$parentStatsFrame", UIParent)
@@ -734,13 +759,21 @@ end)
 local AbyssUIClassicDamageFont = CreateFrame("Frame")
 AbyssUIClassicDamageFont:RegisterEvent("ADDON_LOADED")
 AbyssUIClassicDamageFont:SetScript("OnEvent", function(self, event, arg1)
-	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true  ) then
-		DAMAGE_TEXT_FONT = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf"
+	local locale = GetLocale()
+	if ( locale == "zhCN" or locale == "zhTW" or locale == "ruRU" ) then
+		if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true  ) then
+			DAMAGE_TEXT_FONT = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf"
+		else
+			return nil
+		end
 	else
-		return nil
+		if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true  ) then
+			DAMAGE_TEXT_FONT = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf"
+		else
+			return nil
+		end
 	end
-end)
-----------------------------------------------------
+end)--------------------------------------------
 -- DailyInfo Function
 local AbyssUIClassicDailyInfo = CreateFrame("Frame")
 AbyssUIClassicDailyInfo:RegisterEvent("PLAYER_LOGIN")
