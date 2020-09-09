@@ -54,12 +54,12 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				return nil
 			end
 		end
-
+		
 		-- PlayerFrameStyle
 		local PlayerFrameStyle = CreateFrame("Frame", nil)
 		PlayerFrameStyle:RegisterEvent("PLAYER_ENTERING_WORLD")
 		PlayerFrameStyle:SetScript("OnEvent", function()
-			if ( 	AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
+			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
 				if not InCombatLockdown() then 
 					PlayerFrameHealthBar.lockColor = true
 					PlayerFrameHealthBar.capNumericDisplay = true
@@ -218,7 +218,7 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
 				if not InCombatLockdown() then
 					PlayerFrameHealthBar:SetHeight(12)
-					PlayerFrameHealthBarText:SetPoint("CENTER", 50, 3)
+					--PlayerFrameHealthBarText:SetPoint("CENTER", 50, 3)
 				end
 			else
 				return nil

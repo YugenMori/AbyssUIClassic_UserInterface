@@ -8,7 +8,21 @@
 --------------------------------------------------------------------------------
 local AbyssUIClassic_Config = {}
 local addonName, addonTable = ...
-
+local character
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", function(self, event)
+    character = UnitName("player").."-"..GetRealmName()
+    if not COLOR_MY_UI then
+        COLOR_MY_UI = {}
+    end
+    if not COLOR_MY_UI[character] then
+        COLOR_MY_UI[character] = {}
+    end
+    if not COLOR_MY_UI[character].Color then
+        COLOR_MY_UI[character].Color = { r = 1, g = 1, b = 1 }
+    end
+end)
 local function InitSettings()
 AbyssUIClassic_Config.panel = CreateFrame( "Frame", "$parentAbyssUIClassic_Config", InterfaceOptionsFramePanelContainer)
 -- Register in the Interface Addon Options GUI

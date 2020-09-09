@@ -771,11 +771,11 @@ end)
 local globalFont	= "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\global.ttf"
 local subFont 	 	= "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\npcfont.ttf"
 local damageFont 	= "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf"
-local AbyssUI_FontString = CreateFrame("Frame", "$parentAbyssUI_FontString", nil)
-AbyssUI_FontString:RegisterEvent("ADDON_LOADED")
-AbyssUI_FontString:RegisterEvent("PLAYER_LOGOUT")
-AbyssUI_FontString:SetScript("OnEvent", function(self, event, arg1)
-	if ( event == "ADDON_LOADED" and arg1 == "AbyssUI" )  then
+local AbyssUIClassic_FontString = CreateFrame("Frame", "$parentAbyssUIClassic_FontString", nil)
+AbyssUIClassic_FontString:RegisterEvent("ADDON_LOADED")
+AbyssUIClassic_FontString:RegisterEvent("PLAYER_LOGOUT")
+AbyssUIClassic_FontString:SetScript("OnEvent", function(self, event, arg1)
+	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" )  then
 
 		STANDARD_TEXT_FONT          = globalFont
 		DAMAGE_TEXT_FONT          	= damageFont
@@ -823,12 +823,12 @@ AbyssUI_FontString:SetScript("OnEvent", function(self, event, arg1)
 end)
 -- Font Location Check
 local checkFont = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf"
-local AbyssUI_CheckFont = CreateFrame("Frame")
-AbyssUI_CheckFont:RegisterEvent("ADDON_LOADED")
-AbyssUI_CheckFont:SetScript("OnEvent", function(self, event, arg1)
+local AbyssUIClassic_CheckFont = CreateFrame("Frame")
+AbyssUIClassic_CheckFont:RegisterEvent("ADDON_LOADED")
+AbyssUIClassic_CheckFont:SetScript("OnEvent", function(self, event, arg1)
 	local locale = GetLocale()
 	if ( locale == "zhCN" or locale == "zhTW" or locale == "ruRU" ) then
-		if ( event == "ADDON_LOADED" and arg1 == "AbyssUI" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true ) then
+		if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true ) then
 			STANDARD_TEXT_FONT          = checkFont
 			DAMAGE_TEXT_FONT          	= checkFont
 			UNIT_NAME_FONT              = checkFont

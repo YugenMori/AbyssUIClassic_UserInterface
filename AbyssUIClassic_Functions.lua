@@ -149,12 +149,14 @@ for _, BarTextures in pairs({TargetFrameNameBackground}) do
 end
 ----------------------------------------------------
 -- Text round values
+--[[
 hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", function()
 	PlayerFrameHealthBar.TextString:SetText(AbbreviateLargeNumbers(UnitHealth("player")))
 	PlayerFrameManaBar.TextString:SetText(AbbreviateLargeNumbers(UnitPower("player")))
 	--TargetFrameHealthBar.TextString:SetText(AbbreviateLargeNumbers(UnitHealth("target")))
 	--TargetFrameManaBar.TextString:SetText(AbbreviateLargeNumbers(UnitPower("target")))
 end)
+--]]
 ----------------------------------------------------
 -- Cast Bar
 -- Timer
@@ -172,7 +174,7 @@ CastingBarFrame.timer:SetShadowOffset(1, -1)
 CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, 0)
 CastingBarFrame.update = .1
 CastingBarFrame:HookScript("OnUpdate", function(self, elapsed)
-	if ( AbyssUIAddonSettings.HideCastTimer ~= true ) then
+	if ( AbyssUIClassicAddonSettings.HideCastTimer ~= true ) then
 	    if not self.timer then return end
 	    if self.update and self.update < elapsed then
 	        if self.casting then
@@ -267,7 +269,7 @@ TooltipBackground:SetColorTexture(0.02, 0.02, 0.02)
 TooltipBackground:SetAlpha(0.5, 0.5, 0.5, 0.8)
 ----------------------------------------------------
 -- Tooltip Class Color Health
-GameTooltip:HookScript("OnUpdate", function(self, elapsed)
+GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	local _, unit = GameTooltip:GetUnit()
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
@@ -513,23 +515,6 @@ local function eventHandler(self, event, ...)
 			else 
 				return nil
 			end
-			if ( UnitReaction("player", "focus") ~= nil ) then
-				local focus = UnitReaction("player", "focus")
-				local ufocus = UnitIsPlayer("focus")
-				if ufocus == false and focus < 4 then
-					FocusFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
-				elseif ( ufocus == false and target == 3 ) then
-					FocusFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
-				elseif ( ufocus == false and focus == 4 ) then
-					FocusFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
-				elseif ( ufocus == false and focus > 4 ) then
-					FocusFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
-				else
-					return nil
-				end
-			else 
-				return nil
-			end
 		else
 			return nil
 		end
@@ -556,23 +541,6 @@ hooksecurefunc("HealthBar_OnValueChanged", function()
 				TargetFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
 			elseif ( utarget == false and target > 4 ) then
 				TargetFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
-			else
-				return nil
-			end
-		else 
-			return nil
-		end
-		if ( UnitReaction("player", "focus") ~= nil ) then
-			local focus = UnitReaction("player", "focus")
-			local ufocus = UnitIsPlayer("focus")
-			if ufocus == false and focus < 4 then
-				FocusFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
-			elseif ( ufocus == false and target == 3 ) then
-				FocusFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
-			elseif ( ufocus == false and focus == 4 ) then
-				FocusFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
-			elseif ( ufocus == false and focus > 4 ) then
-				FocusFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
 			else
 				return nil
 			end
