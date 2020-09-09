@@ -116,6 +116,7 @@ local frame = CreateFrame("Frame", "$parentFrame", nil)
 frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 frame:RegisterEvent("UNIT_FACTION")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 local function eventHandler(self, event, ...)
 	--Thanks to Tz for the player background
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionTransparentName ~= true ) then
@@ -157,13 +158,21 @@ end)
 ----------------------------------------------------
 -- Cast Bar
 -- Timer
+CastingBarFrame.text = CastingBarFrame:CreateFontString(nil)
+CastingBarFrame.text:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\global.ttf", 12)
+CastingBarFrame.text:SetShadowColor(0, 0, 0)
+CastingBarFrame.text:SetShadowOffset(1, -1)
+CastingBarFrame.text:ClearAllPoints()
+CastingBarFrame.text:SetPoint("CENTER", CastingBarFrame, "CENTER", 0, 0)
+-- Timer
 CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-CastingBarFrame.timer:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
+CastingBarFrame.timer:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\global.ttf", 12)
+CastingBarFrame.timer:SetShadowColor(0, 0, 0)
+CastingBarFrame.timer:SetShadowOffset(1, -1)
 CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, 0)
 CastingBarFrame.update = .1
-
 CastingBarFrame:HookScript("OnUpdate", function(self, elapsed)
-    if ( AbyssUIClassicAddonSettings.HideCastTimer ~= true ) then
+	if ( AbyssUIAddonSettings.HideCastTimer ~= true ) then
 	    if not self.timer then return end
 	    if self.update and self.update < elapsed then
 	        if self.casting then
@@ -258,7 +267,7 @@ TooltipBackground:SetColorTexture(0.02, 0.02, 0.02)
 TooltipBackground:SetAlpha(0.5, 0.5, 0.5, 0.8)
 ----------------------------------------------------
 -- Tooltip Class Color Health
-GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
+GameTooltip:HookScript("OnUpdate", function(self, elapsed)
 	local _, unit = GameTooltip:GetUnit()
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
@@ -408,7 +417,7 @@ CF:SetScript("OnEvent", function(self, event)
 
 	StatsFrame.text = StatsFrame:CreateFontString(nil, 'BACKGROUND')
 	StatsFrame.text:SetPoint("BOTTOMLEFT", StatsFrame)
-	StatsFrame.text:SetFont(STANDARD_TEXT_FONT,12,"OUTLINE")
+	StatsFrame.text:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\npcfont.ttf", 12)
 	if useShadow then
 		StatsFrame.text:SetShadowOffset(1, -1)
 		StatsFrame.text:SetShadowColor(0, 0, 0)
@@ -489,12 +498,32 @@ local function eventHandler(self, event, ...)
 		if ( event == "PLAYER_TARGET_CHANGED" ) then
 			if ( UnitReaction("player", "target") ~= nil ) then
 				local target = UnitReaction("player", "target")
-				if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
-					TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
-				elseif ( UnitIsPlayer("target") == false and target == 4 ) then
-					TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
-				elseif ( UnitIsPlayer("target") == false and target > 4 ) then
-					TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
+				local utarget = UnitIsPlayer("target")
+				if utarget == false and target < 3 then
+					TargetFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
+				elseif ( utarget == false and target == 3 ) then
+					TargetFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
+				elseif ( utarget == false and target == 4 ) then
+					TargetFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
+				elseif ( utarget == false and target > 4 ) then
+					TargetFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
+				else
+					return nil
+				end
+			else 
+				return nil
+			end
+			if ( UnitReaction("player", "focus") ~= nil ) then
+				local focus = UnitReaction("player", "focus")
+				local ufocus = UnitIsPlayer("focus")
+				if ufocus == false and focus < 4 then
+					FocusFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
+				elseif ( ufocus == false and target == 3 ) then
+					FocusFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
+				elseif ( ufocus == false and focus == 4 ) then
+					FocusFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
+				elseif ( ufocus == false and focus > 4 ) then
+					FocusFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
 				else
 					return nil
 				end
@@ -509,7 +538,7 @@ local function eventHandler(self, event, ...)
 	end
 end
 frame:SetScript("OnEvent", eventHandler)
-for _, BarTextures in pairs({ TargetFrameNameBackground, }) do
+for _, BarTextures in pairs({ TargetFrameNameBackground, FocusFrameNameBackground, }) do
 	BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 end
 ----------------------------------------------------
@@ -518,12 +547,32 @@ hooksecurefunc("HealthBar_OnValueChanged", function()
 	if ( AbyssUIClassicAddonSettings.UnitFrameImproved ~= true ) then
 		if ( UnitReaction("player", "target") ~= nil ) then
 			local target = UnitReaction("player", "target")
-			if UnitIsEnemy("player", "target") and UnitIsPlayer("target") == false and target < 4 then
-				TargetFrameHealthBar:SetStatusBarColor(185/255, 29/255, 50/255)
-			elseif ( UnitIsPlayer("target") == false and target == 4 ) then
-				TargetFrameHealthBar:SetStatusBarColor(210/255, 206/255, 115/255)
-			elseif ( UnitIsPlayer("target") == false and target > 4 ) then
-				TargetFrameHealthBar:SetStatusBarColor(58/255, 213/255, 57/255)
+			local utarget = UnitIsPlayer("target")
+			if utarget == false and target < 3 then
+				TargetFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
+			elseif ( utarget == false and target == 3 ) then
+				TargetFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
+			elseif ( utarget == false and target == 4 ) then
+				TargetFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
+			elseif ( utarget == false and target > 4 ) then
+				TargetFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
+			else
+				return nil
+			end
+		else 
+			return nil
+		end
+		if ( UnitReaction("player", "focus") ~= nil ) then
+			local focus = UnitReaction("player", "focus")
+			local ufocus = UnitIsPlayer("focus")
+			if ufocus == false and focus < 4 then
+				FocusFrameHealthBar:SetStatusBarColor(255/255, 0/255, 0/255)
+			elseif ( ufocus == false and target == 3 ) then
+				FocusFrameHealthBar:SetStatusBarColor(242/255, 96/255, 0/255)
+			elseif ( ufocus == false and focus == 4 ) then
+				FocusFrameHealthBar:SetStatusBarColor(255/255, 255/255, 0/255)
+			elseif ( ufocus == false and focus > 4 ) then
+				FocusFrameHealthBar:SetStatusBarColor(51/255, 255/255, 51/255)
 			else
 				return nil
 			end
@@ -532,7 +581,7 @@ hooksecurefunc("HealthBar_OnValueChanged", function()
 		end
 	else
 		return nil
-	end		
+	end
 end)
 ----------------------------------------------------
 -- Start Function
@@ -755,25 +804,11 @@ AbyssUIClassic_ElitePortrait:SetScript("OnEvent", function(self, event, ...)
 		return nil
 	end
 end)
--- Damage Font
-local AbyssUIClassicDamageFont = CreateFrame("Frame")
-AbyssUIClassicDamageFont:RegisterEvent("ADDON_LOADED")
-AbyssUIClassicDamageFont:SetScript("OnEvent", function(self, event, arg1)
-	local locale = GetLocale()
-	if ( locale == "zhCN" or locale == "zhTW" or locale == "ruRU" ) then
-		if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true  ) then
-			DAMAGE_TEXT_FONT = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf"
-		else
-			return nil
-		end
-	else
-		if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" and AbyssUIClassicAddonSettings.ExtraFunctionDamageFont ~= true  ) then
-			DAMAGE_TEXT_FONT = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf"
-		else
-			return nil
-		end
-	end
-end)--------------------------------------------
+--------------------------------------------
+local _G = _G
+local levelString 			= _G["LEVEL"]
+local versionString 		= _G["GAME_VERSION_LABEL"]
+local timeStringLabel 		= _G["TIME_LABEL"]
 -- DailyInfo Function
 local AbyssUIClassicDailyInfo = CreateFrame("Frame")
 AbyssUIClassicDailyInfo:RegisterEvent("PLAYER_LOGIN")
@@ -783,18 +818,15 @@ AbyssUIClassicDailyInfo:SetScript("OnEvent", function(self, event, arg1)
 		print("The improved World of Warcraft user interface.")
 	end)
 	C_Timer.After(4, function()
-		--local HonorLevel = UnitHonorLevel("player")
 		local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
-		print("|cfff2dc7f~ AbyssUIClassic Daily Info ~|r")
+		print("|cfff2dc7f~ AbyssUI Daily Info ~|r")
 		if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
-			print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
+			print("|cfff2dc7f"..timeStringLabel.."|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
 		else
-			print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
+			print("|cfff2dc7f"..timeStringLabel.."|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
 		end
-		--print("|cfff2dc7fHonor Level: |r|cffffcc00" .. HonorLevel .. "|r")
-		--print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
-		print("|cfff2dc7fWoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
-		print("|cfff2dc7fAbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
+		print("|cfff2dc7fWoW "..versionString..": |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
+		print("|cfff2dc7fAbyssUI "..versionString..": |r|cffffcc00" .. AddonVersion .. "|r")
 		if ( AbyssUIClassicProfile ~= nil) then 
 			local name, elapsed = UnitName("player"), time() - AbyssUIClassicProfile
 			print("|cfff2dc7fTime since last login: |r" .. name .. " you were gone for |cffffcc00" .. SecondsToTime(elapsed) .. "|r")
@@ -802,6 +834,5 @@ AbyssUIClassicDailyInfo:SetScript("OnEvent", function(self, event, arg1)
 		end
 	end)
 end)
-
 ----------------------------------------------------
 -- End
