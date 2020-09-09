@@ -38,7 +38,7 @@ AbyssUIClassic_Config.childpanel4.parent = AbyssUIClassic_Config.panel.name
 InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel4)
 --
 AbyssUIClassic_Config.childpanel5 = CreateFrame( "Frame", "$parentConfigChild_Extras", AbyssUIClassic_Config.panel)
-AbyssUIClassic_Config.childpanel5.name = "Extras"
+AbyssUIClassic_Config.childpanel5.name = "Tweaks & Extra"
 AbyssUIClassic_Config.childpanel5.parent = AbyssUIClassic_Config.panel.name
 InterfaceOptions_AddCategory(AbyssUIClassic_Config.childpanel5)
 -- Title
@@ -106,26 +106,6 @@ Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("AbyssUI|cff0d75d4Classic|r Actionbar")
--- Panel01 Title
-local Frame = CreateFrame("Frame","$parentFrameButtonTitle", AbyssUIClassic_Config.childpanel1)
-Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -35)
-Frame:SetHeight(24)
-Frame:SetWidth(70)
-Frame:SetScale(1.5)
-Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-Frame:SetPoint("CENTER")
-Frame:SetText("|cff0d75d4Attention|r")
--- Panel01 SubTittle
-local Frame = CreateFrame("Frame","$parentFrameButtonSubTitle", AbyssUIClassic_Config.childpanel1)
-Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "TOP", 0, -85)
-Frame:SetHeight(24)
-Frame:SetWidth(200)
-Frame:SetScale(1.1)
-Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-Frame:SetPoint("CENTER")
-Frame:SetText("If you prefer a customizable actionbar,"..
-" I highly recommend installing either\nBartender4 or Dominos."..
-" You can continue to use my settings if you prefer,\nbut the options are much more limited.")
 -- Panel 02 (HideElements)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel02", AbyssUIClassic_Config.childpanel2)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel2, "TOP", 0, -20)
@@ -144,6 +124,24 @@ Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Miscellaneous")
+-- Panel 03.01 (Miscellaneous)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel041", AbyssUIClassic_Config.childpanel3)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel3, "TOP", -265, -70)
+Frame:SetWidth(120)
+Frame:SetHeight(24)
+Frame:SetScale(1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("- General")
+-- Panel 03.01 (Miscellaneous)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel041", AbyssUIClassic_Config.childpanel3)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel3, "TOP", 125, -70)
+Frame:SetWidth(120)
+Frame:SetHeight(24)
+Frame:SetScale(1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("- Frames")
 -- Panel 04 (Themes)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel04", AbyssUIClassic_Config.childpanel4)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", -150, -20)
@@ -153,6 +151,15 @@ Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Player Portrait")
+-- Panel 04.01 (Themes)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel041", AbyssUIClassic_Config.childpanel4)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", -255, -70)
+Frame:SetWidth(120)
+Frame:SetHeight(24)
+Frame:SetScale(1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("- Portrait Art")
 -- Panel 05 (Themes)
 local Frame = CreateFrame("Frame","$parentFrameButtonPanel05", AbyssUIClassic_Config.childpanel4)
 Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "TOP", 120, -20)
@@ -189,27 +196,48 @@ Frame:SetScale(1.5)
 Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 Frame:SetPoint("CENTER")
 Frame:SetText("Extras")
+-- Panel 06.01 (Extra)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel061", AbyssUIClassic_Config.childpanel5)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel5, "TOP", -265, -70)
+Frame:SetWidth(120)
+Frame:SetHeight(24)
+Frame:SetScale(1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("- General")
+-- Panel 06.02 (Extra)
+local Frame = CreateFrame("Frame","$parentFrameButtonPanel062", AbyssUIClassic_Config.childpanel5)
+Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel5, "TOP", 125, -70)
+Frame:SetWidth(120)
+Frame:SetHeight(24)
+Frame:SetScale(1)
+Frame = Frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+Frame:SetPoint("CENTER")
+Frame:SetText("- Frames")
 --------------------------------- Buttons ---------------------------------
+local _G = _G
+local levelString       = _G["LEVEL"]
+local versionString     = _G["GAME_VERSION_LABEL"]
+local timeStringLabel   = _G["TIME_LABEL"]
 -- AbyssUIClassic DailyInfo --
 local FrameButton = CreateFrame("Button","$parentExtraDailyInfoButton", AbyssUIClassic_Config.panel, "UIPanelButtonTemplate")
 FrameButton:SetHeight(24)
 FrameButton:SetWidth(140)
 FrameButton:SetPoint("CENTER", AbyssUIClassic_Config.panel, "TOP", -200, -200)
-FrameButton:SetText("Classic DailyInfo")
+FrameButton:SetText("AbyssUI DailyInfo")
 FrameButton:SetScript("OnClick", function()
   C_Timer.After(0.5, function()
-    --local HonorLevel = UnitHonorLevel("player")
     local AddonVersion = GetAddOnMetadata("AbyssUIClassic", "Version")
     print("|cfff2dc7f~ AbyssUIClassic Daily Info ~|r")
     if ( AbyssUIClassicAddonSettings.ExtraFunctionAmericanClock == true ) then
-      print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
+      print("|cfff2dc7f"..timeStringLabel.."|r " .. date("%H:%M |cffffcc00%m/%d/%y|r "))
     else
-      print("|cfff2dc7fDate:|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
+      print("|cfff2dc7f"..timeStringLabel.."|r " .. date("%H:%M |cffffcc00%d/%m/%y|r "))
     end
-    --print("|cfff2dc7fHonor Level: |r|cffffcc00" .. HonorLevel .. "|r")
+    --print("|cfff2dc7f"..honorString.." "..levelString..": |r|cffffcc00"..HonorLevel.."|r")
     --print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
-    print("|cfff2dc7fWoW Version: |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
-    print("|cfff2dc7fAbyssUIClassic Version: |r|cffffcc00" .. AddonVersion .. "|r")
+    print("|cfff2dc7fWoW "..versionString..":w |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
+    print("|cfff2dc7fAbyssUIClassic "..versionString..": |r|cffffcc00" .. AddonVersion .. "|r")
   end)
 end)
 -- Clear Action Bar --
@@ -855,7 +883,7 @@ end)
 -- Hide UnitImproved Faction Icons
 local HideUnitImprovedFaction_CheckButton = CreateFrame("CheckButton", "$parentHideUnitImprovedFaction_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideUnitImprovedFaction_CheckButton:SetPoint("TOPRIGHT", -200, -140)
-HideUnitImprovedFaction_CheckButton.Text:SetText("Hide UnitImproved Faction Icon")
+HideUnitImprovedFaction_CheckButton.Text:SetText("|cfff2dc7fHide UnitImproved Faction Icon|r")
 HideUnitImprovedFaction_CheckButton.tooltip = "Hide the Faction Icon (Ally/Horde) on players frames"
 HideUnitImprovedFaction_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideUnitImprovedFaction)
 addonTable.HideUnitImprovedFaction = HideUnitImprovedFaction_CheckButton
@@ -980,7 +1008,7 @@ end)
 -- Inspect Target
 local InspectTarget_CheckButton = CreateFrame("CheckButton", "$parentInspectTarget_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 InspectTarget_CheckButton:SetPoint("TOPLEFT", 10, -170)
-InspectTarget_CheckButton.Text:SetText("Inspect Target (Shift + ')")
+InspectTarget_CheckButton.Text:SetText("|cfff2dc7fInspect Target (Shift + ')|r")
 InspectTarget_CheckButton.tooltip = "When you have a target or your mouse is over someone character,"..
 " to inspect this player press the keys Shift + '"
 InspectTarget_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget)
@@ -1056,7 +1084,7 @@ end)
 -- Auto Repair/Sell Gray --
 local AbyssUIClassicAutoSellGray_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicAutoSellGray_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassicAutoSellGray_CheckButton:SetPoint("TOPLEFT", 10, -290)
-AbyssUIClassicAutoSellGray_CheckButton.Text:SetText("Auto Repair\nSell Gray Items")
+AbyssUIClassicAutoSellGray_CheckButton.Text:SetText("|cfff2dc7fAuto Repair\nSell Gray Items|r")
 AbyssUIClassicAutoSellGray_CheckButton.tooltip = "When you open a Merchant shop, auto sell gray"..
 " and repair items"
 AbyssUIClassicAutoSellGray_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionSellGray)
@@ -1113,7 +1141,7 @@ end)
 -- Disable healing spam over player --
 local AbyssUIClassic_DisableHealingSpam_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_DisableHealingSpam_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_DisableHealingSpam_CheckButton:SetPoint("TOPLEFT", 10, -380)
-AbyssUIClassic_DisableHealingSpam_CheckButton.Text:SetText("Disable Portrait Text Spam")
+AbyssUIClassic_DisableHealingSpam_CheckButton.Text:SetText("|cfff2dc7fDisable Portrait Text Spam|r")
 AbyssUIClassic_DisableHealingSpam_CheckButton.tooltip = "Disable healing/damage spam over player"..
 " and pet portraits"
 AbyssUIClassic_DisableHealingSpam_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionDisableHealingSpam)
@@ -1190,7 +1218,7 @@ end)
 -- CTRL + ' to confirm  --
 local AbyssUIClassic_ConfirmPopUps_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_ConfirmPopUps_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_ConfirmPopUps_CheckButton:SetPoint("TOPLEFT", 400, -80)
-AbyssUIClassic_ConfirmPopUps_CheckButton.Text:SetText("Confirm Pop-Ups (CTRL + ')")
+AbyssUIClassic_ConfirmPopUps_CheckButton.Text:SetText("|cfff2dc7fConfirm Pop-Ups (CTRL + ')|r")
 AbyssUIClassic_ConfirmPopUps_CheckButton.tooltip = "When this is active you can confirm almost"..
 " any pop-ups (release, quests, stacks, etc) pressing the keys Ctrl + '"
 AbyssUIClassic_ConfirmPopUps_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps)
@@ -1359,7 +1387,8 @@ PSINFO_CheckButton:SetWidth(200)
 PSINFO_CheckButton:SetScale(1)
 PSINFO_CheckButton = PSINFO_CheckButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 PSINFO_CheckButton:SetPoint("LEFT")
-PSINFO_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to be read.")
+PSINFO_CheckButton:SetText("The symbol (*) in some options means that there is important information/instructions to be read.\n"..
+"Options with a different color are recommended settings.")
 -- Keep UnitFrame Dark --
 local KeepUnitDark_CheckButton = CreateFrame("CheckButton", "$parentKeepUnitDark_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
 KeepUnitDark_CheckButton:SetPoint("TOPLEFT", 10, -80)
@@ -1425,20 +1454,9 @@ FadeUI_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.FadeUI = self:GetChecked()
   AbyssUIClassic_ReloadFrameFadeUI:Show()
 end)
--- Elite Portrait --
-local ElitePortrait_CheckButton = CreateFrame("CheckButton", "$parentElitePortrait_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-ElitePortrait_CheckButton:SetPoint("TOPLEFT", 10, -170)
-ElitePortrait_CheckButton.Text:SetText("Elite Portrait")
-ElitePortrait_CheckButton.tooltip = "Add a elite texture to the portraits (high recommended the use of this option with portrait class icons)"
-ElitePortrait_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ElitePortrait)
--- OnClick Function
-ElitePortrait_CheckButton:SetScript("OnClick", function(self)
-  AbyssUIClassicAddonSettings.ElitePortrait = self:GetChecked()
-  AbyssUIClassic_ReloadFrame:Show()
-end)
 -- Disable Square Minimap --
 local DisableSquareMinimap_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-DisableSquareMinimap_CheckButton:SetPoint("TOPLEFT", 10, -200)
+DisableSquareMinimap_CheckButton:SetPoint("TOPLEFT", 10, -170)
 DisableSquareMinimap_CheckButton.Text:SetText("Default Minimap (*)")
 DisableSquareMinimap_CheckButton.tooltip = "This option will get you back to the"..
 " Blizzard default minimap style (round). *You need to restart the game so round textures can be re-loaded"
@@ -1450,7 +1468,7 @@ DisableSquareMinimap_CheckButton:SetScript("OnClick", function(self)
 end)
 -- Minimal ActionBar --
 local MinimalActionBar_CheckButton = CreateFrame("CheckButton", "$parentMinimalActionBar_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-MinimalActionBar_CheckButton:SetPoint("TOPLEFT", 10, -230)
+MinimalActionBar_CheckButton:SetPoint("TOPLEFT", 10, -200)
 MinimalActionBar_CheckButton.Text:SetText("Minimal ActionBar")
 MinimalActionBar_CheckButton.tooltip = "Minimalist actionbar, hide all the textures"
 MinimalActionBar_CheckButton:SetChecked(AbyssUIClassicAddonSettings.MinimalActionBar)
@@ -1461,7 +1479,7 @@ MinimalActionBar_CheckButton:SetScript("OnClick", function(self)
 end)
 -- Disable UnitFrame Smoke --
 local DisableUnitFrameSmoke_CheckButton = CreateFrame("CheckButton", "$parentDisableUnitFrameSmoke_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-DisableUnitFrameSmoke_CheckButton:SetPoint("TOPLEFT", 10, -260)
+DisableUnitFrameSmoke_CheckButton:SetPoint("TOPLEFT", 10, -230)
 DisableUnitFrameSmoke_CheckButton.Text:SetText("Disable Smoke Texture")
 DisableUnitFrameSmoke_CheckButton.tooltip = "It will disable the 'smoke' texture around the portrait in "..
 "the UnitFrame Improved version of it"
@@ -1471,9 +1489,43 @@ DisableUnitFrameSmoke_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture = self:GetChecked()
   AbyssUIClassic_ReloadFrame:Show()
 end)
+-- Disable Kill Announcer --
+local KillAnnouncer_CheckButton = CreateFrame("CheckButton", "$parentKillAnnouncer_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+KillAnnouncer_CheckButton:SetPoint("TOPLEFT", 10, -260)
+KillAnnouncer_CheckButton.Text:SetText("Disable Kill Announcer")
+KillAnnouncer_CheckButton.tooltip = "Disable the Kill Announcer frame that show up when you kill someone"
+KillAnnouncer_CheckButton:SetChecked(AbyssUIClassicAddonSettings.DisableKillAnnouncer)
+-- OnClick Function
+KillAnnouncer_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.DisableKillAnnouncer = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
+-- Silence Kill Announcer --
+local SilenceKillAnnouncer_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+SilenceKillAnnouncer_CheckButton:SetPoint("TOPLEFT", 10, -290)
+SilenceKillAnnouncer_CheckButton.Text:SetText("Silence Kill Announcer")
+SilenceKillAnnouncer_CheckButton.tooltip = "Remove boss/kill sounds from the Kill Announcer frame"
+SilenceKillAnnouncer_CheckButton:SetChecked(AbyssUIClassicAddonSettings.SilenceKillAnnouncer)
+-- OnClick Function
+SilenceKillAnnouncer_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.SilenceKillAnnouncer = self:GetChecked()
+end)
+--- Frames ---
+-- Elite Portrait --
+local ElitePortrait_CheckButton = CreateFrame("CheckButton", "$parentElitePortrait_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+ElitePortrait_CheckButton:SetPoint("TOPLEFT", 400, -80)
+ElitePortrait_CheckButton.Text:SetText("|cfff2dc7fElite Portrait|r")
+ElitePortrait_CheckButton.tooltip = "Add a elite texture to the portraits (high recommended the use of this option with portrait class icons)"
+ElitePortrait_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ElitePortrait)
+addonTable.ElitePortrait = ElitePortrait_CheckButton
+-- OnClick Function
+ElitePortrait_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.ElitePortrait = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
+end)
 -- UnitFrame Improved --
 local UnitFrameImproved_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
-UnitFrameImproved_CheckButton:SetPoint("TOPLEFT", 10, -290)
+UnitFrameImproved_CheckButton:SetPoint("TOPLEFT", 400, -110)
 UnitFrameImproved_CheckButton.Text:SetText("|cfff2dc7fUnitFrame Improved|r")
 UnitFrameImproved_CheckButton.tooltip = "This is a improved version of unitframes,"..
 " it changes those frames to a more beautiful and complete version (recommended use)"
@@ -2432,10 +2484,22 @@ AbyssUIClassicVertexColorFrames16_CheckButton:SetScript("OnClick", function(self
   end
 end)
 -- Choose a Color (Color Picker)
+local AbyssUIClassicVertexColorFramesColorPicker_Button = CreateFrame("Button", "$parentAbyssUIClassicVertexColorFramesColorPicker_Button", AbyssUIClassic_Config.childpanel4, "UIPanelButtonTemplate")
+AbyssUIClassicVertexColorFramesColorPicker_Button:SetPoint("TOPRIGHT", -165, -350)
+AbyssUIClassicVertexColorFramesColorPicker_Button:SetHeight(24)
+AbyssUIClassicVertexColorFramesColorPicker_Button:SetWidth(100)
+AbyssUIClassicVertexColorFramesColorPicker_Button.Text:SetText("Color Picker")
+-- OnClick Function
+AbyssUIClassicVertexColorFramesColorPicker_Button:SetScript("OnClick", function(self)
+  AbyssUIClassic_ShowColorPicker()
+end)
+-- Apply Color
 local AbyssUIClassicVertexColorFramesColorPicker_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassicVertexColorFramesColorPicker_CheckButton", AbyssUIClassic_Config.childpanel4, "ChatConfigCheckButtonTemplate")
-AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetPoint("CENTER", AbyssUIClassic_Config.childpanel4, "CENTER", 50, -80)
-AbyssUIClassicVertexColorFramesColorPicker_CheckButton.Text:SetText("|cff0d75d4Select a Color|r")
-AbyssUIClassicVertexColorFramesColorPicker_CheckButton.tooltip = "Choose a color for the frames (Color Picker)"
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetPoint("TOPRIGHT", -80, -350)
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton.Text:SetText("Apply Color")
+local character = UnitName("player").."-"..GetRealmName()
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton.Text:SetTextColor(COLOR_MY_UI[character].Color.r, COLOR_MY_UI[character].Color.g, COLOR_MY_UI[character].Color.b)
+AbyssUIClassicVertexColorFramesColorPicker_CheckButton.tooltip = "Apply the color you choose from the ColorPicker"
 AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker)
 -- OnClick Function
 AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetScript("OnClick", function(self)
@@ -2456,7 +2520,10 @@ AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetScript("OnClick", func
   AbyssUIClassicAddonSettings.UIVertexColorFrames15 ~= true and
   AbyssUIClassicAddonSettings.UIVertexColorFrames16 ~= true then
     AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker = self:GetChecked()
-    AbyssUIClassic_ColorPickerFrame:Show()
+    if ( AbyssUIClassicAddonSettings.UIVertexColorFramesColorPicker == true ) then
+      AbyssUIClassicVertexColorFramesColorPicker_CheckButton.Text:SetTextColor(COLOR_MY_UI[character].Color.r, COLOR_MY_UI[character].Color.g, COLOR_MY_UI[character].Color.b)
+      ReloadUI()
+    end
   else
     AbyssUIClassicVertexColorFramesColorPicker_CheckButton:SetChecked(nil)
   end
