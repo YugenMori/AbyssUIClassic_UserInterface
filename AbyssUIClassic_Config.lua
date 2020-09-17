@@ -510,6 +510,7 @@ FPSMSFrame_CheckButton.Text:SetText("Hide FPS/MS Frame (*)")
 FPSMSFrame_CheckButton.tooltip = "Hide the fps/ms frame (Top left frame)."
 .." *This will only work if you are using the default Blizzard Minimap"
 FPSMSFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideFPSMSFrame)
+addonTable.FPSMSFrame = FPSMSFrame_CheckButton
 -- OnClick Function
 FPSMSFrame_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.HideFPSMSFrame = self:GetChecked()
@@ -522,6 +523,7 @@ YouDiedLevelUpFrame_CheckButton.Text:SetText("Hide YouDied/LevelUp Frame")
 YouDiedLevelUpFrame_CheckButton.tooltip = "Hide the 'You Died' and 'Level Up' frame when you"..
 " die/level in the game"
 YouDiedLevelUpFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideYouDiedLevelUpFrame)
+addonTable.YouDiedLevelUpFrame = YouDiedLevelUpFrame_CheckButton
 -- OnClick Function
 YouDiedLevelUpFrame_CheckButton:SetScript("OnClick", function(self)
 AbyssUIClassicAddonSettings.HideYouDiedLevelUpFrame = self:GetChecked()
@@ -864,6 +866,7 @@ HideCastTimer_CheckButton:SetPoint("TOPRIGHT", -200, -80)
 HideCastTimer_CheckButton.Text:SetText("Hide CastBar Timer")
 HideCastTimer_CheckButton.tooltip = "Hide the timer below CastBar"
 HideCastTimer_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideCastTimer)
+addonTable.HideCastTimer = HideCastTimer_CheckButton
 -- OnClick Function
 HideCastTimer_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.HideCastTimer = self:GetChecked()
@@ -871,9 +874,10 @@ end)
 -- Hide Group Frame
 local HideGroupFrame_CheckButton = CreateFrame("CheckButton", "$parentHideGroupFrame_CheckButton", AbyssUIClassic_Config.childpanel2, "ChatConfigCheckButtonTemplate")
 HideGroupFrame_CheckButton:SetPoint("TOPRIGHT", -200, -110)
-HideGroupFrame_CheckButton.Text:SetText("Hide GroupFrame")
+HideGroupFrame_CheckButton.Text:SetText("|cfff2dc7fHide GroupFrame|r")
 HideGroupFrame_CheckButton.tooltip = "Hide the GroupFrame on the player portrait"
 HideGroupFrame_CheckButton:SetChecked(AbyssUIClassicAddonSettings.HideGroupFrame)
+addonTable.HideGroupFrame = HideGroupFrame_CheckButton
 -- OnClick Function
 HideGroupFrame_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.HideGroupFrame = self:GetChecked()
@@ -1244,10 +1248,11 @@ end)
 -- Hide in Combat --
 local AbyssUIClassic_HideInCombat_CheckButton = CreateFrame("CheckButton", "$parentAbyssUIClassic_HideInCombat_CheckButton", AbyssUIClassic_Config.childpanel3, "ChatConfigCheckButtonTemplate")
 AbyssUIClassic_HideInCombat_CheckButton:SetPoint("TOPLEFT", 400, -110)
-AbyssUIClassic_HideInCombat_CheckButton.Text:SetText("Dynamic ObjectiveTrack Hide")
+AbyssUIClassic_HideInCombat_CheckButton.Text:SetText("|cfff2dc7fDynamic ObjectiveTrack Hide|r")
 AbyssUIClassic_HideInCombat_CheckButton.tooltip = "Hide some parts of the interface when you"..
 " are in combat or in a PVP instance"
 AbyssUIClassic_HideInCombat_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat)
+addonTable.HideInCombat = AbyssUIClassic_HideInCombat_CheckButton
 -- OnClick Function
 AbyssUIClassic_HideInCombat_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat = self:GetChecked()
@@ -1373,6 +1378,7 @@ AbyssUIClassic_ChatBubbleChanges_CheckButton:SetPoint("TOPLEFT", 400, -350)
 AbyssUIClassic_ChatBubbleChanges_CheckButton.Text:SetText("Disable ChatBubble Changes")
 AbyssUIClassic_ChatBubbleChanges_CheckButton.tooltip = "This option will remove any change that was made to the chatbubbles (the frame text above players)"
 AbyssUIClassic_ChatBubbleChanges_CheckButton:SetChecked(AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges)
+addonTable.ChatBubbleChanges = AbyssUIClassic_ChatBubbleChanges_CheckButton
 -- OnClick Function
 AbyssUIClassic_ChatBubbleChanges_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges = self:GetChecked()
@@ -1475,6 +1481,7 @@ DisableSquareMinimap_CheckButton.Text:SetText("Default Minimap (*)")
 DisableSquareMinimap_CheckButton.tooltip = "This option will get you back to the"..
 " Blizzard default minimap style (round). *You need to restart the game so round textures can be re-loaded"
 DisableSquareMinimap_CheckButton:SetChecked(AbyssUIClassicAddonSettings.DisableSquareMinimap)
+addonTable.DisableSquareMinimap = DisableSquareMinimap_CheckButton
 -- OnClick Function
 DisableSquareMinimap_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.DisableSquareMinimap = self:GetChecked()
@@ -1498,6 +1505,7 @@ DisableUnitFrameSmoke_CheckButton.Text:SetText("Disable Smoke Texture")
 DisableUnitFrameSmoke_CheckButton.tooltip = "It will disable the 'smoke' texture around the portrait in "..
 "the UnitFrame Improved version of it"
 DisableUnitFrameSmoke_CheckButton:SetChecked(AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture)
+addonTable.DisableUnitFrameSmoke = DisableUnitFrameSmoke_CheckButton
 -- OnClick Function
 DisableUnitFrameSmoke_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture = self:GetChecked()
@@ -1515,7 +1523,7 @@ KillAnnouncer_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassic_ReloadFrame:Show()
 end)
 -- Silence Kill Announcer --
-local SilenceKillAnnouncer_CheckButton = CreateFrame("CheckButton", "$parentUnitFrameImproved_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+local SilenceKillAnnouncer_CheckButton = CreateFrame("CheckButton", "$parentSilenceKillAnnouncer_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
 SilenceKillAnnouncer_CheckButton:SetPoint("TOPLEFT", 10, -290)
 SilenceKillAnnouncer_CheckButton.Text:SetText("Silence Kill Announcer")
 SilenceKillAnnouncer_CheckButton.tooltip = "Remove boss/kill sounds from the Kill Announcer frame"
@@ -1523,6 +1531,18 @@ SilenceKillAnnouncer_CheckButton:SetChecked(AbyssUIClassicAddonSettings.SilenceK
 -- OnClick Function
 SilenceKillAnnouncer_CheckButton:SetScript("OnClick", function(self)
   AbyssUIClassicAddonSettings.SilenceKillAnnouncer = self:GetChecked()
+end)
+-- TooltipOnCursor --
+local TooltipOnCursor_CheckButton = CreateFrame("CheckButton", "$parentTooltipOnCursor_CheckButton", AbyssUIClassic_Config.childpanel5, "ChatConfigCheckButtonTemplate")
+TooltipOnCursor_CheckButton:SetPoint("TOPLEFT", 10, -320)
+TooltipOnCursor_CheckButton.Text:SetText("|cfff2dc7fTooltip on Cursor|r")
+TooltipOnCursor_CheckButton.tooltip = "Tooltips will appear close to the mouse cursor position"
+TooltipOnCursor_CheckButton:SetChecked(AbyssUIClassicAddonSettings.TooltipOnCursor)
+addonTable.TooltipOnCursor = TooltipOnCursor_CheckButton
+-- OnClick Function
+TooltipOnCursor_CheckButton:SetScript("OnClick", function(self)
+  AbyssUIClassicAddonSettings.TooltipOnCursor = self:GetChecked()
+  AbyssUIClassic_ReloadFrame:Show()
 end)
 --- Frames ---
 -- Elite Portrait --

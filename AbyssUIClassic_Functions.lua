@@ -261,6 +261,31 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 	end
 end)
 ----------------------------------------------------
+-- Tooltip
+local UnitColor
+local function UnitColor(unit)
+	local r, g, b
+	if ( ( not UnitIsPlayer(unit) ) and ( ( not UnitIsConnected(unit) ) or ( UnitIsDeadOrGhost(unit) ) ) ) then
+		--Color it gray
+		r, g, b = 0.5, 0.5, 0.5
+	elseif ( UnitIsPlayer(unit) ) then
+		--Try to color it by class.
+		local localizedClass, englishClass = UnitClass(unit)
+		local classColor = RAID_CLASS_COLORS[englishClass]
+		if ( classColor ) then
+			r, g, b = classColor.r, classColor.g, classColor.b
+		else
+			if ( UnitIsFriend("player", unit) ) then
+				r, g, b = 0.0, 1.0, 0.0
+			else
+				r, g, b = 1.0, 0.0, 0.0
+			end
+		end
+	else
+		r, g, b = UnitSelectionColor(unit)
+	end
+	return r, g, b
+end
 -- Tooltip Background and borders
 local TooltipBackground = GameTooltip:CreateTexture(nil, "LOW", nil, 1)
 TooltipBackground:SetPoint("TOPLEFT", 3, -3)
@@ -270,7 +295,8 @@ TooltipBackground:SetAlpha(0.5, 0.5, 0.5, 0.8)
 ----------------------------------------------------
 -- Tooltip Class Color Health
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
-	local _, unit = GameTooltip:GetUnit()
+	local _, unit = self:GetUnit()
+	if unit == nil then return end
 	if UnitIsPlayer(unit) then
 		local _, class = UnitClass(unit)
 		local color = class and (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class]
@@ -282,35 +308,10 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, elapsed)
 			end
 		end
 	else
-		GameTooltipStatusBar:SetStatusBarColor(0, 128, 0)
+		GameTooltipStatusBar:SetStatusBarColor(UnitColor(unit))
 	end
 end)
 ----------------------------------------------------
--- Tooltip Faction
--- Only create the texture once.
-local TooltipFaction = GameTooltip:CreateTexture(GameTooltip, "BACKGROUND", nil, 1)
-TooltipFaction:SetSize(40, 40)
-TooltipFaction:SetPoint("TOPRIGHT", 0, -5)
-GameTooltip:HookScript("OnUpdate", function(self, elapsed)
-    local _, unit = GameTooltip:GetUnit()
-    if UnitIsPlayer(unit) then
-        local englishFaction, localizedFaction = UnitFactionGroup(unit)
-        if ( englishFaction == "Horde" ) then
-            TooltipFaction:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\faction\\PVP-Currency-Horde")
-            TooltipFaction:Show()
-        elseif ( englishFaction == "Alliance" ) then
-                TooltipFaction:SetTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\faction\\PVP-Currency-Alliance")
-            TooltipFaction:Show()
-        elseif ( englishFaction == "Neutral" ) then
-            -- TooltipFaction:SetTexture("")
-            TooltipFaction:Hide()
-        else
-            TooltipFaction:Hide()
-        end
-    else
-        TooltipFaction:Hide()
-    end
-end)
 -- StatsFrame
 -- Many thanks to Syiana for part of this
 local StatsFrame = CreateFrame("Frame", "$parentStatsFrame", UIParent)
@@ -552,11 +553,6 @@ hooksecurefunc("HealthBar_OnValueChanged", function()
 	end
 end)
 ----------------------------------------------------
--- Start Function
-function AbyssUIClassicStart()
-	AbyssUIClassicFirstFrame:Show()
-end
-----------------------------------------------------
 -- UI Scale Elements (On Load)
 local ScaleElements = CreateFrame("Frame", "$parentScaleElements", nil)
 ScaleElements:RegisterEvent("ADDON_LOADED")
@@ -568,24 +564,6 @@ ScaleElements:SetScript("OnEvent", function(self, event, arg1)
 		return nil
 	end
 end)
--- Pixel Perfect
---[[
-local PixelPerfect = CreateFrame("Frame", "$parentPixelPerfect", nil)
-PixelPerfect:RegisterEvent("PLAYER_ENTERING_WORLD")
-PixelPerfect:SetScript("OnEvent", function(self, event, arg1)
-if ( event == "PLAYER_ENTERING_WORLD" and AbyssUIClassicAddonSettings.ExtraFunctionPixelPerfect == true) then
-		SetCVar("useUiScale", 0)
-		local sv = GetScreenHeight()
-		if ( sv >= 768 ) then 
-			UIParent:SetScale(768/GetScreenHeight())
-		else 
-			return nil
-		end
-	else 
-		return nil
-	end
-end)
---]]
 ----------------------------------------------------
 -- Color Picker 
 -- Many thanks to Fizz for part of this :thumbsup:

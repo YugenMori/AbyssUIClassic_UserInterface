@@ -359,6 +359,18 @@ AbyssUIClassic_AFKCamera:SetScript("OnEvent", function(self, event, ...)
 				AbyssUIClassic_AFKCameraFrame:Hide()
 			end
 		end
+		-- OnClick
+		if ( AbyssUIClassic_AFKCameraFrame:IsShown() ) then
+			AbyssUIClassic_AFKCameraFrame:SetScript("OnMouseDown", function (self, button)
+			    if ( button == 'RightButton' ) then 
+			    	AbyssUIClassic_AFKCameraFrame:Hide()
+					UIParent:SetAlpha(1)
+					if AbyssUIClassicAddonSettings.HideMinimap ~= true then
+						MinimapCluster:Show()
+					end
+			    end
+			end)
+		end
 	else
 		return nil
 	end
@@ -489,7 +501,7 @@ AbyssUIClassic_LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
 end)
 -------------------------- Save and Extra Stuff --------------------------
 -- AbyssUIClassicFirstFrame
-AbyssUIClassicFirstFrame = CreateFrame("Frame", "$parentAbyssUIClassicFirstFrame", UIParent)
+local AbyssUIClassicFirstFrame = CreateFrame("Frame", "$parentAbyssUIClassicFirstFrame", UIParent)
 AbyssUIClassicFirstFrame:Hide()
 AbyssUIClassicFirstFrame:SetWidth(GetScreenWidth())
 AbyssUIClassicFirstFrame:SetHeight(GetScreenHeight())
@@ -575,13 +587,11 @@ AbyssUIClassicSecondFrame.text:SetScale(2)
 AbyssUIClassicSecondFrame.text:SetAllPoints(true)
 AbyssUIClassicSecondFrame.text:SetJustifyH("CENTER")
 AbyssUIClassicSecondFrame.text:SetJustifyV("CENTER")
-AbyssUIClassicSecondFrame.text:SetText("First we need to save the variables"
-.." of the interface for the first use of AbyssUI.\n\nYou can choose to configure by yourself (Confirm)"
-.." or use the recommended settings (Recommended).\n\nIf you choose to configure,"
-.." the game will reload and then you can go to the configuration panel by typing '/abyssui config'.\n\n"
-.."If you choose the recommended settings, the UI will load the settings that are the mostly"
-.." recommended to use.\nYou always can configure the interface the way you would like by"
-.." typing /abyssui config in the chat.")
+AbyssUIClassicSecondFrame.text:SetText("Let's save the variables and prepare the interface for the first use.\n"
+.."To do this, choose the option that best suits your taste.\n\n"
+.."|cfff2dc7fClassic|r: an interface model more like the original blizzard, with few modifications.\n\n"
+.."|cfff2dc7fModern|r: a more modern interface model, with striking changes to the interface.\n\n"
+.."You always can change options on the configuration panel.\nType '|cfff2dc7f/abyssui|r' on chat for more info.")
 ----------------------------------------------------
 local AbyssUIClassicBorder = AbyssUIClassicSecondFrame:CreateTexture(nil, "BACKGROUND")
 AbyssUIClassicBorder:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
@@ -599,83 +609,115 @@ Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 Texture:SetAllPoints(AbyssUIClassicSecondFrame)
 AbyssUIClassicSecondFrame.texture = Texture
 ----------------------------------------------------
-local FrameButton2 = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
-FrameButton2:SetHeight(40)
-FrameButton2:SetWidth(120)
-FrameButton2:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", 100, -200)
-FrameButton2:SetText("Recommended")
-FrameButton2.GlowTexture = FrameButton2:CreateTexture(nil, "OVERLAY", "UIPanelButtonHighlightTexture")
-FrameButton2.GlowTexture:SetAllPoints()
-FrameButton2.GlowTexture:Hide()
-FrameButton2.Glow = FrameButton2:CreateAnimationGroup()
-FrameButton2.Glow:SetLooping("REPEAT")
-local anim = FrameButton2.Glow:CreateAnimation("Alpha")
+local FrameButtonModern = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
+FrameButtonModern:SetHeight(40)
+FrameButtonModern:SetWidth(120)
+FrameButtonModern:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", 100, -200)
+FrameButtonModern:SetText("|cfff2dc7fModern|r")
+FrameButtonModern.GlowTexture = FrameButtonModern:CreateTexture(nil, "OVERLAY", "UIPanelButtonHighlightTexture")
+FrameButtonModern.GlowTexture:SetAllPoints()
+FrameButtonModern.GlowTexture:Hide()
+FrameButtonModern.Glow = FrameButtonModern:CreateAnimationGroup()
+FrameButtonModern.Glow:SetLooping("REPEAT")
+local anim = FrameButtonModern.Glow:CreateAnimation("Alpha")
 	anim:SetChildKey("GlowTexture")
 	anim:SetOrder(1)
 	anim:SetFromAlpha(0)
 	anim:SetToAlpha(1)
 	anim:SetDuration(0.5)
-anim = FrameButton2.Glow:CreateAnimation("Alpha")
+anim = FrameButtonModern.Glow:CreateAnimation("Alpha")
 	anim:SetOrder(2)
 	anim:SetChildKey("GlowTexture")
 	anim:SetFromAlpha(1)
 	anim:SetToAlpha(0)
 	anim:SetDuration(0.5)
-FrameButton2.Glow:SetScript("OnPlay", function(self)
+FrameButtonModern.Glow:SetScript("OnPlay", function(self)
 		self:GetParent().GlowTexture:Show()
 	end)
-FrameButton2.Glow:SetScript("OnStop", function(self)
+FrameButtonModern.Glow:SetScript("OnStop", function(self)
 		self:GetParent().GlowTexture:Hide()
 	end)
-if not FrameButton2.running then
-	FrameButton2.running = true
-	FrameButton2.Glow:Play()
+if not FrameButtonModern.running then
+	FrameButtonModern.running = true
+	FrameButtonModern.Glow:Play()
 else
-	FrameButton2.running = false
-	FrameButton2.Glow:Stop()
+	FrameButtonModern.running = false
+	FrameButtonModern.Glow:Stop()
 end
 ----------------------------------------------------
-local BorderButton = FrameButton2:CreateTexture(nil, "ARTWORK")
-BorderButton:SetAllPoints(FrameButton2)
-FrameButton2:SetScript("OnClick", function()
+local BorderButtonModern = FrameButtonModern:CreateTexture(nil, "ARTWORK")
+BorderButtonModern:SetAllPoints(FrameButtonModern)
+FrameButtonModern:SetScript("OnClick", function()
 	-- Set
 	for i, v in pairs {
-		addonTable.CameraSmooth50,
-		addonTable.InspectTarget,
-		addonTable.AutoSellGray,
-		addonTable.DisableHealingSpam,
-		addonTable.ConfirmPopUps,
-		addonTable.UnitFrameImproved,
 		addonTable.HideUnitImprovedFaction,
+		addonTable.HideGroupFrame,
+		addonTable.InspectTarget,
+		addonTable.ConfirmPopUps,
+		addonTable.AutoSellGray,
+		addonTable.HideInCombat,
+		addonTable.DisableHealingSpam,
+		addonTable.TooltipOnCursor,
+		addonTable.UnitFrameImproved,
 		addonTable.ElitePortrait,
 	} do
 	 	v:SetChecked(true)
 	end
 	-- Get
-	AbyssUIClassicAddonSettings.ExtraFunctionCameraSmooth50 = addonTable.CameraSmooth50:GetChecked()
-	AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget = addonTable.InspectTarget:GetChecked()
-	AbyssUIClassicAddonSettings.ExtraFunctionSellGray = addonTable.AutoSellGray:GetChecked()
-	AbyssUIClassicAddonSettings.ExtraFunctionDisableHealingSpam = addonTable.DisableHealingSpam:GetChecked()
-	AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps = addonTable.ConfirmPopUps:GetChecked()
-	AbyssUIClassicAddonSettings.UnitFrameImproved = addonTable.UnitFrameImproved:GetChecked()
-	AbyssUIClassicAddonSettings.HideUnitImprovedFaction = addonTable.HideUnitImprovedFaction:GetChecked()
-	AbyssUIClassicAddonSettings.ElitePortrait = addonTable.ElitePortrait:GetChecked()
+	AbyssUIClassicAddonSettings.HideUnitImprovedFaction 			= addonTable.HideUnitImprovedFaction:GetChecked()
+	AbyssUIClassicAddonSettings.HideGroupFrame						= addonTable.HideGroupFrame:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget 			= addonTable.InspectTarget:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps 			= addonTable.ConfirmPopUps:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionSellGray 				= addonTable.AutoSellGray:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionHideInCombat			= addonTable.HideInCombat:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionDisableHealingSpam		= addonTable.DisableHealingSpam:GetChecked()
+	AbyssUIClassicAddonSettings.TooltipOnCursor 					= addonTable.TooltipOnCursor:GetChecked()
+	AbyssUIClassicAddonSettings.UnitFrameImproved 					= addonTable.UnitFrameImproved:GetChecked()
+	AbyssUIClassicAddonSettings.ElitePortrait 						= addonTable.ElitePortrait:GetChecked()
 	AbyssUIClassicSecondFrame:Hide()
-	FrameButton2.Glow:Finish()
+	FrameButtonModern.Glow:Finish()
 	ReloadUI()
 end)
 ----------------------------------------------------
-local FrameButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
-FrameButton:SetHeight(40)
-FrameButton:SetWidth(120)
-FrameButton:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", -100, -200)
-FrameButton:SetText("Confirm")
+local FrameButtonClassic = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSecondFrame, "UIPanelButtonTemplate")
+FrameButtonClassic:SetHeight(40)
+FrameButtonClassic:SetWidth(120)
+FrameButtonClassic:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", -100, -200)
+FrameButtonClassic:SetText("|cfff2dc7fClassic|r")
 ----------------------------------------------------
-local BorderButton = FrameButton:CreateTexture(nil, "ARTWORK")
-BorderButton:SetAllPoints(FrameButton)
-FrameButton:SetScript("OnClick", function()
+local BorderButtonClassic = FrameButtonClassic:CreateTexture(nil, "ARTWORK")
+BorderButtonClassic:SetAllPoints(FrameButtonClassic)
+FrameButtonClassic:SetScript("OnClick", function()
+	-- Set
+	for i, v in pairs {
+		addonTable.FPSMSFrame,
+		addonTable.YouDiedLevelUpFrame,
+		addonTable.HideUnitImprovedFaction,
+		addonTable.HideCastTimer,
+		addonTable.InspectTarget,
+		addonTable.ConfirmPopUps,
+		addonTable.AutoSellGray,
+		addonTable.ChatBubbleChanges,
+		addonTable.DisableHealingSpam,
+		addonTable.DisableSquareMinimap,
+		addonTable.DisableUnitFrameSmoke,
+	} do
+		v:SetChecked(true)
+	end
+	-- Get
+	AbyssUIClassicAddonSettings.HideFPSMSFrame 						= addonTable.FPSMSFrame:GetChecked()
+	AbyssUIClassicAddonSettings.HideYouDiedLevelUpFrame 			= addonTable.YouDiedLevelUpFrame:GetChecked()
+	AbyssUIClassicAddonSettings.HideUnitImprovedFaction 			= addonTable.HideUnitImprovedFaction:GetChecked()
+	AbyssUIClassicAddonSettings.HideCastTimer						= addonTable.HideCastTimer:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionInspectTarget 			= addonTable.InspectTarget:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionConfirmPopUps 			= addonTable.ConfirmPopUps:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionSellGray 				= addonTable.AutoSellGray:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionChatBubbleChanges 		= addonTable.ChatBubbleChanges:GetChecked()
+	AbyssUIClassicAddonSettings.ExtraFunctionDisableHealingSpam		= addonTable.DisableHealingSpam:GetChecked()
+	AbyssUIClassicAddonSettings.DisableSquareMinimap				= addonTable.DisableSquareMinimap:GetChecked()
+	AbyssUIClassicAddonSettings.UnitFrameImprovedDefaultTexture 	= addonTable.DisableUnitFrameSmoke:GetChecked()
 	AbyssUIClassicSecondFrame:Hide()
-	FrameButton2.Glow:Finish()
+	FrameButtonModern.Glow:Finish()
 	ReloadUI()
 end)
 ----------------------------------------------------
@@ -692,7 +734,7 @@ BorderCloseButton:SetAllPoints(CloseButton)
 BorderCloseButton:SetVertexColor(0.34, 0.34, 0.34, 1)
 CloseButton:SetScript("OnClick", function()
 	AbyssUIClassicSecondFrame:Hide()
-	FrameButton2.Glow:Finish()
+	FrameButtonModern.Glow:Finish()
 	ReloadUI()
 end)
 ----------------------------------------------------
@@ -997,6 +1039,10 @@ FrameButtonReset:SetScript("OnClick", function()
 	AbyssUIClassic_ColorPickerFrame:Hide()
 	ReloadUI()
 end)
+-- Start Function
+local function AbyssUIClassicStart()
+	AbyssUIClassicFirstFrame:Show()
+end
 --------------------------------- Save ---------------------------------
 local AbyssUIClassicSave = CreateFrame("Frame")
 AbyssUIClassicSave:RegisterEvent("ADDON_LOADED")

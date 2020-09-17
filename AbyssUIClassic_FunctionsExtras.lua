@@ -140,18 +140,22 @@ end)
 ----------------------------------------------
 -- Nameplate Health Percent
 hooksecurefunc("CompactUnitFrame_UpdateStatusText", function(frame)
-	if frame:IsForbidden() or ( UnitIsFriend("player", frame.displayedUnit) and not UnitIsUnit(frame.displayedUnit, "player") ) then return end
-	if not frame.healthBar.percent then
-		frame.healthBar.percent = frame.healthBar:CreateFontString(nil,"OVERLAY")
-		frame.healthBar.percent:SetPoint("LEFT", frame.healthBar)
-		frame.healthBar.percent:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf", 10)
-		frame.healthBar.percent:SetShadowColor(0, 0, 0)
-		frame.healthBar.percent:SetShadowOffset(1, -0.25)
+	if ( AbyssUIClassicAddonSettings.ExtraFunctionNameplateChanges ~= true ) then
+		if frame:IsForbidden() or ( UnitIsFriend("player", frame.displayedUnit) and not UnitIsUnit(frame.displayedUnit, "player") ) then return end
+			if not frame.healthBar.percent then
+				frame.healthBar.percent = frame.healthBar:CreateFontString(nil,"OVERLAY")
+				frame.healthBar.percent:SetPoint("LEFT", frame.healthBar)
+				frame.healthBar.percent:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefont.ttf", 10)
+				frame.healthBar.percent:SetShadowColor(0, 0, 0)
+				frame.healthBar.percent:SetShadowOffset(1, -0.25)
+			end
+		local percentcalc = ceil(((UnitHealth(frame.displayedUnit) / UnitHealthMax(frame.displayedUnit)) * 1000) /10)
+			if ( percentcalc == 0 ) then return end
+			frame.healthBar.percent:SetFormattedText("%d%%", percentcalc)
+			--frame.healthBar.percent:Show()
+	else
+		return nil
 	end
-	local percentcalc = ceil(((UnitHealth(frame.displayedUnit) / UnitHealthMax(frame.displayedUnit)) * 1000) /10)
-	if ( percentcalc == 0 ) then return end
-	frame.healthBar.percent:SetFormattedText("%d%%", percentcalc)
-	--frame.healthBar.percent:Show()
 end)
 -- Nameplate colorization
 -- Player
@@ -664,22 +668,9 @@ SquareMinimap_:SetScript("OnEvent", function(self, event, ...)
 			MiniMapMailFrame:ClearAllPoints()
 			MiniMapMailFrame:SetPoint("TOPRIGHT", Minimap, 1, -20)
 			MiniMapMailIcon:SetTexture(mailicon)
-
 			MiniMapWorldMapButton:Hide()
-			--MiniMapInstanceDifficulty:ClearAllPoints()
-			--MiniMapInstanceDifficulty:SetParent(Minimap)
-			--MiniMapInstanceDifficulty:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, -22)
 			DropDownList1:SetClampedToScreen(true)
-
 			MiniMapMailFrame:SetFrameLevel(10)
-			--MiniMapInstanceDifficulty:SetFrameLevel(10)
-
-			--QueueStatusMinimapButton:SetSize(20, 20)
-			--QueueStatusMinimapButton:ClearAllPoints()
-			--QueueStatusMinimapButton:SetParent(Minimap)
-			--QueueStatusMinimapButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", 0, 22)
-			--QueueStatusMinimapButton:SetFrameLevel(10)
-			--QueueStatusMinimapButtonBorder:Hide()
 			
 			---------------------
 			-- mousewheel zoom --
@@ -730,7 +721,7 @@ SquareMinimap_:SetScript("OnEvent", function(self, event, ...)
 				end
 			end)
 			
-			function GetMinimapShape() return 'SQUARE' end
+			local function GetMinimapShape() return 'SQUARE' end
 
 			-------------------------------
 			-- style Battlefield Minimap --
@@ -761,7 +752,7 @@ SquareMinimap_:SetScript("OnEvent", function(self, event, ...)
 				BBorderFrame:SetFrameLevel(6)		
 			end)
 		else
-			return nil
+			Minimap:SetMaskTexture("Interface\\AddOns\\AbyssUIClassic\\Textures\\minimap\\round")
 		end
 	end
 end)
@@ -822,7 +813,7 @@ AbyssUIClassic_FontString:SetScript("OnEvent", function(self, event, arg1)
 	end
 end)
 -- Font Location Check
-local checkFont = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf"
+local checkFont = "Fonts\\FRIZQT__.ttf"
 local AbyssUIClassic_CheckFont = CreateFrame("Frame")
 AbyssUIClassic_CheckFont:RegisterEvent("ADDON_LOADED")
 AbyssUIClassic_CheckFont:SetScript("OnEvent", function(self, event, arg1)
@@ -897,7 +888,6 @@ local soundIDSHorde = {
 	109300, -- Bwonsamdi
 	15591,  -- Kologarn
 	42070,  -- Gugrokk2
-	43254,  -- Leroy Jenkins
 	50083,  -- Kormrok
 	24226,  -- DAAKARA
 	44525,  -- KARGATH
@@ -918,13 +908,13 @@ local soundIDSHorde = {
 	5831,	-- Herod
 	15740,	-- Thorim
 	10454,  -- Thrall
+	35591, 	-- LeiShen
 }
 local soundIDSAlly = { 
 	24531,  -- RAGNAROS 
 	24530,  -- RAGNAROS2
 	24477,  -- FANDRAL 
 	13324,  -- Telestra 
-	45439,  -- BLACKHAND2 
 	43913,  -- Koromar
 	21576,  -- Muradin
 	21574,  -- Muradin2
@@ -932,10 +922,10 @@ local soundIDSAlly = {
 	109300, -- Bwonsamdi
 	15591,  -- Kologarn
 	16061,  -- Varian
+	16062, 	-- Varian2
 	42070,  -- Gugrokk2
 	43254,  -- Leroy Jenkins
 	50083,  -- Kormrok
-	24226,  -- DAAKARA
 	44525,  -- KARGATH
 	17067,  -- Valithria
 	14506,  -- Xevozz
@@ -951,6 +941,7 @@ local soundIDSAlly = {
 	10334,	-- Garg
 	5831,	-- Herod
 	15740,	-- Thorim
+	35591, 	-- LeiShen
 }
 local numSoundsHorde = #soundIDSHorde
 local numSoundsAlly  = #soundIDSAlly
@@ -1002,6 +993,25 @@ KillAnouncer:SetScript("OnEvent", function(self)
 	    end
 	else
 		return nil
+	end
+end)
+-- Tooltip on cursor
+local function cursorSetPoint(self)
+	local scale = self:GetEffectiveScale()
+	local x, y = GetCursorPosition()
+	self:ClearAllPoints()
+	self:SetPoint("BOTTOMLEFT", UIParent, x / scale + 16, (y / scale - self:GetHeight() - 16))
+end
+local TooltipOnCursor = CreateFrame("Frame", nil)
+TooltipOnCursor:RegisterEvent("PLAYER_ENTERING_WORLD")
+TooltipOnCursor:SetScript("OnEvent", function()
+	if ( AbyssUIClassicAddonSettings.TooltipOnCursor == true ) then
+		hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
+			if GetMouseFocus() ~= WorldFrame then return end
+			tooltip:SetOwner(parent, "ANCHOR_CURSOR")
+			cursorSetPoint(tooltip)
+			-- tooltip.default = 1
+		end)
 	end
 end)
 --End

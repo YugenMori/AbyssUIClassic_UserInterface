@@ -91,8 +91,7 @@ local function AbyssUIClassicMoveFrames_Slashhandler()
     print("|cfff2dc7fAbyssUIClassic Command List|r")
     print("|cfff2dc7fType /abyssui |r|cffffcc00'command name'|r")
     print("/abyssui |cffffcc00config|r ~configuration panel")
-    print("/abyssui |cffffcc00unlock|r ~unlock UI frames")
-    print("/abyssui |cffffcc00lock|r ~lock UI frames that was changed")
+    print("/abyssui |cffffcc00setup|r ~show the setup frame")
     print("/abyssui |cffffcc00reset|r ~reset UI frames to default positions")
     print("/abyssui |cffffcc00daily|r ~AbyssUIClassic daily info")
     print("/abyssui |cffffcc00reload|r ~Reload the UI")
@@ -119,11 +118,8 @@ local function AbyssUIClassicMoveFrames_Slash(msg)
             InterfaceOptionsFrame_Show()
             InterfaceOptionsFrame_OpenToCategory("AbyssUI|cff0d75d4Classic|r")
             InterfaceOptionsFrame_OpenToCategory("AbyssUI|cff0d75d4Classic|r")
-        elseif (msg == "unlock") then
-            AbyssUIClassicMoveFrames_Function(true)
-        elseif (msg == "lock") then
-            AbyssUIClassicMoveFrames_Function(false)
-            print("|cfff2dc7fConsider reload the UI to make sure frames are locked|r '|cffffcc00/reload|r'")
+        elseif (msg == "setup") then
+            AbyssUIClassicSecondFrame:Show()
         elseif (msg == "reset") then
             AbyssUIClassicMoveFrames_Reset()
         elseif (msg == "daily") then
@@ -135,6 +131,13 @@ local function AbyssUIClassicMoveFrames_Slash(msg)
             print("/abyssui |cffffcc00gm|r ~custumer support")
             print("/abyssui |cffffcc00rc|r ~ready check")
             print("/abyssui |cffffcc00cr|r ~check role poll")
+            print("/abyssui |cffffcc00unlock|r ~unlock UI frames")
+            print("/abyssui |cffffcc00lock|r ~lock UI frames that was changed")
+        elseif (msg == "unlock") then
+            AbyssUIClassicMoveFrames_Function(true)
+        elseif (msg == "lock") then
+            AbyssUIClassicMoveFrames_Function(false)
+            print("|cfff2dc7fConsider reload the UI to make sure frames are locked|r '|cffffcc00/reload|r'")
         elseif (msg == "clc") then
             CombatLogClearEntries()
         elseif (msg == "gm") then

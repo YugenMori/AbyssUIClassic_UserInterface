@@ -24,7 +24,6 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				return nil
 			end
 		end)
-
 		-- UnitColor
 		local UnitColor
 		local function UnitColor(unit)
@@ -231,18 +230,24 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				if not InCombatLockdown() then
 					for i, v in pairs ({
 						PlayerName,
-						PlayerFrameHealthBarText,
-						PlayerFrameManaBarText,
 						TargetFrameTextureFrameName,
-						TargetFrameTextureFrameHealthBarText,
-						TargetFrameTextureFrameManaBarText,
-						FocusFrameTextureFrameName,
-						FocusFrameTextureFrameHealthBarText,
-					FocusFrameTextureFrameManaBarText, }) do
-						v:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf", 10)
+	 				}) do
+						--v:SetFont("Interface\\AddOns\\AbyssUI\\Textures\\font\\damagefontcyrillic.ttf", 10)
+						v:SetFont("Fonts\\FRIZQT__.ttf", 12)
 						v:SetVertexColor(255/255, 252/255, 242/255)
 						v:SetShadowColor(0, 0, 0)
+						v:SetShadowOffset(1, -1)
+					end
+					for i, v in pairs ({
+						PlayerFrameHealthBarText,
+						PlayerFrameManaBarText,
+						TargetFrameTextureFrameHealthBarText,
+						TargetFrameTextureFrameManaBarText,
+						}) do
+						v:SetFont("Fonts\\FRIZQT__.ttf", 10)
+						v:SetShadowColor(0, 0, 0)
 						v:SetShadowOffset(1, -0.75)
+						v:SetShadowOffset(1, -1)
 					end
 				end
 			else
