@@ -6,6 +6,79 @@
 --
 -- Functions for AbyssUIClassic
 ----------------------------------------------------
+-- Init - Tables - Saves
+local addonName, addonTable = ...
+if not AbyssUIClassic_Config then
+  local AbyssUIClassic_Config = {}
+end
+-- Color Init
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", function(self, event)
+    character = UnitName("player").."-"..GetRealmName()
+    if not COLOR_MY_UI then
+        COLOR_MY_UI = {}
+    end
+    if not COLOR_MY_UI[character] then
+        COLOR_MY_UI[character] = {}
+    end
+    if not COLOR_MY_UI[character].Color then
+        COLOR_MY_UI[character].Color = { r = 1, g = 1, b = 1 }
+    end
+end)
+-- Fontfication
+local function AbyssUIClassic_Fontification(globalFont, subFont, damageFont)
+local locale = GetLocale()
+local fontName, fontHeight, fontFlags = MinimapZoneText:GetFont()
+local mediaFolder = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\"
+	if ( locale == "zhCN") then
+		globalFont	= mediaFolder.."zhCN-TW\\senty.ttf"
+		subFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+		damageFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+	elseif ( locale == "zhTW" ) then
+		globalFont	= mediaFolder.."zhCN-TW\\senty.ttf"
+		subFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+		damageFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+	elseif ( locale == "ruRU" ) then
+		globalFont	= mediaFolder.."ruRU\\dejavu.ttf"
+		subFont 	= mediaFolder.."ruRU\\dejavu.ttf"
+		damageFont 	= mediaFolder.."ruRU\\dejavu.ttf"
+	elseif ( locale == "koKR" ) then
+		globalFont	= mediaFolder.."koKR\\dxlbab.ttf"
+		subFont 	= mediaFolder.."koKR\\dxlbab.ttf"
+		damageFont 	= mediaFolder.."koKR\\dxlbab.ttf"
+	elseif ( locale == "frFR" or locale == "deDE" or locale == "enGB" or locale == "enUS" or locale == "itIT" or
+		locale == "esES" or locale == "esMX" or locale == "ptBR") then
+		globalFont	= mediaFolder.."global.ttf"
+		subFont 	= mediaFolder.."npcfont.ttf"
+		damageFont 	= mediaFolder.."damagefont.ttf"
+	else
+		globalFont	= fontName
+		subFont 	= fontName
+		damageFont 	= fontName
+	end
+	return globalFont, subFont, damageFont
+end
+local globalFont, subFont, damageFont = AbyssUIClassic_Fontification(globalFont, subFont, damageFont)
+-- RegionList
+local function AbyssUIClassic_RegionListSize(self, width, height)
+	local regionList = { 
+		self:GetRegions() } 
+	for i, self in ipairs(regionList) do 
+	    local regionType = self:GetObjectType() 
+	    if regionType == "Texture" and not self:GetTexture() then  -- the region with no texture, just black colour
+	        self:SetWidth(width)
+					self:SetHeight(height)
+	        break 
+	    end  
+	end
+end
+-- FrameSize
+local function AbyssUIClassic_FrameSize(self, width, height)
+	self:SetWidth(width)
+	self:SetHeight(height)
+end
+----------------------------------------------------
 -- Class Icons
 hooksecurefunc("UnitFramePortrait_Update", function(self)
 	if self.portrait then
@@ -158,22 +231,48 @@ hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", function()
 end)
 --]]
 ----------------------------------------------------
--- Cast Bar
+-- CastBar size fixes
+TimerTracker:HookScript("OnEvent", function(self, event, timerType, timeSeconds, totalTime)
+  if event ~= "START_TIMER" then return end
+  AbyssUIClassic_FrameSize(TimerTrackerTimer1StatusBar, 200, 18)
+  AbyssUIClassic_RegionListSize(TimerTrackerTimer1StatusBar, 200, 18)
+	TimerTrackerTimer1StatusBarBorder:Hide()
+end)
+for i, v in pairs({
+	MirrorTimer1,
+	MirrorTimer2,
+	MirrorTimer3,
+}) do
+	AbyssUIClassic_RegionListSize(v, 200, 18)
+end
+for i, v in pairs({	
+	CastingBarFrame, 
+	MirrorTimer1StatusBar, 
+	MirrorTimer2StatusBar, 
+	MirrorTimer3StatusBar, }) do
+	AbyssUIClassic_FrameSize(v, 200, 18)
+end
+-- Cast bars
+local c  = CastingBarFrame
+c.Icon:Show()
+c.Icon:SetWidth(20)
+c.Icon:SetHeight(20)
+c.Icon:ClearAllPoints()
+c.Icon:SetPoint("LEFT", c, "LEFT", -20, 1)
+c.Text = c:CreateFontString(nil)
+c.Text:SetFont(globalFont, 12)
+c.Text:SetShadowColor(0, 0, 0)
+c.Text:SetShadowOffset(1, -1)
+c.Text:ClearAllPoints()
+c.Text:SetPoint("TOP", c, "TOP", 0, 15)
 -- Timer
-CastingBarFrame.text = CastingBarFrame:CreateFontString(nil)
-CastingBarFrame.text:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\global.ttf", 12)
-CastingBarFrame.text:SetShadowColor(0, 0, 0)
-CastingBarFrame.text:SetShadowOffset(1, -1)
-CastingBarFrame.text:ClearAllPoints()
-CastingBarFrame.text:SetPoint("CENTER", CastingBarFrame, "CENTER", 0, 0)
--- Timer
-CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil)
-CastingBarFrame.timer:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\global.ttf", 12)
-CastingBarFrame.timer:SetShadowColor(0, 0, 0)
-CastingBarFrame.timer:SetShadowOffset(1, -1)
-CastingBarFrame.timer:SetPoint("TOP", CastingBarFrame, "BOTTOM", 0, 0)
-CastingBarFrame.update = .1
-CastingBarFrame:HookScript("OnUpdate", function(self, elapsed)
+c.timer = c:CreateFontString(nil)
+c.timer:SetFont(globalFont, 12)
+c.timer:SetShadowColor(0, 0, 0)
+c.timer:SetShadowOffset(1, -1)
+c.timer:SetPoint("TOP", c, "BOTTOM", 0, 0)
+c.update = .1
+c:HookScript("OnUpdate", function(self, elapsed)
 	if ( AbyssUIClassicAddonSettings.HideCastTimer ~= true ) then
 	    if not self.timer then return end
 	    if self.update and self.update < elapsed then
@@ -420,7 +519,7 @@ CF:SetScript("OnEvent", function(self, event)
 
 	StatsFrame.text = StatsFrame:CreateFontString(nil, 'BACKGROUND')
 	StatsFrame.text:SetPoint("BOTTOMLEFT", StatsFrame)
-	StatsFrame.text:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\npcfont.ttf", 12)
+	StatsFrame.text:SetFont(subFont, 12)
 	if useShadow then
 		StatsFrame.text:SetShadowOffset(1, -1)
 		StatsFrame.text:SetShadowColor(0, 0, 0)

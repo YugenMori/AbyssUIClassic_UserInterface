@@ -6,9 +6,142 @@
 --
 -- Frames for AbyssUIClassic
 --------------------------------------------------------------------------------
+-- Init - Tables - Saves
 local addonName, addonTable = ...
+if not AbyssUIClassic_Config then
+  local AbyssUIClassic_Config = {}
+end
+-- Color Init
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", function(self, event)
+    character = UnitName("player").."-"..GetRealmName()
+    if not COLOR_MY_UI then
+        COLOR_MY_UI = {}
+    end
+    if not COLOR_MY_UI[character] then
+        COLOR_MY_UI[character] = {}
+    end
+    if not COLOR_MY_UI[character].Color then
+        COLOR_MY_UI[character].Color = { r = 1, g = 1, b = 1 }
+    end
+end)
+-- Fontfication
+local function AbyssUIClassic_Fontification(globalFont, subFont, damageFont)
+local locale = GetLocale()
+local fontName, fontHeight, fontFlags = MinimapZoneText:GetFont()
+local mediaFolder = "Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\"
+	if ( locale == "zhCN") then
+		globalFont	= mediaFolder.."zhCN-TW\\senty.ttf"
+		subFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+		damageFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+	elseif ( locale == "zhTW" ) then
+		globalFont	= mediaFolder.."zhCN-TW\\senty.ttf"
+		subFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+		damageFont 	= mediaFolder.."zhCN-TW\\senty.ttf"
+	elseif ( locale == "ruRU" ) then
+		globalFont	= mediaFolder.."ruRU\\dejavu.ttf"
+		subFont 	= mediaFolder.."ruRU\\dejavu.ttf"
+		damageFont 	= mediaFolder.."ruRU\\dejavu.ttf"
+	elseif ( locale == "koKR" ) then
+		globalFont	= mediaFolder.."koKR\\dxlbab.ttf"
+		subFont 	= mediaFolder.."koKR\\dxlbab.ttf"
+		damageFont 	= mediaFolder.."koKR\\dxlbab.ttf"
+	elseif ( locale == "frFR" or locale == "deDE" or locale == "enGB" or locale == "enUS" or locale == "itIT" or
+		locale == "esES" or locale == "esMX" or locale == "ptBR") then
+		globalFont	= mediaFolder.."global.ttf"
+		subFont 	= mediaFolder.."npcfont.ttf"
+		damageFont 	= mediaFolder.."damagefont.ttf"
+	else
+		globalFont	= fontName
+		subFont 	= fontName
+		damageFont 	= fontName
+	end
+	return globalFont, subFont, damageFont
+end
+local globalFont, subFont, damageFont = AbyssUIClassic_Fontification(globalFont, subFont, damageFont)
+-- RegionList
+local function AbyssUIClassic_RegionListSize(self, width, height)
+	local regionList = { 
+		self:GetRegions() } 
+	for i, self in ipairs(regionList) do 
+	    local regionType = self:GetObjectType() 
+	    if regionType == "Texture" and not self:GetTexture() then  -- the region with no texture, just black colour
+	        self:SetWidth(width)
+					self:SetHeight(height)
+	        break 
+	    end  
+	end
+end
+-- FrameSize
+local function AbyssUIClassic_FrameSize(self, width, height)
+	self:SetWidth(width)
+	self:SetHeight(height)
+end
+--------------------------------------------------------------
+--------------------------------------------------------------
 local _G = _G
-local move = _G["BINDING_NAME_MOVEFORWARD"]
+local moveString      = _G["BINDING_NAME_MOVEFORWARD"]
+local cancelString    = _G["CANCEL"]
+local confirmString   = _G["OKAY"]
+----------------------------------------------------
+----------------------------------------------------
+-- AbyssUIClassic_EditBox_Frame
+AbyssUIClassic_EditBox_Frame = CreateFrame("Frame", "$parentAbyssUIClassic_EditBox_Frame", AbyssUIClassic_Config.childpanel1)
+AbyssUIClassic_EditBox_Frame:Hide()
+AbyssUIClassic_EditBox_Frame:SetWidth(500)
+AbyssUIClassic_EditBox_Frame:SetHeight(125)
+AbyssUIClassic_EditBox_Frame:SetPoint("CENTER", AbyssUIClassic_Config.childpanel1, "CENTER", 0, 0)
+AbyssUIClassic_EditBox_Frame:EnableMouse(true)
+AbyssUIClassic_EditBox_Frame:SetClampedToScreen(true)
+AbyssUIClassic_EditBox_Frame:SetMovable(true)
+AbyssUIClassic_EditBox_Frame:RegisterForDrag("LeftButton")
+AbyssUIClassic_EditBox_Frame:SetScript("OnDragStart", AbyssUIClassic_EditBox_Frame.StartMoving)
+AbyssUIClassic_EditBox_Frame:SetScript("OnDragStop", function(self)
+  self:StopMovingOrSizing()
+end)
+AbyssUIClassic_EditBox_Frame:SetFrameStrata("Dialog")
+----------------------------------------------------
+local Border = AbyssUIClassic_EditBox_Frame:CreateTexture(nil, "BACKGROUND")
+Border:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+Border:SetPoint("TOPLEFT", -3, 3)
+Border:SetPoint("BOTTOMRIGHT", 3, -3)
+Border:SetVertexColor(0.2, 0.2, 0.2, 0.6)
+----------------------------------------------------
+local BorderBody = AbyssUIClassic_EditBox_Frame:CreateTexture(nil, "ARTWORK")
+BorderBody:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+BorderBody:SetAllPoints(AbyssUIClassic_EditBox_Frame)
+BorderBody:SetVertexColor(0.34, 0.34, 0.34, 0.7)
+----------------------------------------------------
+local Texture = AbyssUIClassic_EditBox_Frame:CreateTexture(nil, "BACKGROUND")
+Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+Texture:SetAllPoints(AbyssUIClassic_EditBox_Frame)
+AbyssUIClassic_EditBox_Frame.texture = Texture
+----------------------------------------------------
+local FrameButtonConfirm = CreateFrame("Button","$parentFrameButtonConfirm", AbyssUIClassic_EditBox_Frame, "UIPanelButtonTemplate")
+FrameButtonConfirm:SetHeight(24)
+FrameButtonConfirm:SetWidth(100)
+FrameButtonConfirm:SetPoint("BOTTOM", AbyssUIClassic_EditBox_Frame, "BOTTOM", 0, 0)
+FrameButtonConfirm.text = FrameButtonConfirm.text or FrameButtonConfirm:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonConfirm.text:SetFont(globalFont, 12)
+FrameButtonConfirm.text:SetPoint("CENTER", FrameButtonConfirm, "CENTER", 0, 0)
+FrameButtonConfirm.text:SetText(confirmString)
+FrameButtonConfirm.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonConfirm.text:SetShadowColor(0, 0, 0)
+FrameButtonConfirm.text:SetShadowOffset(1, -1)
+FrameButtonConfirm:SetScript("OnClick", function()
+  AbyssUIClassic_EditBox_Frame:Hide()
+end)
+----------------------------------------------------
+-- EditBox
+AbyssUIClassic_EditBox= CreateFrame("EditBox", "$parentEditBox_TexturePack", AbyssUIClassic_EditBox_Frame)
+AbyssUIClassic_EditBox:SetFont(globalFont, 12, "THINOUTLINE")
+AbyssUIClassic_EditBox:SetPoint("CENTER", 0, 0)
+AbyssUIClassic_EditBox:SetMultiLine(true)
+AbyssUIClassic_EditBox:SetHeight(24)
+AbyssUIClassic_EditBox:SetWidth(450)
+----------------------------------------------------
+----------------------------------------------------
 -- AbyssUIClassic_AFKCameraFrame
 local AbyssUIClassic_AFKCameraFrame = CreateFrame("Frame", "$parentAbyssUIClassic_AFKCameraFrame", WorldFrame)
 AbyssUIClassic_AFKCameraFrame:SetFrameStrata("HIGH")
@@ -24,7 +157,7 @@ AbyssUIClassic_AFKCameraFrame.text:SetJustifyH("BOTTOM")
 AbyssUIClassic_AFKCameraFrame.text:SetJustifyV("BOTTOM")
 AbyssUIClassic_AFKCameraFrame.text:SetWidth(GetScreenWidth()/4)
 AbyssUIClassic_AFKCameraFrame.text:SetHeight(GetScreenHeight()/2)
-AbyssUIClassic_AFKCameraFrame.text:SetText(move)
+AbyssUIClassic_AFKCameraFrame.text:SetText(moveString)
 -- Texture
 local Texture = AbyssUIClassic_AFKCameraFrame:CreateTexture(nil, "BACKGROUND")
 Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
@@ -429,10 +562,11 @@ Texture:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 Texture:SetAllPoints(AbyssUIClassic_YouDiedFrame)
 AbyssUIClassic_YouDiedFrame.texture = Texture
 ----------------------------------------------------
--- LevelUp Frame
+-- LevelUp Fixes
 local _G = _G
-local levelup_reached = _G["LEVEL_UP_YOU_REACHED"]
-local leveltext 	  = _G["LEVEL"]
+local levelupreachedString 	= _G["LEVEL_UP_YOU_REACHED"]
+local levelString 	 		= _G["LEVEL"]
+-- LevelUp Frame
 local AbyssUIClassic_LevelUpFrame = CreateFrame("Frame", "$parentAbyssUIClassic_LevelUpFrame", UIParent)
 AbyssUIClassic_LevelUpFrame:SetFrameStrata("DIALOG")
 AbyssUIClassic_LevelUpFrame:SetWidth(GetScreenWidth())
@@ -442,7 +576,7 @@ AbyssUIClassic_LevelUpFrame:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
 AbyssUIClassic_LevelUpFrame.text = AbyssUIClassic_LevelUpFrame.text or AbyssUIClassic_LevelUpFrame:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 AbyssUIClassic_LevelUpFrame.text:SetScale(8)
 AbyssUIClassic_LevelUpFrame.text:SetPoint("CENTER", 0, 5)
-AbyssUIClassic_LevelUpFrame.text:SetText(strupper(levelup_reached))
+AbyssUIClassic_LevelUpFrame.text:SetText(strupper(levelupreachedString))
 AbyssUIClassic_LevelUpFrame.text:SetWidth(GetScreenWidth())
 AbyssUIClassic_LevelUpFrame.text:SetHeight(GetScreenHeight()/4)
 AbyssUIClassic_LevelUpFrame:Hide()
@@ -469,7 +603,7 @@ LevelUp_PlayerInfo:SetAllPoints(AbyssUIClassic_LevelUpFrame)
 LevelUp_PlayerInfo:SetScale(8)
 LevelUp_PlayerInfo.text = LevelUp_PlayerInfo.text or LevelUp_PlayerInfo:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
 LevelUp_PlayerInfo.text:SetPoint("CENTER", 0, -5)
-LevelUp_PlayerInfo.text:SetText(strupper("|cfff2dc7f"..leveltext.."|r ".."|cfff2dc7f"..level.."|r"))
+LevelUp_PlayerInfo.text:SetText(strupper("|cfff2dc7f"..levelString.."|r ".."|cfff2dc7f"..level.."|r"))
 LevelUp_PlayerInfo.text:SetWidth(GetScreenWidth())
 LevelUp_PlayerInfo.text:SetHeight(GetScreenHeight()/4)
 local function AbyssUIClassic_UpdateYouDiedLevelUpData()
@@ -499,7 +633,7 @@ AbyssUIClassic_LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
 		return nil
 	end
 end)
--------------------------- Save and Extra Stuff --------------------------
+----------------------------------------------------
 -- AbyssUIClassicFirstFrame
 local AbyssUIClassicFirstFrame = CreateFrame("Frame", "$parentAbyssUIClassicFirstFrame", UIParent)
 AbyssUIClassicFirstFrame:Hide()
@@ -552,9 +686,7 @@ CloseButton:SetText("x")
 CloseButton:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 ----------------------------------------------------
 local BorderCloseButton = CloseButton:CreateTexture(nil, "ARTWORK")
-BorderCloseButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderCloseButton:SetAllPoints(CloseButton)
-BorderCloseButton:SetVertexColor(0.34, 0.34, 0.34, 1)
 CloseButton:SetScript("OnClick", function()
 	AbyssUIClassicFirstFrame:Hide()
 	AbyssUIClassicSecondFrame:Show()
@@ -613,7 +745,13 @@ local FrameButtonModern = CreateFrame("Button", "$parentFrameButton", AbyssUICla
 FrameButtonModern:SetHeight(40)
 FrameButtonModern:SetWidth(120)
 FrameButtonModern:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", 100, -200)
-FrameButtonModern:SetText("|cfff2dc7fModern|r")
+FrameButtonModern.text = FrameButtonModern.text or FrameButtonModern:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonModern.text:SetFont(globalFont, 18)
+FrameButtonModern.text:SetPoint("CENTER", FrameButtonModern, "CENTER", 0, -2)
+FrameButtonModern.text:SetText("Modern")
+FrameButtonModern.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonModern.text:SetShadowColor(0, 0, 0)
+FrameButtonModern.text:SetShadowOffset(1, -1)
 FrameButtonModern.GlowTexture = FrameButtonModern:CreateTexture(nil, "OVERLAY", "UIPanelButtonHighlightTexture")
 FrameButtonModern.GlowTexture:SetAllPoints()
 FrameButtonModern.GlowTexture:Hide()
@@ -683,7 +821,13 @@ local FrameButtonClassic = CreateFrame("Button", "$parentFrameButton", AbyssUICl
 FrameButtonClassic:SetHeight(40)
 FrameButtonClassic:SetWidth(120)
 FrameButtonClassic:SetPoint("CENTER", AbyssUIClassicSecondFrame, "CENTER", -100, -200)
-FrameButtonClassic:SetText("|cfff2dc7fClassic|r")
+FrameButtonClassic.text = FrameButtonClassic.text or FrameButtonClassic:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonClassic.text:SetFont(globalFont, 18)
+FrameButtonClassic.text:SetPoint("CENTER", FrameButtonClassic, "CENTER", 0, -2)
+FrameButtonClassic.text:SetText("Classic")
+FrameButtonClassic.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonClassic.text:SetShadowColor(0, 0, 0)
+FrameButtonClassic.text:SetShadowOffset(1, -1)
 ----------------------------------------------------
 local BorderButtonClassic = FrameButtonClassic:CreateTexture(nil, "ARTWORK")
 BorderButtonClassic:SetAllPoints(FrameButtonClassic)
@@ -725,13 +869,13 @@ local CloseButton = CreateFrame("Button", "$parentFrameButton", AbyssUIClassicSe
 CloseButton:SetHeight(40)
 CloseButton:SetWidth(40)
 CloseButton:SetPoint("TOPRIGHT", AbyssUIClassicSecondFrame, "TOPRIGHT", 0, 0)
-CloseButton:SetText("x")
-CloseButton:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+CloseButton.text = CloseButton.text or CloseButton:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+CloseButton.text:SetFont(globalFont, 18)
+CloseButton.text:SetPoint("CENTER", CloseButton, "CENTER", 0, 0)
+CloseButton.text:SetText("x")
 ----------------------------------------------------
 local BorderCloseButton = CloseButton:CreateTexture(nil, "ARTWORK")
-BorderCloseButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderCloseButton:SetAllPoints(CloseButton)
-BorderCloseButton:SetVertexColor(0.34, 0.34, 0.34, 1)
 CloseButton:SetScript("OnClick", function()
 	AbyssUIClassicSecondFrame:Hide()
 	FrameButtonModern.Glow:Finish()
@@ -758,7 +902,8 @@ AbyssUIClassic_ReloadFrame.text:SetScale(1.5)
 AbyssUIClassic_ReloadFrame.text:SetAllPoints(true)
 AbyssUIClassic_ReloadFrame.text:SetJustifyH("CENTER")
 AbyssUIClassic_ReloadFrame.text:SetJustifyV("CENTER")
-AbyssUIClassic_ReloadFrame.text:SetText("A reload is necessary so this configuration can be save!\nClick the |cffffcc00'Confirm'|r button to Reload.\nYou still can make changes (do before you confirm).")
+AbyssUIClassic_ReloadFrame.text:SetText("A reload is necessary so this configuration can be save!\n"..
+"Click the |cffffcc00'"..confirmString.."'|r button to Reload.\nYou still can make changes (do before you confirm).")
 ----------------------------------------------------
 local Border = AbyssUIClassic_ReloadFrame:CreateTexture(nil, "BACKGROUND")
 Border:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
@@ -778,15 +923,19 @@ AbyssUIClassic_ReloadFrame.texture = Texture
 ----------------------------------------------------
 local FrameButtonConfirm = CreateFrame("Button","$parentFrameButtonConfirm", AbyssUIClassic_ReloadFrame, "UIPanelButtonTemplate")
 FrameButtonConfirm:SetHeight(24)
-FrameButtonConfirm:SetWidth(70)
+FrameButtonConfirm:SetWidth(100)
 FrameButtonConfirm:SetPoint("BOTTOM", AbyssUIClassic_ReloadFrame, "BOTTOM", 0, 10)
-FrameButtonConfirm:SetText("Confirm")
+FrameButtonConfirm.text = FrameButtonConfirm.text or FrameButtonConfirm:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonConfirm.text:SetFont(globalFont, 12)
+FrameButtonConfirm.text:SetPoint("CENTER", FrameButtonConfirm, "CENTER", 0, 0)
+FrameButtonConfirm.text:SetText(confirmString)
+FrameButtonConfirm.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonConfirm.text:SetShadowColor(0, 0, 0)
+FrameButtonConfirm.text:SetShadowOffset(1, -1)
 FrameButtonConfirm:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 ----------------------------------------------------
 local BorderButton = FrameButtonConfirm:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonConfirm)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonConfirm:SetScript("OnClick", function()
 	AbyssUIClassic_ReloadFrame:Hide()
 	ReloadUI()
@@ -832,15 +981,18 @@ AbyssUIClassic_ReloadFrameFadeUI.texture = Texture
 ----------------------------------------------------
 local FrameButtonConfirm = CreateFrame("Button","$parentFrameButtonConfirm", AbyssUIClassic_ReloadFrameFadeUI, "UIPanelButtonTemplate")
 FrameButtonConfirm:SetHeight(24)
-FrameButtonConfirm:SetWidth(70)
+FrameButtonConfirm:SetWidth(100)
 FrameButtonConfirm:SetPoint("BOTTOM", AbyssUIClassic_ReloadFrameFadeUI, "BOTTOM", 0, 10)
-FrameButtonConfirm:SetText("Confirm")
-FrameButtonConfirm:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+FrameButtonConfirm.text = FrameButtonConfirm.text or FrameButtonConfirm:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonConfirm.text:SetFont(globalFont, 12)
+FrameButtonConfirm.text:SetPoint("CENTER", FrameButtonConfirm, "CENTER", 0, 0)
+FrameButtonConfirm.text:SetText(confirmString)
+FrameButtonConfirm.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonConfirm.text:SetShadowColor(0, 0, 0)
+FrameButtonConfirm.text:SetShadowOffset(1, -1)
 ----------------------------------------------------
 local BorderButton = FrameButtonConfirm:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonConfirm)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonConfirm:SetScript("OnClick", function()
 	AbyssUIClassic_ReloadFrameFadeUI:Hide()
 	ReloadUI()
@@ -886,22 +1038,30 @@ AbyssUIClassic_ActionBarCleaner.texture = Texture
 ----------------------------------------------------
 local FrameButtonConfirm = CreateFrame("Button","$parentFrameButtonConfirm", AbyssUIClassic_ActionBarCleaner, "UIPanelButtonTemplate")
 FrameButtonConfirm:SetHeight(24)
-FrameButtonConfirm:SetWidth(70)
+FrameButtonConfirm:SetWidth(100)
 FrameButtonConfirm:SetPoint("BOTTOM", AbyssUIClassic_ActionBarCleaner, "BOTTOM", -50, 10)
-FrameButtonConfirm:SetText("Confirm")
-FrameButtonConfirm:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+FrameButtonConfirm.text = FrameButtonConfirm.text or FrameButtonConfirm:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonConfirm.text:SetFont(globalFont, 12)
+FrameButtonConfirm.text:SetPoint("CENTER", FrameButtonConfirm, "CENTER", 0, 0)
+FrameButtonConfirm.text:SetText(confirmString)
+FrameButtonConfirm.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonConfirm.text:SetShadowColor(0, 0, 0)
+FrameButtonConfirm.text:SetShadowOffset(1, -1)
 ----------------------------------------------------
 local FrameButtonCancel = CreateFrame("Button","$parentFrameButtonCancel", AbyssUIClassic_ActionBarCleaner, "UIPanelButtonTemplate")
 FrameButtonCancel:SetHeight(24)
-FrameButtonCancel:SetWidth(70)
+FrameButtonCancel:SetWidth(100)
 FrameButtonCancel:SetPoint("BOTTOM", AbyssUIClassic_ActionBarCleaner, "BOTTOM", 50, 10)
-FrameButtonCancel:SetText("Cancel")
-FrameButtonCancel:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+FrameButtonCancel.text = FrameButtonCancel.text or FrameButtonCancel:CreateFontString(nil, "ARTWORK", "QuestMapRewardsFont")
+FrameButtonCancel.text:SetFont(globalFont, 12)
+FrameButtonCancel.text:SetPoint("CENTER", FrameButtonCancel, "CENTER", 0, 0)
+FrameButtonCancel.text:SetText(cancelString)
+FrameButtonCancel.text:SetTextColor(229/255, 229/255, 229/255)
+FrameButtonCancel.text:SetShadowColor(0, 0, 0)
+FrameButtonCancel.text:SetShadowOffset(1, -1)
 ----------------------------------------------------
 local BorderButton = FrameButtonConfirm:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonConfirm)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonConfirm:SetScript("OnClick", function()
 	for i = 1, 120 do
 		PickupAction(i) ClearCursor()
@@ -910,9 +1070,7 @@ FrameButtonConfirm:SetScript("OnClick", function()
 end)
 ----------------------------------------------------
 local BorderButton = FrameButtonCancel:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonCancel)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonCancel:SetScript("OnClick", function()
 	AbyssUIClassic_ActionBarCleaner:Hide()
 end)
@@ -960,12 +1118,9 @@ FrameButtonReset:SetHeight(24)
 FrameButtonReset:SetWidth(85)
 FrameButtonReset:SetPoint("BOTTOM", AbyssUIClassic_ActionBarInfo, "BOTTOM", 0, 10)
 FrameButtonReset:SetText("Reload UI")
-FrameButtonReset:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 ----------------------------------------------------
 local BorderButton = FrameButtonReset:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonReset)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonReset:SetScript("OnClick", function()
 	AbyssUIClassic_ActionBarInfo:Hide()
 	ReloadUI()
@@ -1014,12 +1169,9 @@ FrameButtonColorPicker:SetHeight(24)
 FrameButtonColorPicker:SetWidth(120)
 FrameButtonColorPicker:SetPoint("BOTTOM", AbyssUIClassic_ColorPickerFrame, "BOTTOM", -50, 10)
 FrameButtonColorPicker:SetText("Choose a Color")
-FrameButtonColorPicker:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 ----------------------------------------------------
 local BorderButton = FrameButtonColorPicker:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonColorPicker)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonColorPicker:SetScript("OnClick", function()
 	AbyssUIClassic_ShowColorPicker()
 end)
@@ -1029,12 +1181,9 @@ FrameButtonReset:SetHeight(24)
 FrameButtonReset:SetWidth(85)
 FrameButtonReset:SetPoint("BOTTOM", AbyssUIClassic_ColorPickerFrame, "BOTTOM", 50, 10)
 FrameButtonReset:SetText("Reload UI")
-FrameButtonReset:SetNormalTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 ----------------------------------------------------
 local BorderButton = FrameButtonReset:CreateTexture(nil, "ARTWORK")
-BorderButton:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
 BorderButton:SetAllPoints(FrameButtonReset)
-BorderButton:SetVertexColor(0.34, 0.34, 0.34, 0.7)
 FrameButtonReset:SetScript("OnClick", function()
 	AbyssUIClassic_ColorPickerFrame:Hide()
 	ReloadUI()
@@ -1043,6 +1192,7 @@ end)
 local function AbyssUIClassicStart()
 	AbyssUIClassicFirstFrame:Show()
 end
+----------------------------------------------------
 --------------------------------- Save ---------------------------------
 local AbyssUIClassicSave = CreateFrame("Frame")
 AbyssUIClassicSave:RegisterEvent("ADDON_LOADED")
