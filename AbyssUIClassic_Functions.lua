@@ -232,12 +232,6 @@ end)
 --]]
 ----------------------------------------------------
 -- CastBar size fixes
-TimerTracker:HookScript("OnEvent", function(self, event, timerType, timeSeconds, totalTime)
-  if event ~= "START_TIMER" then return end
-  AbyssUIClassic_FrameSize(TimerTrackerTimer1StatusBar, 200, 18)
-  AbyssUIClassic_RegionListSize(TimerTrackerTimer1StatusBar, 200, 18)
-	TimerTrackerTimer1StatusBarBorder:Hide()
-end)
 for i, v in pairs({
 	MirrorTimer1,
 	MirrorTimer2,

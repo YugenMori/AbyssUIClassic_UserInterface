@@ -434,7 +434,7 @@ local function AbyssUIClassic_CheckTexturePack()
         c.Icon:ClearAllPoints()
         c.Icon:SetPoint("LEFT", c, "LEFT", -25, 1)
       else
-        CheckIcon_TexturePack:Show()
+        return nil
       end
   end)
 end

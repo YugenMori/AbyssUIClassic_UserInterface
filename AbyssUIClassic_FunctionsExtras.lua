@@ -161,7 +161,7 @@ f:SetScript("OnEvent", function(self, event)
     for _, v in next, f.yellow do 
       _G[v]:SetTextColor(229/255, 229/255, 229/255)
     end
-      _G.WorldMapFrame.NavBar.home.text:SetTextColor(229/255, 229/255, 229/255)
+      --_G.WorldMapFrame.NavBar.home.text:SetTextColor(229/255, 229/255, 229/255)
   end
 end)
 ----------------------------------------------------
@@ -295,13 +295,6 @@ FadeUI_MouseOver:SetScript("OnClick", function()
 end)
 ----------------------------------------------
 -- NamePlate Style 
---  Move nametag
-hooksecurefunc("DefaultCompactNamePlateFrameAnchorInternal", function(frame)
-	if ( not frame:IsForbidden() and AbyssUIClassicAddonSettings.ExtraFunctionNameplateChanges ~= true ) then
-		frame.name:ClearAllPoints()
-		PixelUtil.SetPoint(frame.name, "BOTTOM", frame.healthBar, "TOP", 0, 4)
-	end
-end)
 ----------------------------------------------
 -- Nameplate Health Percent
 hooksecurefunc("CompactUnitFrame_UpdateStatusText", function(frame)
