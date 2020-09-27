@@ -359,6 +359,7 @@ C_WowTokenPublic.UpdateMarketPrice()
     --print("|cfff2dc7fLocation: |r" .. GetMinimapZoneText() .. "|cffffcc00, " .. GetZoneText() .. "|r")
     print("|cfff2dc7fWoW "..versionString..":w |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
     print("|cfff2dc7fAbyssUIClassic "..versionString..": |r|cffffcc00" .. AddonVersion .. "|r")
+    print("|cfff2dc7f"..latestString.." TexturePack: |r|cffffcc001.0.1.1 (26/09/20)|r")
   end)
 end)
 -- Reload --

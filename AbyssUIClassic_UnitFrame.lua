@@ -84,18 +84,6 @@ AbyssUIClassic_UnitFrame:RegisterEvent("PLAYER_LOGIN")
 AbyssUIClassic_UnitFrame:RegisterEvent("PLAYER_LOGOUT")
 AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 	if ( event == "ADDON_LOADED" and arg1 == "AbyssUIClassic" )  then		
-		-- UnitFramesImproved_Style_TargetOfTargetFrame
-		local UnitFramesImproved_Style_TargetOfTargetFrame = CreateFrame("Frame", nil)
-		UnitFramesImproved_Style_TargetOfTargetFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-		UnitFramesImproved_Style_TargetOfTargetFrame:SetScript("OnEvent", function()
-			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
-				if not InCombatLockdown() then 
-					TargetFrameToTHealthBar.lockColor = true
-				end
-			else
-				return nil
-			end
-		end)
 		-- UnitColor
 		local UnitColor
 		local function UnitColor(unit)
@@ -302,26 +290,31 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 		local function UnitFramesImproved_UnitName_Color(self)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
 				if not InCombatLockdown() then
-					for i, v in pairs ({
+					-- names
+					for i, v in pairs({
 						PlayerName,
 						TargetFrameTextureFrameName,
-	 				}) do
-						--v:SetFont("Interface\\AddOns\\AbyssUIClassic\\Textures\\font\\damagefontcyrillic.ttf", 10)
-						v:SetFont("Fonts\\FRIZQT__.ttf", 12)
-						v:SetVertexColor(255/255, 252/255, 242/255)
-						v:SetShadowColor(0, 0, 0)
-						v:SetShadowOffset(1, -1)
+					}) do
+						C_Timer.After(0.1, function() 
+							v:SetVertexColor(229/255, 229/255, 229/255)
+							v:SetShadowColor(0, 0, 0)
+							v:SetShadowOffset(1, -1)
+							v:SetScale(1.2)
+							v:ClearAllPoints()
+							PlayerName:SetPoint("CENTER", PlayerFrame, "CENTER", 40, 15)
+							TargetFrameTextureFrameName:SetPoint("CENTER", TargetFrame, "CENTER", -40, 15)
+						end)
 					end
+					-- numbers
 					for i, v in pairs ({
 						PlayerFrameHealthBarText,
 						PlayerFrameManaBarText,
 						TargetFrameTextureFrameHealthBarText,
 						TargetFrameTextureFrameManaBarText,
-						}) do
-						v:SetFont("Fonts\\FRIZQT__.ttf", 10)
+ 					}) do
+						v:SetFont(globalFont, 12)
 						v:SetShadowColor(0, 0, 0)
-						v:SetShadowOffset(1, -0.75)
-						v:SetShadowOffset(1, -1)
+						v:SetShadowOffset(1, -1)					
 					end
 				end
 			else
@@ -338,7 +331,17 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				else
 					-- Standard by class etc if not
 					if ( UnitIsPlayer(self.unit) ) then
-						self.healthbar:SetStatusBarColor(UnitColor(self.healthbar.unit))
+						if ((UnitHealth(self.unit) > 0) and UnitIsConnected(self.unit)) then
+							local healthPercentage = ceil(((UnitHealth(self.unit) / UnitHealthMax(self.unit)) * 1000) /10)
+							if ( healthPercentage == 0 ) then return end
+							if healthPercentage == 100 then
+								self.healthbar:SetStatusBarColor(UnitColor(self.healthbar.unit))
+							elseif healthPercentage < 100 and healthPercentage > 21 then
+								self.healthbar:SetStatusBarColor(UnitColor(self.healthbar.unit))
+							elseif healthPercentage < 21 then
+								self.healthbar:SetStatusBarColor(255/255, 255/255, 255/255)
+							end				
+						end	
 					else
 						-- Change Color By health
 						if ((UnitHealth(self.unit) > 0) and UnitIsConnected(self.unit)) then
@@ -346,16 +349,12 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 							if ( healthPercentage == 0 ) then return end
 							if healthPercentage == 100 then
 								self.healthbar:SetStatusBarColor(UnitColor(self.healthbar.unit))
-							elseif healthPercentage < 100 and healthPercentage >= 75 then
-								self.healthbar:SetStatusBarColor(1, 0, 0)
-							elseif healthPercentage < 75 and healthPercentage >= 50 then
-								self.healthbar:SetStatusBarColor(255/255, 129/255, 0/255)
-							elseif healthPercentage < 50 and healthPercentage > 21 then
-								self.healthbar:SetStatusBarColor(255/255, 245/255, 105/255)
+							elseif healthPercentage < 100 and healthPercentage > 21 then
+								self.healthbar:SetStatusBarColor(UnitColor(self.healthbar.unit))
 							elseif healthPercentage < 21 then
-								self.healthbar:SetStatusBarColor(128/255, 128/255, 128/255)
-							end
-						end
+								self.healthbar:SetStatusBarColor(255/255, 255/255, 255/255)
+							end				
+						end	
 					end
 				end
 				if ((UnitHealth(self.unit) <= 0) and UnitIsConnected(self.unit)) then
@@ -450,39 +449,11 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 			end
 			UnitFramesImproved_Style_TargetFrame(self)
 		end
-
-		-- EnableUnitFramesImproved
-		local EnableUnitFramesImproved = CreateFrame("Frame", nil)
-		EnableUnitFramesImproved:RegisterEvent("PLAYER_ENTERING_WORLD")
-		EnableUnitFramesImproved:SetScript("OnEvent", function()
-			C_Timer.After(0.2, function()
-				-- Generic status text hook
-				hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", UnitFramesImproved_TextStatusBar_UpdateTextStringWithValues)
-				
-				-- Hook PlayerFrame functions
-				hooksecurefunc("PlayerFrame_ToPlayerArt", UnitFramesImproved_PlayerFrame_ToPlayerArt)
-				hooksecurefunc("PlayerFrame_ToVehicleArt", UnitFramesImproved_PlayerFrame_ToVehicleArt)
-				
-				-- Hook TargetFrame functions
-				hooksecurefunc("TargetFrame_CheckDead", UnitFramesImproved_TargetFrame_Update)
-				hooksecurefunc("TargetFrame_Update", UnitFramesImproved_TargetFrame_Update)
-				hooksecurefunc("TargetFrame_CheckFaction", UnitFramesImproved_TargetFrame_CheckFaction)
-				hooksecurefunc("TargetFrame_CheckClassification", UnitFramesImproved_TargetFrame_CheckClassification)
-				hooksecurefunc("TargetofTarget_Update", UnitFramesImproved_TargetFrame_Update)
-				
-				-- BossFrame hooks
-				hooksecurefunc("BossTargetFrame_OnLoad", UnitFramesImproved_BossTargetFrame_Style)
-				
-				-- Set up some stylings
-				UnitFramesImproved_Style_PlayerFrame()
-				UnitFramesImproved_BossTargetFrame_Style(Boss1TargetFrame)
-				UnitFramesImproved_BossTargetFrame_Style(Boss2TargetFrame)
-				UnitFramesImproved_BossTargetFrame_Style(Boss3TargetFrame)
-				UnitFramesImproved_BossTargetFrame_Style(Boss4TargetFrame)
-				UnitFramesImproved_Style_TargetFrame(TargetFrame)
-				UnitFramesImproved_UnitName_Color()
-			end)
-		end)
+		local function UnitFramesImproved_Style_TargetOfTargetFrame()
+			if not InCombatLockdown() then 
+				TargetFrameToTHealthBar.lockColor = true
+			end
+		end
 		--StatusBarTextString
 		local function CreateStatusBarText(name, parentName, parent, point, x, y)
 			if ( AbyssUIClassicAddonSettings.UnitFrameImproved == true ) then
@@ -493,8 +464,59 @@ AbyssUIClassic_UnitFrame:SetScript("OnEvent", function(self, event, arg1)
 				return nil
 			end
 		end
-		----------------------------------------------------
-		-- End
+		-- EnableUnitFramesImproved
+		local EnableUnitFramesImproved = CreateFrame("Frame", nil)
+		EnableUnitFramesImproved:RegisterEvent("PLAYER_ENTERING_WORLD")
+		EnableUnitFramesImproved:SetScript("OnEvent", function()
+			C_Timer.After(0.2, function()
+				-- Generic status text hook
+				hooksecurefunc("TextStatusBar_UpdateTextStringWithValues", UnitFramesImproved_TextStatusBar_UpdateTextStringWithValues)
+				
+				-- Hook PlayerFrame functions
+	      		hooksecurefunc("PlayerFrame_ToPlayerArt", UnitFramesImproved_PlayerFrame_ToPlayerArt)
+				hooksecurefunc("PlayerFrame_ToVehicleArt", UnitFramesImproved_PlayerFrame_ToVehicleArt)
+
+				-- Hook TargetFrame functions
+				hooksecurefunc("TargetFrame_CheckDead", UnitFramesImproved_TargetFrame_Update)
+				hooksecurefunc("TargetFrame_Update", UnitFramesImproved_TargetFrame_Update)
+				hooksecurefunc("TargetFrame_CheckClassification", UnitFramesImproved_TargetFrame_CheckClassification)
+				hooksecurefunc("TargetofTarget_Update", UnitFramesImproved_TargetFrame_Update)
+				hooksecurefunc("TargetFrame_CheckFaction", UnitFramesImproved_TargetFrame_CheckFaction)
+				-- BossFrame hooks
+				hooksecurefunc("BossTargetFrame_OnLoad", UnitFramesImproved_BossTargetFrame_Style)
+				
+				-- Set up some stylings
+				UnitFramesImproved_Style_PlayerFrame()
+				UnitFramesImproved_BossTargetFrame_Style(Boss1TargetFrame)
+				UnitFramesImproved_BossTargetFrame_Style(Boss2TargetFrame)
+				UnitFramesImproved_BossTargetFrame_Style(Boss3TargetFrame)
+				UnitFramesImproved_BossTargetFrame_Style(Boss4TargetFrame)
+				UnitFramesImproved_Style_TargetFrame(TargetFrame)
+				--UnitFramesImproved_Style_TargetFrame(FocusFrame)
+				UnitFramesImproved_UnitName_Color()
+				--[[
+				if (FocusFrame) then
+					UnitFramesImproved_Style_TargetFrame(FocusFrame)
+				end
+				--]]
+				UnitFramesImproved_Style_TargetOfTargetFrame()
+				
+				-- Update some values
+				TextStatusBar_UpdateTextString(PlayerFrame.healthbar)
+				TextStatusBar_UpdateTextString(PlayerFrame.manabar)
+
+				if (not FocusFrame) then
+			
+					TargetFrameHealthBar.TextString = CreateStatusBarText("Text", "TargetFrameHealthBar", TargetFrameTextureFrame, "CENTER", -50, 3)
+					TargetFrameHealthBar.LeftText = CreateStatusBarText("TextLeft", "TargetFrameHealthBar", TargetFrameTextureFrame, "LEFT", 8, 3)
+					TargetFrameHealthBar.RightText = CreateStatusBarText("TextRight", "TargetFrameHealthBar", TargetFrameTextureFrame, "RIGHT", -110, 3)
+					
+					TargetFrameManaBar.TextString = CreateStatusBarText("Text", "TargetFrameManaBar", TargetFrameTextureFrame, "CENTER", -50, -8)
+					TargetFrameManaBar.LeftText = CreateStatusBarText("TextLeft", "TargetFrameManaBar", TargetFrameTextureFrame, "LEFT", 8, -8)
+					TargetFrameManaBar.RightText = CreateStatusBarText("TextRight", "TargetFrameManaBar", TargetFrameTextureFrame, "RIGHT", -110, -8)
+				end
+			end)
+		end)
 	end
 end)
 -- End

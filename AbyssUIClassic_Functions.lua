@@ -847,6 +847,7 @@ end)
 local _G = _G
 local levelString 			= _G["LEVEL"]
 local versionString 		= _G["GAME_VERSION_LABEL"]
+local latestString     		= _G["KBASE_RECENTLY_UPDATED"] 
 local timeStringLabel 		= _G["TIME_LABEL"]
 -- DailyInfo Function
 local AbyssUIClassicDailyInfo = CreateFrame("Frame")
@@ -866,6 +867,7 @@ AbyssUIClassicDailyInfo:SetScript("OnEvent", function(self, event, arg1)
 		end
 		print("|cfff2dc7fWoW "..versionString..": |r|cffffcc00" .. select(1, GetBuildInfo()) .. "|r")
 		print("|cfff2dc7fAbyssUI "..versionString..": |r|cffffcc00" .. AddonVersion .. "|r")
+   		print("|cfff2dc7f"..latestString.." TexturePack: |r|cffffcc001.0.1.1 (26/09/20)|r")
 		if ( AbyssUIClassicProfile ~= nil) then 
 			local name, elapsed = UnitName("player"), time() - AbyssUIClassicProfile
 			print("|cfff2dc7fTime since last login: |r" .. name .. " you were gone for |cffffcc00" .. SecondsToTime(elapsed) .. "|r")
