@@ -296,6 +296,15 @@ end)
 ----------------------------------------------
 -- NamePlate Style 
 ----------------------------------------------
+--  Remove realm names
+hooksecurefunc("CompactUnitFrame_UpdateName", function(frame)
+	if ( not frame:IsForbidden() and AbyssUIClassicAddonSettings.ExtraFunctionNameplateChanges ~= true ) then
+	    if ShouldShowName(frame) then
+	        frame.name:SetVertexColor(1,1,1) -- Fixes tapped mobs permanently setting the nametag gray
+	        frame.name:SetText(GetUnitName(frame.unit))
+	    end
+	end
+end)
 -- Nameplate Health Percent
 hooksecurefunc("CompactUnitFrame_UpdateStatusText", function(frame)
 	if ( AbyssUIClassicAddonSettings.ExtraFunctionNameplateChanges ~= true ) then
@@ -326,8 +335,8 @@ hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function(self)
 				if C_NamePlate.GetNamePlateForUnit(self.unit) == C_NamePlate.GetNamePlateForUnit('player') then
 					local healthPercentage = ceil(((UnitHealth(self.displayedUnit) / UnitHealthMax(self.displayedUnit)) * 1000) /10)
 					if ( healthPercentage == 0 ) then return end
-          if ( healthPercentage == 100 ) then
-            self.healthBar:SetStatusBarColor(color.r, color.g, color.b)
+          			if ( healthPercentage == 100 ) then
+       					self.healthBar:SetStatusBarColor(color.r, color.g, color.b)
 					elseif healthPercentage < 100 and healthPercentage > 21 then
 						self.healthBar:SetStatusBarColor(color.r, color.g, color.b)
 					elseif healthPercentage < 21 then
@@ -354,10 +363,10 @@ hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function(self)
 					if healthPercentage == 100 then
 						-- do nothing keep frame color
 					elseif healthPercentage < 100 and healthPercentage > 21 then
-            self.healthBar:SetStatusBarColor(UnitColor(self.unit))
-          elseif healthPercentage < 21 then
-            self.healthBar:SetStatusBarColor(255/255, 255/255, 255/255)
-          end
+            			self.healthBar:SetStatusBarColor(UnitColor(self.unit))
+          			elseif healthPercentage < 21 then
+            			self.healthBar:SetStatusBarColor(255/255, 255/255, 255/255)
+          			end
 				end
 			end
 		end

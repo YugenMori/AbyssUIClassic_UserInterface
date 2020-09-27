@@ -610,7 +610,7 @@ local function AbyssUIClassic_UpdateYouDiedLevelUpData()
 	-- Get
 	level = UnitLevel("player")
 	-- Set
-	LevelUp_PlayerInfo.text:SetText(strupper("|cfff2dc7f"..leveltext.."|r ".."|cfff2dc7f"..level.."|r"))
+	LevelUp_PlayerInfo.text:SetText(strupper("|cfff2dc7f"..levelString.."|r ".."|cfff2dc7f"..level.."|r"))
 end
 AbyssUIClassic_LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
 AbyssUIClassic_LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
